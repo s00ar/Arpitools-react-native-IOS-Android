@@ -1,0 +1,820 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "attributes": {
+                "name": "INTERRUPTOR SIMPLE",
+                "description": "CÓDIGO: ME-0001, MARCA: VETTO\nDispositivo que permite el control ON – OFF (conexión y desconexión) de la corriente eléctrica en toda clase de circuitos eléctricos con cargas resistivas e inductivas.",
+                "price1": 2.25,
+                "price2": 2.38,
+                "stock": 100,
+                "createdAt": "2022-10-07T21:05:03.551Z",
+                "updatedAt": "2022-10-19T03:33:22.797Z",
+                "publishedAt": "2022-10-07T21:06:46.611Z",
+                "pictures": {
+                    "data": [
+                        {
+                            "id": 6,
+                            "attributes": {
+                                "name": "interrumptor-simple.jpg",
+                                "alternativeText": "interrumptor-simple.jpg",
+                                "caption": "interrumptor-simple.jpg",
+                                "width": 1300,
+                                "height": 868,
+                                "formats": {
+                                    "thumbnail": {
+                                        "name": "thumbnail_interrumptor-simple.jpg",
+                                        "hash": "thumbnail_interrumptor_simple_19ae6404fd",
+                                        "ext": ".jpg",
+                                        "mime": "image/jpeg",
+                                        "path": null,
+                                        "width": 234,
+                                        "height": 156,
+                                        "size": 2.32,
+                                        "url": "/uploads/thumbnail_interrumptor_simple_19ae6404fd.jpg"
+                                    },
+                                    "large": {
+                                        "name": "large_interrumptor-simple.jpg",
+                                        "hash": "large_interrumptor_simple_19ae6404fd",
+                                        "ext": ".jpg",
+                                        "mime": "image/jpeg",
+                                        "path": null,
+                                        "width": 1000,
+                                        "height": 668,
+                                        "size": 17.93,
+                                        "url": "/uploads/large_interrumptor_simple_19ae6404fd.jpg"
+                                    },
+                                    "medium": {
+                                        "name": "medium_interrumptor-simple.jpg",
+                                        "hash": "medium_interrumptor_simple_19ae6404fd",
+                                        "ext": ".jpg",
+                                        "mime": "image/jpeg",
+                                        "path": null,
+                                        "width": 750,
+                                        "height": 501,
+                                        "size": 11.98,
+                                        "url": "/uploads/medium_interrumptor_simple_19ae6404fd.jpg"
+                                    },
+                                    "small": {
+                                        "name": "small_interrumptor-simple.jpg",
+                                        "hash": "small_interrumptor_simple_19ae6404fd",
+                                        "ext": ".jpg",
+                                        "mime": "image/jpeg",
+                                        "path": null,
+                                        "width": 500,
+                                        "height": 334,
+                                        "size": 6.58,
+                                        "url": "/uploads/small_interrumptor_simple_19ae6404fd.jpg"
+                                    }
+                                },
+                                "hash": "interrumptor_simple_19ae6404fd",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "size": 27.26,
+                                "url": "/uploads/interrumptor_simple_19ae6404fd.jpg",
+                                "previewUrl": null,
+                                "provider": "local",
+                                "provider_metadata": null,
+                                "createdAt": "2022-10-19T03:33:07.680Z",
+                                "updatedAt": "2022-10-19T03:33:07.680Z"
+                            }
+                        }
+                    ]
+                },
+                "thumbnail": {
+                    "data": {
+                        "id": 5,
+                        "attributes": {
+                            "name": "interrumptor-simple.jpg",
+                            "alternativeText": "interrumptor-simple.jpg",
+                            "caption": "interrumptor-simple.jpg",
+                            "width": 1300,
+                            "height": 868,
+                            "formats": {
+                                "thumbnail": {
+                                    "name": "thumbnail_interrumptor-simple.jpg",
+                                    "hash": "thumbnail_interrumptor_simple_9eb1a878cb",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "path": null,
+                                    "width": 234,
+                                    "height": 156,
+                                    "size": 2.32,
+                                    "url": "/uploads/thumbnail_interrumptor_simple_9eb1a878cb.jpg"
+                                },
+                                "large": {
+                                    "name": "large_interrumptor-simple.jpg",
+                                    "hash": "large_interrumptor_simple_9eb1a878cb",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "path": null,
+                                    "width": 1000,
+                                    "height": 668,
+                                    "size": 17.93,
+                                    "url": "/uploads/large_interrumptor_simple_9eb1a878cb.jpg"
+                                },
+                                "small": {
+                                    "name": "small_interrumptor-simple.jpg",
+                                    "hash": "small_interrumptor_simple_9eb1a878cb",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "path": null,
+                                    "width": 500,
+                                    "height": 334,
+                                    "size": 6.58,
+                                    "url": "/uploads/small_interrumptor_simple_9eb1a878cb.jpg"
+                                },
+                                "medium": {
+                                    "name": "medium_interrumptor-simple.jpg",
+                                    "hash": "medium_interrumptor_simple_9eb1a878cb",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "path": null,
+                                    "width": 750,
+                                    "height": 501,
+                                    "size": 11.98,
+                                    "url": "/uploads/medium_interrumptor_simple_9eb1a878cb.jpg"
+                                }
+                            },
+                            "hash": "interrumptor_simple_9eb1a878cb",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 27.26,
+                            "url": "/uploads/interrumptor_simple_9eb1a878cb.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2022-10-19T03:33:01.842Z",
+                            "updatedAt": "2022-10-19T03:33:01.842Z"
+                        }
+                    }
+                },
+                "categories": {
+                    "data": [
+                        {
+                            "id": 1,
+                            "attributes": {
+                                "createdAt": "2022-10-07T21:05:17.902Z",
+                                "updatedAt": "2022-10-07T21:05:19.632Z",
+                                "publishedAt": "2022-10-07T21:05:19.623Z",
+                                "name": "MATERIAL ELECTRICO"
+                            }
+                        }
+                    ]
+                },
+                "orders": {
+                    "data": []
+                },
+                "Especificaciones": {
+                    "data": null
+                }
+            }
+        },
+        {
+            "id": 2,
+            "attributes": {
+                "name": "ALAMBRE # 8 NEGRO",
+                "description": "CÓDIGO: ME-0002, MARCA: ELECTROCABLES\n\n* Aislado con una capa de PVC resistente a la humedad y al calor elevado.\n* Cubierta de nylon protectora.",
+                "price1": 22.5,
+                "price2": 23.75,
+                "stock": 150,
+                "createdAt": "2022-10-07T21:07:56.274Z",
+                "updatedAt": "2022-10-19T03:31:45.158Z",
+                "publishedAt": "2022-10-07T21:08:18.713Z",
+                "pictures": {
+                    "data": [
+                        {
+                            "id": 2,
+                            "attributes": {
+                                "name": "alambre 8.jpg",
+                                "alternativeText": "alambre 8.jpg",
+                                "caption": "alambre 8.jpg",
+                                "width": 130,
+                                "height": 130,
+                                "formats": null,
+                                "hash": "alambre_8_cf69e5353c",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "size": 4.78,
+                                "url": "/uploads/alambre_8_cf69e5353c.jpg",
+                                "previewUrl": null,
+                                "provider": "local",
+                                "provider_metadata": null,
+                                "createdAt": "2022-10-19T03:30:52.366Z",
+                                "updatedAt": "2022-10-19T03:31:34.761Z"
+                            }
+                        }
+                    ]
+                },
+                "thumbnail": {
+                    "data": {
+                        "id": 2,
+                        "attributes": {
+                            "name": "alambre 8.jpg",
+                            "alternativeText": "alambre 8.jpg",
+                            "caption": "alambre 8.jpg",
+                            "width": 130,
+                            "height": 130,
+                            "formats": null,
+                            "hash": "alambre_8_cf69e5353c",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 4.78,
+                            "url": "/uploads/alambre_8_cf69e5353c.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2022-10-19T03:30:52.366Z",
+                            "updatedAt": "2022-10-19T03:31:34.761Z"
+                        }
+                    }
+                },
+                "categories": {
+                    "data": [
+                        {
+                            "id": 1,
+                            "attributes": {
+                                "createdAt": "2022-10-07T21:05:17.902Z",
+                                "updatedAt": "2022-10-07T21:05:19.632Z",
+                                "publishedAt": "2022-10-07T21:05:19.623Z",
+                                "name": "MATERIAL ELECTRICO"
+                            }
+                        }
+                    ]
+                },
+                "orders": {
+                    "data": []
+                },
+                "Especificaciones": {
+                    "data": null
+                }
+            }
+        },
+        {
+            "id": 3,
+            "attributes": {
+                "name": "PALA CUADRADA",
+                "description": "CODIGO: MF-0001, MARCA: COMANDO\n\nCaracterísticas principales:\nAlta resistencia al desgaste.\nMango de fibra de vidrio huecos: durabilidad resistencia y flexibilidad.\nAcabado y pintura antioxidante.\nPara trasvasar y cavar.\n",
+                "price1": 7.2,
+                "price2": 7.6,
+                "stock": 100,
+                "createdAt": "2022-10-07T21:09:25.522Z",
+                "updatedAt": "2022-10-19T03:36:19.151Z",
+                "publishedAt": "2022-10-07T21:09:27.682Z",
+                "pictures": {
+                    "data": [
+                        {
+                            "id": 8,
+                            "attributes": {
+                                "name": "pala cuadrada.jpg",
+                                "alternativeText": "pala cuadrada.jpg",
+                                "caption": "pala cuadrada.jpg",
+                                "width": 455,
+                                "height": 455,
+                                "formats": {
+                                    "thumbnail": {
+                                        "name": "thumbnail_pala cuadrada.jpg",
+                                        "hash": "thumbnail_pala_cuadrada_2f2f4f45ec",
+                                        "ext": ".jpg",
+                                        "mime": "image/jpeg",
+                                        "path": null,
+                                        "width": 156,
+                                        "height": 156,
+                                        "size": 2.36,
+                                        "url": "/uploads/thumbnail_pala_cuadrada_2f2f4f45ec.jpg"
+                                    }
+                                },
+                                "hash": "pala_cuadrada_2f2f4f45ec",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "size": 8.84,
+                                "url": "/uploads/pala_cuadrada_2f2f4f45ec.jpg",
+                                "previewUrl": null,
+                                "provider": "local",
+                                "provider_metadata": null,
+                                "createdAt": "2022-10-19T03:35:22.970Z",
+                                "updatedAt": "2022-10-19T03:35:22.970Z"
+                            }
+                        }
+                    ]
+                },
+                "thumbnail": {
+                    "data": {
+                        "id": 7,
+                        "attributes": {
+                            "name": "pala cuadrada.jpg",
+                            "alternativeText": "pala cuadrada.jpg",
+                            "caption": "pala cuadrada.jpg",
+                            "width": 455,
+                            "height": 455,
+                            "formats": {
+                                "thumbnail": {
+                                    "name": "thumbnail_pala cuadrada.jpg",
+                                    "hash": "thumbnail_pala_cuadrada_45eb8fba6b",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "path": null,
+                                    "width": 156,
+                                    "height": 156,
+                                    "size": 2.36,
+                                    "url": "/uploads/thumbnail_pala_cuadrada_45eb8fba6b.jpg"
+                                }
+                            },
+                            "hash": "pala_cuadrada_45eb8fba6b",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 8.84,
+                            "url": "/uploads/pala_cuadrada_45eb8fba6b.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2022-10-19T03:34:06.501Z",
+                            "updatedAt": "2022-10-19T03:34:06.501Z"
+                        }
+                    }
+                },
+                "categories": {
+                    "data": [
+                        {
+                            "id": 2,
+                            "attributes": {
+                                "createdAt": "2022-10-07T21:05:37.450Z",
+                                "updatedAt": "2022-10-07T21:05:38.565Z",
+                                "publishedAt": "2022-10-07T21:05:38.557Z",
+                                "name": "MATERIAL FERRETERO"
+                            }
+                        }
+                    ]
+                },
+                "orders": {
+                    "data": []
+                },
+                "Especificaciones": {
+                    "data": null
+                }
+            }
+        },
+        {
+            "id": 4,
+            "attributes": {
+                "name": "TUBO BLANCO 2\"",
+                "description": "CODIGO: MF-0002, MARCA: PLASTIGAMA\n",
+                "price1": 5.85,
+                "price2": 6.18,
+                "stock": 100,
+                "createdAt": "2022-10-07T21:11:12.189Z",
+                "updatedAt": "2022-10-19T03:39:09.855Z",
+                "publishedAt": "2022-10-07T21:11:14.108Z",
+                "pictures": {
+                    "data": [
+                        {
+                            "id": 13,
+                            "attributes": {
+                                "name": "tubo.png",
+                                "alternativeText": "tubo.png",
+                                "caption": "tubo.png",
+                                "width": 451,
+                                "height": 451,
+                                "formats": {
+                                    "thumbnail": {
+                                        "name": "thumbnail_tubo.png",
+                                        "hash": "thumbnail_tubo_755400abbe",
+                                        "ext": ".png",
+                                        "mime": "image/png",
+                                        "path": null,
+                                        "width": 156,
+                                        "height": 156,
+                                        "size": 15.57,
+                                        "url": "/uploads/thumbnail_tubo_755400abbe.png"
+                                    }
+                                },
+                                "hash": "tubo_755400abbe",
+                                "ext": ".png",
+                                "mime": "image/png",
+                                "size": 66.96,
+                                "url": "/uploads/tubo_755400abbe.png",
+                                "previewUrl": null,
+                                "provider": "local",
+                                "provider_metadata": null,
+                                "createdAt": "2022-10-19T03:38:55.070Z",
+                                "updatedAt": "2022-10-19T03:38:55.070Z"
+                            }
+                        }
+                    ]
+                },
+                "thumbnail": {
+                    "data": {
+                        "id": 14,
+                        "attributes": {
+                            "name": "tubo.png",
+                            "alternativeText": "tubo.png",
+                            "caption": "tubo.png",
+                            "width": 451,
+                            "height": 451,
+                            "formats": {
+                                "thumbnail": {
+                                    "name": "thumbnail_tubo.png",
+                                    "hash": "thumbnail_tubo_0964d9b878",
+                                    "ext": ".png",
+                                    "mime": "image/png",
+                                    "path": null,
+                                    "width": 156,
+                                    "height": 156,
+                                    "size": 15.57,
+                                    "url": "/uploads/thumbnail_tubo_0964d9b878.png"
+                                }
+                            },
+                            "hash": "tubo_0964d9b878",
+                            "ext": ".png",
+                            "mime": "image/png",
+                            "size": 66.96,
+                            "url": "/uploads/tubo_0964d9b878.png",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2022-10-19T03:39:00.705Z",
+                            "updatedAt": "2022-10-19T03:39:00.705Z"
+                        }
+                    }
+                },
+                "categories": {
+                    "data": [
+                        {
+                            "id": 2,
+                            "attributes": {
+                                "createdAt": "2022-10-07T21:05:37.450Z",
+                                "updatedAt": "2022-10-07T21:05:38.565Z",
+                                "publishedAt": "2022-10-07T21:05:38.557Z",
+                                "name": "MATERIAL FERRETERO"
+                            }
+                        }
+                    ]
+                },
+                "orders": {
+                    "data": []
+                },
+                "Especificaciones": {
+                    "data": null
+                }
+            }
+        },
+        {
+            "id": 5,
+            "attributes": {
+                "name": "PISO LAMINADO WENGUE 7MM",
+                "description": "CODIGO: PF-0001, MARCA: LUSTIG\n",
+                "price1": 16.2,
+                "price2": 17.1,
+                "stock": 100,
+                "createdAt": "2022-10-07T21:13:32.796Z",
+                "updatedAt": "2022-10-19T03:38:13.392Z",
+                "publishedAt": "2022-10-07T21:13:35.469Z",
+                "pictures": {
+                    "data": [
+                        {
+                            "id": 9,
+                            "attributes": {
+                                "name": "piso.webp",
+                                "alternativeText": "piso.webp",
+                                "caption": "piso.webp",
+                                "width": 500,
+                                "height": 500,
+                                "formats": {
+                                    "thumbnail": {
+                                        "name": "thumbnail_piso.webp",
+                                        "hash": "thumbnail_piso_5457789940",
+                                        "ext": ".webp",
+                                        "mime": "image/webp",
+                                        "path": null,
+                                        "width": 156,
+                                        "height": 156,
+                                        "size": 4.1,
+                                        "url": "/uploads/thumbnail_piso_5457789940.webp"
+                                    }
+                                },
+                                "hash": "piso_5457789940",
+                                "ext": ".webp",
+                                "mime": "image/webp",
+                                "size": 43.62,
+                                "url": "/uploads/piso_5457789940.webp",
+                                "previewUrl": null,
+                                "provider": "local",
+                                "provider_metadata": null,
+                                "createdAt": "2022-10-19T03:37:36.347Z",
+                                "updatedAt": "2022-10-19T03:37:36.347Z"
+                            }
+                        }
+                    ]
+                },
+                "thumbnail": {
+                    "data": {
+                        "id": 10,
+                        "attributes": {
+                            "name": "piso.webp",
+                            "alternativeText": "piso.webp",
+                            "caption": "piso.webp",
+                            "width": 500,
+                            "height": 500,
+                            "formats": {
+                                "thumbnail": {
+                                    "name": "thumbnail_piso.webp",
+                                    "hash": "thumbnail_piso_c1003544c8",
+                                    "ext": ".webp",
+                                    "mime": "image/webp",
+                                    "path": null,
+                                    "width": 156,
+                                    "height": 156,
+                                    "size": 4.1,
+                                    "url": "/uploads/thumbnail_piso_c1003544c8.webp"
+                                }
+                            },
+                            "hash": "piso_c1003544c8",
+                            "ext": ".webp",
+                            "mime": "image/webp",
+                            "size": 43.62,
+                            "url": "/uploads/piso_c1003544c8.webp",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2022-10-19T03:37:45.217Z",
+                            "updatedAt": "2022-10-19T03:37:45.217Z"
+                        }
+                    }
+                },
+                "categories": {
+                    "data": [
+                        {
+                            "id": 3,
+                            "attributes": {
+                                "createdAt": "2022-10-07T21:05:53.745Z",
+                                "updatedAt": "2022-10-07T21:05:55.585Z",
+                                "publishedAt": "2022-10-07T21:05:55.576Z",
+                                "name": "PISO FLOTANTE"
+                            }
+                        }
+                    ]
+                },
+                "orders": {
+                    "data": []
+                },
+                "Especificaciones": {
+                    "data": null
+                }
+            }
+        },
+        {
+            "id": 6,
+            "attributes": {
+                "name": "BARREDERA WENGUE",
+                "description": "CODIGO: PF-0001, MARCA: LUSTIG\nDESCRIPCIÓN\nMetros por caja: ﻿1.52\nCuerpo: Cerámico\nDiseño: Mármol\nAcabado: Brillante \nÁreas de uso:\nInterior\nUso:\nMuro\nPiso\n",
+                "price1": 4.5,
+                "price2": 4.75,
+                "stock": 100,
+                "createdAt": "2022-10-07T21:14:42.576Z",
+                "updatedAt": "2022-10-19T03:32:34.993Z",
+                "publishedAt": "2022-10-07T21:14:44.568Z",
+                "pictures": {
+                    "data": [
+                        {
+                            "id": 4,
+                            "attributes": {
+                                "name": "ceramica.jpg",
+                                "alternativeText": "ceramica.jpg",
+                                "caption": "ceramica.jpg",
+                                "width": 468,
+                                "height": 472,
+                                "formats": {
+                                    "thumbnail": {
+                                        "name": "thumbnail_ceramica.jpg",
+                                        "hash": "thumbnail_ceramica_c5a3a44e3f",
+                                        "ext": ".jpg",
+                                        "mime": "image/jpeg",
+                                        "path": null,
+                                        "width": 155,
+                                        "height": 156,
+                                        "size": 2.72,
+                                        "url": "/uploads/thumbnail_ceramica_c5a3a44e3f.jpg"
+                                    }
+                                },
+                                "hash": "ceramica_c5a3a44e3f",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "size": 26.65,
+                                "url": "/uploads/ceramica_c5a3a44e3f.jpg",
+                                "previewUrl": null,
+                                "provider": "local",
+                                "provider_metadata": null,
+                                "createdAt": "2022-10-19T03:32:19.501Z",
+                                "updatedAt": "2022-10-19T03:32:19.501Z"
+                            }
+                        }
+                    ]
+                },
+                "thumbnail": {
+                    "data": {
+                        "id": 3,
+                        "attributes": {
+                            "name": "ceramica.jpg",
+                            "alternativeText": "ceramica.jpg",
+                            "caption": "ceramica.jpg",
+                            "width": 468,
+                            "height": 472,
+                            "formats": {
+                                "thumbnail": {
+                                    "name": "thumbnail_ceramica.jpg",
+                                    "hash": "thumbnail_ceramica_c26dd6328c",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "path": null,
+                                    "width": 155,
+                                    "height": 156,
+                                    "size": 2.72,
+                                    "url": "/uploads/thumbnail_ceramica_c26dd6328c.jpg"
+                                }
+                            },
+                            "hash": "ceramica_c26dd6328c",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 26.65,
+                            "url": "/uploads/ceramica_c26dd6328c.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2022-10-19T03:32:14.096Z",
+                            "updatedAt": "2022-10-19T03:32:14.096Z"
+                        }
+                    }
+                },
+                "categories": {
+                    "data": [
+                        {
+                            "id": 3,
+                            "attributes": {
+                                "createdAt": "2022-10-07T21:05:53.745Z",
+                                "updatedAt": "2022-10-07T21:05:55.585Z",
+                                "publishedAt": "2022-10-07T21:05:55.576Z",
+                                "name": "PISO FLOTANTE"
+                            }
+                        }
+                    ]
+                },
+                "orders": {
+                    "data": []
+                },
+                "Especificaciones": {
+                    "data": null
+                }
+            }
+        },
+        {
+            "id": 7,
+            "attributes": {
+                "name": "CERAMICA BLANCA HUESO 20X30",
+                "description": "CODIGO: CE-0001, MARCA: ELITE",
+                "price1": 15.3,
+                "price2": 16.15,
+                "stock": 100,
+                "createdAt": "2022-10-07T21:16:07.116Z",
+                "updatedAt": "2022-10-07T21:16:11.658Z",
+                "publishedAt": "2022-10-07T21:16:11.651Z",
+                "pictures": {
+                    "data": null
+                },
+                "thumbnail": {
+                    "data": null
+                },
+                "categories": {
+                    "data": [
+                        {
+                            "id": 4,
+                            "attributes": {
+                                "createdAt": "2022-10-07T21:06:05.933Z",
+                                "updatedAt": "2022-10-07T21:06:07.495Z",
+                                "publishedAt": "2022-10-07T21:06:07.490Z",
+                                "name": "CERAMICAS"
+                            }
+                        }
+                    ]
+                },
+                "orders": {
+                    "data": []
+                },
+                "Especificaciones": {
+                    "data": null
+                }
+            }
+        },
+        {
+            "id": 8,
+            "attributes": {
+                "name": "PORCELANATO CEDRO 20X110",
+                "description": "CODIGO: PO-0001, MARCA: GRAIMAN",
+                "price1": 27,
+                "price2": 28.5,
+                "stock": 100,
+                "createdAt": "2022-10-07T21:17:15.946Z",
+                "updatedAt": "2022-10-19T03:38:44.859Z",
+                "publishedAt": "2022-10-07T21:17:18.312Z",
+                "pictures": {
+                    "data": [
+                        {
+                            "id": 12,
+                            "attributes": {
+                                "name": "imagen.jpg",
+                                "alternativeText": "imagen.jpg",
+                                "caption": "imagen.jpg",
+                                "width": 274,
+                                "height": 184,
+                                "formats": {
+                                    "thumbnail": {
+                                        "name": "thumbnail_imagen.jpg",
+                                        "hash": "thumbnail_imagen_6deb79eaa2",
+                                        "ext": ".jpg",
+                                        "mime": "image/jpeg",
+                                        "path": null,
+                                        "width": 232,
+                                        "height": 156,
+                                        "size": 8.69,
+                                        "url": "/uploads/thumbnail_imagen_6deb79eaa2.jpg"
+                                    }
+                                },
+                                "hash": "imagen_6deb79eaa2",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "size": 7.41,
+                                "url": "/uploads/imagen_6deb79eaa2.jpg",
+                                "previewUrl": null,
+                                "provider": "local",
+                                "provider_metadata": null,
+                                "createdAt": "2022-10-19T03:38:36.870Z",
+                                "updatedAt": "2022-10-19T03:38:36.870Z"
+                            }
+                        }
+                    ]
+                },
+                "thumbnail": {
+                    "data": {
+                        "id": 11,
+                        "attributes": {
+                            "name": "imagen.jpg",
+                            "alternativeText": "imagen.jpg",
+                            "caption": "imagen.jpg",
+                            "width": 274,
+                            "height": 184,
+                            "formats": {
+                                "thumbnail": {
+                                    "name": "thumbnail_imagen.jpg",
+                                    "hash": "thumbnail_imagen_391d92563d",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "path": null,
+                                    "width": 232,
+                                    "height": 156,
+                                    "size": 8.69,
+                                    "url": "/uploads/thumbnail_imagen_391d92563d.jpg"
+                                }
+                            },
+                            "hash": "imagen_391d92563d",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 7.41,
+                            "url": "/uploads/imagen_391d92563d.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2022-10-19T03:38:30.900Z",
+                            "updatedAt": "2022-10-19T03:38:30.900Z"
+                        }
+                    }
+                },
+                "categories": {
+                    "data": [
+                        {
+                            "id": 5,
+                            "attributes": {
+                                "createdAt": "2022-10-07T21:06:19.751Z",
+                                "updatedAt": "2022-10-07T21:06:21.442Z",
+                                "publishedAt": "2022-10-07T21:06:21.436Z",
+                                "name": "PORCELANATO"
+                            }
+                        }
+                    ]
+                },
+                "orders": {
+                    "data": []
+                },
+                "Especificaciones": {
+                    "data": null
+                }
+            }
+        }
+    ],
+    "meta": {
+        "pagination": {
+            "page": 1,
+            "pageSize": 25,
+            "pageCount": 1,
+            "total": 8
+        }
+    }
+}

@@ -1,0 +1,65 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\yarn\bin\yarn.js add react-native-snap-carousel
+
+PATH: 
+  C:\Users\crisy\OneDrive\Escritorio\vendor\conemu-maximus5\ConEmu\Scripts;C:\Users\crisy\OneDrive\Escritorio\vendor\conemu-maximus5;C:\Users\crisy\OneDrive\Escritorio\vendor\conemu-maximus5\ConEmu;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files\TortoiseGit\bin;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Program Files\PuTTY\;C:\Program Files (x86)\ZeroTier\One\;C:\Users\crisy\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\crisy\AppData\Local\Microsoft\WindowsApps;C:\Users\crisy\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\crisy\AppData\Roaming\npm;C:\Users\crisy\.dotnet\tools;C:\Users\crisy\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\crisy\AppData\Local\Android\Sdk\platform-tools
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.13.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/native-base/-/native-base-3.4.13.tgz: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (C:\Users\crisy\AppData\Roaming\nvm\v16.13.1\node_modules\yarn\lib\cli.js:141517:19)
+      at Object.onceWrapper (node:events:509:28)
+      at ClientRequest.emit (node:events:390:28)
+      at TLSSocket.emitRequestTimeout (node:_http_client:763:9)
+      at Object.onceWrapper (node:events:509:28)
+      at TLSSocket.emit (node:events:402:35)
+      at TLSSocket.Socket._onTimeout (node:net:501:8)
+      at listOnTimeout (node:internal/timers:557:17)
+      at processTimers (node:internal/timers:500:7)
+
+npm manifest: 
+  {
+    "name": "arteypiso",
+    "version": "1.0.0",
+    "main": "node_modules/expo/AppEntry.js",
+    "scripts": {
+      "start": "expo start",
+      "android": "expo start --android",
+      "ios": "expo start --ios",
+      "web": "expo start --web"
+    },
+    "dependencies": {
+      "@expo/vector-icons": "^13.0.0",
+      "@react-navigation/native": "^6.0.12",
+      "@react-navigation/native-stack": "^6.8.0",
+      "axios": "^0.27.2",
+      "expo": "~46.0.9",
+      "expo-status-bar": "~1.4.0",
+      "native-base": "^3.4.13",
+      "react": "18.0.0",
+      "react-native": "0.69.5",
+      "react-native-modal": "^13.0.1",
+      "react-native-safe-area-context": "4.3.1",
+      "react-native-screens": "^3.17.0",
+      "react-native-snap-carousel": "^3.9.1",
+      "react-native-svg": "12.3.0"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.12.9"
+    },
+    "private": true
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
