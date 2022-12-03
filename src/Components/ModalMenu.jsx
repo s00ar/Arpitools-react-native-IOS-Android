@@ -25,13 +25,16 @@ const ModalMenu = (props) => {
   const [isDistributor, setIsDistributor] = useState(false);
   const [address, setAddress] = useState("");
 
-  useEffect(async () => {
-    const _ue = await AsyncStorage.getItem("@USER_EMAIL");
-    setUserEmail(_ue);
-    const _ud = await AsyncStorage.getItem("@USER_ISDISTRIBUTOR");
-    setIsDistributor(_ud);
-    const _uad = await AsyncStorage.getItem("@USER_ADDRESS");
-    setAddress(_uad);
+  useEffect(() => {
+    AsyncStorage.getItem("@USER_EMAIL").then((data) => {
+      setUserEmail(data);
+    });
+    AsyncStorage.getItem("@USER_ISDISTRIBUTOR").then((data) => {
+      setIsDistributor(data);
+    });
+    AsyncStorage.getItem("@USER_ADDRESS").then((data) => {
+      setAddress(data);
+    });
     
   })
 

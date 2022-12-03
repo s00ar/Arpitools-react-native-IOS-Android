@@ -19,7 +19,7 @@ const Items = (props) => {
 
   return (
     <Box h={"100%"}>
-      {productContext?.productsArray?.length ? (
+      {productContext?.productsArray?.length && (
         productContext?.productsArray?.map((product) => {
           return (
             <TouchableOpacity
@@ -67,7 +67,8 @@ const Items = (props) => {
             </TouchableOpacity>
           );
         })
-      ) : (
+      )}
+      {productContext?.loading && (
         <Flex
           align={"center"}
           justify={"center"}

@@ -6,23 +6,31 @@ import {
   SUM_ALL,
   DELETE_ALL_CART,
   SERCH_PRODUCT,
-  SERCH_VALUE
+  SERCH_VALUE,
+  LOADING
 } from "../types";
 
 export default (state, action) => {
   const {payload, type} = action;
 
   switch (type) {
+    case LOADING: 
+      return {
+        ...state,
+        loading: payload
+      }
     case GET_PRODUCTS:
       return {
         ...state,
         productsArray: payload,
         constProductArray: payload,
+        loading: false,
       };
     case GET_PRODUCT:
       return {
         ...state,
         selectedProduct: payload,
+        loading: false
       };
     case ADD_TO_CART:
       return {

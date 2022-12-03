@@ -6,3 +6,4 @@ export const SUM_ALL = 'SUM_ALL';
 export const DELETE_ALL_CART = 'DELETE_ALL_CART'
 export const SERCH_PRODUCT = 'SERCH_PRODUCT'
 export const SERCH_VALUE = 'SERCH_VALUE'
+export const LOADING = 'LOADING'

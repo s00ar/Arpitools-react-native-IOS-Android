@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Alert, BackHandler, ScrollView } from "react-native";
+import { Alert, BackHandler, ScrollView, Text } from "react-native";
 import Categoris from "../Components/Categoris";
 import Items from "../Components/Items";
 import ProductContext from "../Context/Products/ProductContext";

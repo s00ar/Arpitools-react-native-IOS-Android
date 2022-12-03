@@ -15,6 +15,7 @@ import {
   DELETE_ALL_CART,
   SERCH_PRODUCT,
   SERCH_VALUE,
+  LOADING,
 } from "../types";
 import { useCallback } from "react";
 import api, { getSessionToken } from "../../Services/Api";
@@ -43,10 +44,12 @@ const ProductState = (props) => {
     console.log(`${config.api.endpoint}` + "/products?populate=*");
 
     try {
+      dispatch({ type: LOADING, payload: true });
       const res = await api.get("/products?populate=*", {});
       const data = res.data.data;
       dispatch({ type: GET_PRODUCTS, payload: data });
     } catch (error) {
+      dispatch({ type: LOADING, payload: false });
       console.log("get products error");
       console.log(error);
     }
