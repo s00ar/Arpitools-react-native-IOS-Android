@@ -151,6 +151,7 @@ const ModalReceipt = (props) => {
         >
           <Text style={[FONTS.body3, { color: "#cccccc", width: "70%" }]}>
             Nos contataremos a este número: número provisto en el registro
+            {/* Please add the number provided in the user registration */}
           </Text>
           <Button
             // mt="8"
