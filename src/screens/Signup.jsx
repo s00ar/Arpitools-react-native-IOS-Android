@@ -144,7 +144,7 @@ const Signup = (props) => {
         RUC: ruc,
         address: address,
         arpicode: code,
-        distribuitor: true,
+        distribuitor: type == "ferreteria" ? true : false,
       })
       .then((res) => {
         console.log("res", res);
@@ -245,7 +245,7 @@ const Signup = (props) => {
                     <TriangleCorner />
                   </View> */}
 
-                <Text style={[FONTS.body3, { color: "#cccccc" }]}>
+                <Text style={[FONTS.body3, { color: type === "ferreteria" ? "black" : "#cccccc" }]}>
                   Ferreteria
                 </Text>
               </TouchableOpacity>
