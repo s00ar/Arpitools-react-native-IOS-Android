@@ -267,7 +267,7 @@ const Signup = (props) => {
                   },
                 ]}
               >
-                <Text style={[FONTS.body3, { color: "#cccccc" }]}>
+                <Text style={[FONTS.body3, { color: type === "constructora" ? "black" : "#cccccc" }]}>
                   Constructora
                 </Text>
               </TouchableOpacity>
