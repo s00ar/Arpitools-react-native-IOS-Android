@@ -74,6 +74,7 @@ const LoginEmail = (props) => {
         setSession(res.data.jwt);
 
         getAxiosUser(res.data.jwt);
+        AsyncStorage.setItem("@USER_EMAIL", email);
         setEmail("");
         setPassword("")
         props.navigation.navigate("Main");
@@ -129,6 +130,7 @@ const LoginEmail = (props) => {
         })
         .then((res) => {
           console.log(res);
+          AsyncStorage.setItem("@USER_EMAIL", email); // Store the Email for future use.
           props.navigation.navigate("Main");
         })
         .catch((err) => {
