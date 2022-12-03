@@ -123,16 +123,16 @@ const ModalReceipt = (props) => {
 
           <Text style={[FONTS.body3, { color: "#cccccc", marginBottom: 40 }]}>
             Orden de compra Número: #0000
+            {/* Please add the id of the order for this purchase order */}
           </Text>
 
           <Text style={[FONTS.body3, { color: "#cccccc", marginBottom: 20 }]}>
-            Una vez verificado su comprobante, se le enviara una factura via
-            mail.
+            Una vez verificado su comprobante, se le enviara una factura via mail.
           </Text>
 
           <Text style={[FONTS.body3, { color: "#cccccc", marginBottom: 20 }]}>
-            Su pedido será enviado a la dirección : Direccion que han provisto
-            {/* Please add a variable for the address provided for delivery */}
+            Su pedido será enviado a la dirección : {user?.address}
+            {/* This should be the address forthe delivery and not the address of the customer*/}
           </Text>
         </View>
 
@@ -150,8 +150,8 @@ const ModalReceipt = (props) => {
           }}
         >
           <Text style={[FONTS.body3, { color: "#cccccc", width: "70%" }]}>
-            Nos contactaremos a este número: número provisto en el registro
-            {/* Please add the number provided in the user registration */}
+            Nos contactaremos a este número: {user?.phone}
+            {/* Please check I've done this correctly */}
           </Text>
           <Button
             // mt="8"

@@ -99,11 +99,11 @@ const ModalMenu = (props) => {
                   style={{ margin: 5 }}
                 />
                 <Text style={[FONTS.h2, { color: 'white' }]}>
-                  john.doe@mail.com
+                {user?.UserEmail}
                 </Text>
               </Flex>
               <Flex>
-                <Text color={'white'} mt={3}>Data: Ferreteria tal, dirección</Text>
+                <Text color={'white'} mt={3}>Local: {user?.Distribuitor ? "distribuidor" : "constructor"} Dirección:{user?.address}</Text>
               </Flex>
             </View>
             <Entypo name="chevron-right" size={24} color="#4BD1A0" />
