@@ -20,7 +20,7 @@ const Items = (props) => {
   return (
     <Box h={"100%"}>
       {productContext?.productsArray?.length ? (
-        productContext.productsArray.map((product) => {
+        productContext?.productsArray?.map((product) => {
           return (
             <TouchableOpacity
               key={product.id}

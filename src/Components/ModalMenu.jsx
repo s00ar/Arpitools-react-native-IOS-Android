@@ -6,7 +6,7 @@ import {
   StatusBar,
   Alert,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-native-modal";
 import { FONTS } from "../Constants";
 import { FontAwesome, FontAwesome5, Entypo, Feather, MaterialIcons, Ionicons, Octicons, AntDesign } from "@expo/vector-icons";
@@ -16,10 +16,24 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import LoginEmail from "../screens/LoginEmail";
 import { setSession } from "../Services/Api";
+import { useEffect } from "react";
 
 
 const ModalMenu = (props) => {
   const navigation = useNavigation()
+  const [userEmail, setUserEmail] = useState("");
+  const [isDistributor, setIsDistributor] = useState(false);
+  const [address, setAddress] = useState("");
+
+  useEffect(async () => {
+    const _ue = await AsyncStorage.getItem("@USER_EMAIL");
+    setUserEmail(_ue);
+    const _ud = await AsyncStorage.getItem("@USER_ISDISTRIBUTOR");
+    setIsDistributor(_ud);
+    const _uad = await AsyncStorage.getItem("@USER_ADDRESS");
+    setAddress(_uad);
+    
+  })
 
   const logoutArpitools = () => {
       AsyncStorage.removeItem('@STORAGE_USER');
@@ -99,11 +113,11 @@ const ModalMenu = (props) => {
                   style={{ margin: 5 }}
                 />
                 <Text style={[FONTS.h2, { color: 'white' }]}>
-                {user?.UserEmail}
+                {userEmail ?? ''}
                 </Text>
               </Flex>
               <Flex>
-                <Text color={'white'} mt={3}>Local: {user?.Distribuitor ? "distribuidor" : "constructor"} Dirección:{user?.address}</Text>
+                <Text color={'white'} mt={3}>Local: {isDistributor ? "distribuidor" : "constructor"} Dirección:{address}</Text>
               </Flex>
             </View>
             <Entypo name="chevron-right" size={24} color="#4BD1A0" />

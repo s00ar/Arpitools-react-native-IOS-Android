@@ -32,6 +32,7 @@ import {
   validateType,
 } from "../Utils/Validations";
 import api from "../Services/Api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // const TriangleCorner = (props) => {
 //   return (
@@ -148,11 +149,16 @@ const Signup = (props) => {
       })
       .then((res) => {
         console.log("res", res);
+        AsyncStorage.setItem("@USER_EMAIL", email);
+        AsyncStorage.setItem("@USER_NAME", name);
+        AsyncStorage.setItem("@USER_ADDRESS", address);
+        AsyncStorage.setItem("@USER_ISDISTRIBUTOR", type == "ferreteria" ? true : false);
+
         props.navigation.navigate("Main");
       })
       .catch((error) => {
-        Alert.alert("Error", error.response.data.error.message);
-        console.error(error.response.data);
+        Alert.alert("Error", error?.response?.data.error.message);
+        console.error(error);
       });
   };
 
