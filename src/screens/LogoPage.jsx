@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { Box, Flex } from "native-base";
 import React from "react";
@@ -8,8 +9,16 @@ const LogoPage = () => {
   const navigation = useNavigation();
 
   setTimeout(() => {
-    setSession()
-    navigation.navigate("LoginEmail");
+    // Commented out on client's request, AUTO logoff is not allowed.
+    // setSession()
+
+    AsyncStorage.getItem("@USER_EMAIL").then((payload) => {
+      if(payload){
+        navigation.navigate("Main");
+      } else {
+        navigation.navigate("LoginEmail");
+      }
+    });
   }, 1000);
 
   return (
