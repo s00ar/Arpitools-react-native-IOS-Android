@@ -63,7 +63,7 @@ const ArpiTools = ({ navigation }) => {
               fontWeight: "bold",
             }}
           >
-            Calificar en Playstore
+            Calificar
           </Button>
         </View>
       </View>

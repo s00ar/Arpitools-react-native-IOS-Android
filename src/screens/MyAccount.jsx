@@ -63,7 +63,7 @@ const MyAccount = ({ navigation }) => {
               R.U.C: {user?.RUC}
             </Text>
             <Text style={[FONTS.body2, { color: "#cccccc", marginBottom: 8 }]}>
-              Correo electronico: {user?.UserEmail}
+              Correo electrónico: {user?.UserEmail}
             </Text>
             <Text style={[FONTS.body2, { color: "#cccccc", marginBottom: 8 }]}>
               Nombre y apellido: {user?.FullName}

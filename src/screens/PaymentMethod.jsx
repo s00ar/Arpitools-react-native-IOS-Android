@@ -37,7 +37,7 @@ const PaymentMethod = ({ navigation }) => {
             style={{ position: "absolute", left: 2 }}
           />
           <Text style={[FONTS.h1, { color: "#000000", textAlign: "center" }]}>
-            Metodos de Pago
+            Métodos de Pago
           </Text>
         </TouchableOpacity>
 
@@ -50,22 +50,22 @@ const PaymentMethod = ({ navigation }) => {
           }}
         >
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
-            Al momento solo aceptamos tranferencias Bancarias al Banco nnnnn
+            Al momento solo aceptamos tranferencias Bancarias al Banco Guayaquil
           </Text>
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
-            Numero de cuenta 0000000000
+            Número de cuenta 33613334
           </Text>
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
-            Tipo de cuenta: Caja de ahorro o cuenta corriente
+            Tipo de cuenta: Cuenta Corriente
           </Text>
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
-            Nombre completo o Razon social
+            Razón social: Arte y Pisos Cia Ltda
           </Text>
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
             CI./RUC 1792888069001
           </Text>
           <Text style={[FONTS.body3, { color: "#cccccc", marginBottom: 30 }]}>
-            Correo electronico
+            Correo electrónico: soporte@arpitools.com
           </Text>
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
             Luego de enviar el comprobante de transferencia te sera enviado un

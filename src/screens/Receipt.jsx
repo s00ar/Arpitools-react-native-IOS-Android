@@ -222,10 +222,10 @@ const Receipt = ({ navigation }) => {
 
         <View style={{ paddingLeft: 40, marginTop: 30, marginBottom: 10 }}>
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
-            Realizar la transferencia al Banco nnnnn
+            Realizar la transferencia al Banco Guayaquil
           </Text>
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
-            Numero de cuenta 0000000000
+            Número de cuenta 33613334
           </Text>
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
             CI./RUC 1792888069001

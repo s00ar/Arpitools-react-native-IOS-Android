@@ -131,7 +131,8 @@ const ModalReceipt = (props) => {
           </Text>
 
           <Text style={[FONTS.body3, { color: "#cccccc", marginBottom: 20 }]}>
-            Su pedido sera enviado a la dirección : Direccion que han provisto
+            Su pedido será enviado a la dirección : Direccion que han provisto
+            {/* Please add a variable for the address provided for delivery */}
           </Text>
         </View>
 
