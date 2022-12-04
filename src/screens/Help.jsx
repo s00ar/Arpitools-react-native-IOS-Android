@@ -1,6 +1,6 @@
 import { Entypo, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Linking, Text, TouchableOpacity, View } from "react-native";
 import { FONTS } from "../Constants";
 
 const Help = (props) => {
@@ -44,6 +44,9 @@ const Help = (props) => {
             padding: 10,
             marginTop: 30,
           }}
+          onPress={() => { 
+            Linking.openURL('mailto:support@arpitools.com')
+          }}
         >
           <Text style={[FONTS.body2, { color: "#cccccc", marginLeft: 20 }]}>
             Contactanos
@@ -55,7 +58,7 @@ const Help = (props) => {
             style={{ marginRight: 20 }}
           />
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={{
             borderColor: "#4bd1a0",
             borderWidth: 2,
@@ -77,7 +80,7 @@ const Help = (props) => {
             color="#4bd1a0"
             style={{ marginRight: 20, alignSelf: "center" }}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <View
           style={{

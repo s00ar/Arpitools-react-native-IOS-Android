@@ -8,7 +8,7 @@ import config from "../config";
 // console.log(BASE_URL);
 const api = axios.create({
   baseURL: `${config.api.endpoint}`,
-  timeout: 60 * 2 * 1000,
+  // timeout: 60 * 2 * 1000,
   headers: {
     "Content-Type": "application/json",
     // 'Authorization': "BEARER " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjY0NTgxNTgzLCJleHAiOjE2NjcxNzM1ODN9.8NjLIdsFVHXn17eB64DPfaZWw5pD4g62ooGAzYYBnhk",

@@ -10,15 +10,16 @@ const LogoPage = () => {
 
   setTimeout(() => {
     // Commented out on client's request, AUTO logoff is not allowed.
-    // setSession()
+    setSession()
+    navigation.navigate("LoginEmail");
 
-    AsyncStorage.getItem("@USER_EMAIL").then((payload) => {
-      if(payload){
-        navigation.navigate("Main");
-      } else {
-        navigation.navigate("LoginEmail");
-      }
-    });
+    // AsyncStorage.getItem("@USER_EMAIL").then((payload) => {
+    //   if(payload){
+    //     navigation.navigate("Main");
+    //   } else {
+    //     navigation.navigate("LoginEmail");
+    //   }
+    // });
   }, 1000);
 
   return (

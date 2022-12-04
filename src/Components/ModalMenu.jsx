@@ -40,6 +40,7 @@ const ModalMenu = (props) => {
 
   const logoutArpitools = () => {
       AsyncStorage.removeItem('@STORAGE_USER');
+      AsyncStorage.removeItem('@USER_EMAIL');
       AsyncStorage.clear();
       setSession()
       navigation.navigate("LoginEmail");

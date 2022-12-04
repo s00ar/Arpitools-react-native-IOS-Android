@@ -7,7 +7,8 @@ import {
   DELETE_ALL_CART,
   SERCH_PRODUCT,
   SERCH_VALUE,
-  LOADING
+  LOADING,
+  GET_CATEGORY
 } from "../types";
 
 export default (state, action) => {
@@ -24,6 +25,13 @@ export default (state, action) => {
         ...state,
         productsArray: payload,
         constProductArray: payload,
+        loading: false,
+      };
+    case GET_CATEGORY:
+      return {
+        ...state,
+        categories: payload,
+        constCategoryArray: payload,
         loading: false,
       };
     case GET_PRODUCT:

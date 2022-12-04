@@ -16,6 +16,7 @@ import {
   SERCH_PRODUCT,
   SERCH_VALUE,
   LOADING,
+  GET_CATEGORY,
 } from "../types";
 import { useCallback } from "react";
 import api, { getSessionToken } from "../../Services/Api";
@@ -63,6 +64,22 @@ const ProductState = (props) => {
     } catch (error) {
       console.log("get product error");
 
+      console.log(error);
+    }
+  };
+
+  const getCategories = async () => {
+    console.log(api.defaults.headers.common.Authorization);
+    console.log(`${config.api.endpoint}` + "/categories");
+
+    try {
+      dispatch({ type: LOADING, payload: true });
+      const res = await api.get("/categories", {});
+      const data = res.data.data;
+      dispatch({ type: GET_CATEGORY, payload: data });
+    } catch (error) {
+      dispatch({ type: LOADING, payload: false });
+      console.log("get categories error");
       console.log(error);
     }
   };
@@ -171,6 +188,7 @@ const ProductState = (props) => {
           dataRecipe,
           removeAllCart,
           serchProduct,
+          getCategories
         }}
       >
         {props.children}

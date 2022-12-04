@@ -40,11 +40,8 @@ const ArpiTools = ({ navigation }) => {
         />
 
         <View style={{ justifyContent: "space-between", height: "40%" }}>
-          <View style={{ paddingLeft: 40, marginTop: 30, marginBottom: 10 }}>
-            <Text style={[FONTS.body2, { color: "#cccccc", marginBottom: 16 }]}>
-              Copyright 2022 Metamorfosis360
-            </Text>
-            <Text style={[FONTS.body2, { color: "#cccccc" }]}>
+          <View style={{ justifyContent:'center', alignItems:'center', marginVertical: 15 }}>
+            <Text style={[FONTS.body2, { color: "#cccccc", textAlign:'center' }]}>
               Whymper e8-66 entre 6 de Diciembre y Almagro, Quito
             </Text>
           </View>
@@ -56,7 +53,7 @@ const ArpiTools = ({ navigation }) => {
             w="60%"
             p={1}
             alignSelf={"center"}
-            onPress={() => setShow(true)}
+            onPress={() => {}}
             _text={{
               color: "#000000",
               fontSize: 20,
@@ -65,6 +62,11 @@ const ArpiTools = ({ navigation }) => {
           >
             Calificar
           </Button>
+          <View style={{justifyContent:'center', alignItems:'center'}}>
+            <Text style={[FONTS.body2, { color: "#cccccc", marginBottom: 16 }]}>
+              Copyright 2022 Metamorfosis360
+            </Text>
+          </View>
         </View>
       </View>
     </>

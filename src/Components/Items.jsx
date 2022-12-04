@@ -11,11 +11,15 @@ const Items = (props) => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    productContext.getProducts();
+    setTimeout(() => {
+      productContext.getProducts();
+      productContext.getCategories();
+    }, 1000);
   }, []);
 
-  console.log("productContext.productsArray");
-  console.log(productContext.productsArray);
+  // console.log("productContext.productsArray");
+  // console.log(productContext.productsArray);
+  // console.log(productContext.categoriesArray);
 
   return (
     <Box h={"100%"}>

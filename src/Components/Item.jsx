@@ -185,7 +185,7 @@ const Item = () => {
               <Text
                 style={[FONTS.h2, { color: "#cccccc", textAlign: "center" }]}
               >
-                ${selectedProduct.attributes.price1 * price}
+                ${parseFloat(selectedProduct.attributes.price1 * price).toFixed(2)}
               </Text>
             </View>
           </View>
