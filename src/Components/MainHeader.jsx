@@ -16,7 +16,6 @@ const MainHeader = (props) => {
   const { cartArray, serchProduct, constProductArray, value, serchValue } = useContext(ProductContext)
 
   const filterSearch = (text) => {
-    // console.log("---->", constProductArray);
     // const newData = constProductArray.filter((item) => {
     //   // const itemData = item.title.toUpperCase()
     //   // const textData = text.toUpperCase()
@@ -26,9 +25,6 @@ const MainHeader = (props) => {
     // })
 
     const newData = constProductArray?.filter((item) => item?.attributes?.name?.toUpperCase().startsWith(text.toUpperCase()));
-
-    console.log("Filtered array----->", newData);
-
     serchProduct(newData)
   }
 

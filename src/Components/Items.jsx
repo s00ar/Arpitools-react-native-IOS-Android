@@ -13,7 +13,6 @@ const Items = (props) => {
   useEffect(() => {
     setTimeout(() => {
       productContext.getProducts();
-      productContext.getCategories();
     }, 1000);
   }, []);
 

@@ -6,7 +6,7 @@ import {
   StatusBar,
   Modal,
 } from "react-native";
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import { FONTS } from "../Constants";
 import {
   FontAwesome,
@@ -19,11 +19,29 @@ import {
 import { Flex, Text, Button } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import ProductContext from "../Context/Products/ProductContext";
+import { useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const ModalReceipt = (props) => {
 
   const { totalCart } = useContext(ProductContext)
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+
+  useEffect(() => {
+    AsyncStorage.getItem("@USER_ADDRESS").then((item) => {
+      if(item){
+        setAddress(item);
+      }
+    })
+
+    AsyncStorage.getItem("@USER_PHONE").then((item) => {
+      if(item){
+        setPhone(item);
+      }
+    })
+  }, []);
 
   return (
     <Modal
@@ -131,7 +149,7 @@ const ModalReceipt = (props) => {
           </Text>
 
           <Text style={[FONTS.body3, { color: "#cccccc", marginBottom: 20 }]}>
-            Su pedido será enviado a la dirección : {user?.address}
+            Su pedido será enviado a la dirección : {address ?? ''}
             {/* This should be the address forthe delivery and not the address of the customer*/}
           </Text>
         </View>
@@ -150,7 +168,7 @@ const ModalReceipt = (props) => {
           }}
         >
           <Text style={[FONTS.body3, { color: "#cccccc", width: "70%" }]}>
-            Nos contactaremos a este número: {user?.phone}
+            Nos contactaremos a este número: {phone ?? ''}
             {/* Please check I've done this correctly */}
           </Text>
           <Button

@@ -7,6 +7,7 @@ import {
   ScrollView,
   FlatList,
   Pressable,
+  Linking,
 } from "react-native";
 import React, { useContext, useEffect } from "react";
 import { Box, Button } from "native-base";
@@ -23,6 +24,8 @@ import config from "../config";
 
 const viewConfigRef = { viewAreaCoveragePercentThreshold: 95 };
 
+import * as FileSystem from 'expo-file-system';
+
 const Item = () => {
   const { selectedProduct, addToCart, cartArray, sumAll } =
     useContext(ProductContex);
@@ -37,6 +40,14 @@ const Item = () => {
       setCurrentIndex(changed[0].index);
     }
   });
+
+  const downloadFile = (remoteUrl) => {
+    const localPath = `${FileSystem.documentDirectory}/download.pdf`;
+
+    FileSystem.downloadAsync(remoteUrl, localPath)
+      .then(({uri}) => alert("Successfully downloaded"));
+  };
+  
 
   const navigation = useNavigation();
 
@@ -113,12 +124,16 @@ const Item = () => {
         </View>
 
         <View style={{ justifyContent: "flex-end", flex: 1 }}>
-          <TouchableOpacity style={{ margin: 10 }}>
+          {selectedProduct?.attributes.pictures.data[0].attributes?.url && (
+          <TouchableOpacity style={{ margin: 10 }} onPress={() => {
+            downloadFile(config.api.page_url +
+            selectedProduct.attributes.thumbnail.data.attributes.url)
+          }}>
             <Text style={{ color: "#4BD1A0" }}>
               Descargar ficha tecnica en PDF{" "}
               <Feather name="download" size={24} color="#4BD1A0" />
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity>)}
           <Text style={[FONTS.body2, { color: "#cccccc", marginLeft: 10 }]}>
             $ {selectedProduct.attributes.price1}
           </Text>

@@ -60,6 +60,7 @@ const ProductState = (props) => {
     try {
       const res = await api.get("/products/" + id + "?populate=*");
       const { data } = res.data;
+      // console.log("Single product info", data?.attributes.pictures.data[0].attributes?.url);
       dispatch({ type: GET_PRODUCT, payload: data });
     } catch (error) {
       console.log("get product error");
@@ -70,11 +71,11 @@ const ProductState = (props) => {
 
   const getCategories = async () => {
     console.log(api.defaults.headers.common.Authorization);
-    console.log(`${config.api.endpoint}` + "/categories");
+    console.log(`${config.api.endpoint}` + "/categorias");
 
     try {
       dispatch({ type: LOADING, payload: true });
-      const res = await api.get("/categories", {});
+      const res = await api.get("/categorias", {});
       const data = res.data.data;
       dispatch({ type: GET_CATEGORY, payload: data });
     } catch (error) {

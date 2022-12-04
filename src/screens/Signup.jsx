@@ -57,6 +57,40 @@ const Signup = (props) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [address, setAdress] = useState("");
+  const [seller, setSeller] = useState("");
+
+  //obtenemos los datos del usuario actual
+  const getAxiosUser = async (value) => {
+    await api
+      .get("users/me?populate=*", {
+        headers: {
+          Authorization: `Bearer ${value}`,
+        },
+      })
+      .then(async (res) => {
+        console.log("user");
+        console.log(res.data);
+
+        var user = {
+          Token: value,
+          UserId: res.data.id,
+          Distribuitor: res.data.distribuitor,
+          RUC: res.data.RUC,
+          address: res.data.address,
+          arpicode: res.data.arpicode,
+          FullName: res.data.fullname,
+          phone: res.data.phone,
+          UserEmail: res.data.email,
+          SellerId: res.data.seller?.id,
+          SellerName: res.data.seller?.name,
+          SellerPhone: res.data.seller?.phone,
+        };
+        await AsyncStorage.setItem("@STORAGE_USER", JSON.stringify(user));
+      })
+      .catch((err) => {
+        console.error("Error getAxiosUser => " + err.message);
+      });
+  }; // end getAxiosUser
 
   const onContinue = async () => {
     const codeError = validateCodeArpi(code);
@@ -73,6 +107,7 @@ const Signup = (props) => {
       for (const sellers of data.data) {
         if (sellers.attributes.arpicode === code) {
           isCorrectCode = true;
+          setSeller(sellers?.id)
           break;
         }
       }
@@ -144,11 +179,14 @@ const Signup = (props) => {
         password: password,
         RUC: ruc,
         address: address,
-        arpicode: code,
+        // arpicode: code,
+        seller: seller,
         distribuitor: type == "ferreteria" ? true : false,
       })
       .then((res) => {
         console.log("res", res);
+
+        getAxiosUser(res?.data?.jwt);
         AsyncStorage.setItem("@USER_EMAIL", email);
         AsyncStorage.setItem("@USER_NAME", name);
         AsyncStorage.setItem("@USER_ADDRESS", address);

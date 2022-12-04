@@ -215,6 +215,7 @@ const Receipt = ({ navigation }) => {
           <Input
             placeholder="Ingrese su dirección de envio"
             fontSize={20}
+            style={{color:'white'}}
             onChangeText={setAdress}
             value={address}
           />

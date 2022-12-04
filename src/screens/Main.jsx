@@ -34,7 +34,7 @@ const Main = (props) => {
   // console.log(navigation.state.routeName)
   return (
     <>
-      <Categoris />
+      {/* <Categoris /> */}
       <ScrollView style={{ backgroundColor: "#1a1b1a" }}>
         <Items
           onPress={() => {
