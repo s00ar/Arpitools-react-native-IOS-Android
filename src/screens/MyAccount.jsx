@@ -54,7 +54,7 @@ const MyAccount = ({ navigation }) => {
         <View style={{ justifyContent: "space-between", height: "65%" }}>
           <View style={{ paddingLeft: 40, marginTop: 30, marginBottom: 10 }}>
             <Text style={[FONTS.body2, { color: "#cccccc", marginBottom: 8 }]}>
-              Local: {user?.Distribuitor ? "distribuidor" : "constructor"}
+              Tipo de local: {user?.Distribuitor ? "distribuidor" : "constructor"}
             </Text>
             <Text style={[FONTS.body2, { color: "#cccccc", marginBottom: 8 }]}>
               Dirección: {user?.address}
@@ -72,7 +72,7 @@ const MyAccount = ({ navigation }) => {
               Telefono de contacto: {user?.phone}
             </Text>
           </View>
-
+{/* 
           <Button
             backgroundColor="#4BD1A0"
             size="lg"
@@ -88,6 +88,23 @@ const MyAccount = ({ navigation }) => {
             }}
           >
             Modificar Datos
+          </Button> */}
+
+          <Button
+            backgroundColor="#f00"
+            size="lg"
+            borderRadius={5}
+            w="60%"
+            p={1}
+            alignSelf={"center"}
+            onPress={() => {}}
+            _text={{
+              color: "#000000",
+              fontSize: 20,
+              fontWeight: "bold",
+            }}
+          >
+            Eliminar cuenta
           </Button>
         </View>
       </View>

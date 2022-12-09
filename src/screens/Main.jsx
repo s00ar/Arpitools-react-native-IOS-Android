@@ -7,7 +7,7 @@ import ProductContext from "../Context/Products/ProductContext";
 const Main = (props) => {
   useEffect(() => {
     const backAction = () => {
-      Alert.alert("Espera", "Seguro quires salir de la plicación", [
+      Alert.alert("Espera", "Seguro quieres salir de la aplicación", [
         {
           text: "Cancelar",
           onPress: () => null,

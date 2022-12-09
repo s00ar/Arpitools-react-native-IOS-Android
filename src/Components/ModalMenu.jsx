@@ -24,6 +24,20 @@ const ModalMenu = (props) => {
   const [userEmail, setUserEmail] = useState("");
   const [isDistributor, setIsDistributor] = useState(false);
   const [address, setAddress] = useState("");
+  const [user, setUser] = useState({});
+
+//Retrieve the user data to display all needed fields
+const getDataUser = async () => {
+  try {
+    await AsyncStorage.getItem("@STORAGE_USER").then((value) => {
+      if (value != null) {
+        setUser(JSON.parse(value));
+      }
+    });
+  } catch (error) {
+    console.log("Error in getDataUser => " + error);
+  }
+}; //end getDataUser
 
   useEffect(() => {
     AsyncStorage.getItem("@USER_EMAIL").then((data) => {
@@ -34,9 +48,12 @@ const ModalMenu = (props) => {
     });
     AsyncStorage.getItem("@USER_ADDRESS").then((data) => {
       setAddress(data);
-    });
-    
+    });    
   })
+  
+  useEffect(() => {
+    getDataUser();
+  }, []);
 
   const logoutArpitools = () => {
       AsyncStorage.removeItem('@STORAGE_USER');
@@ -47,7 +64,7 @@ const ModalMenu = (props) => {
   }
   
   const cerrarSesionAlert = () =>
-    Alert.alert("Arpitools", "Confirma Cierre de Sesión ?", [
+    Alert.alert("Arpitools", "Confirma cierre de sesión ?", [
       {
         text: "Cancelar",
         onPress: () => console.log("Cancel Pressed"),
@@ -116,12 +133,15 @@ const ModalMenu = (props) => {
                   color="#4BD1A0"
                   style={{ margin: 5 }}
                 />
-                <Text style={[FONTS.h2, { color: 'white' }]}>
+                <Text style={[FONTS.h4, { color: 'white' }]}>
                 {userEmail ?? ''}
                 </Text>
               </Flex>
               <Flex>
-                <Text color={'white'} mt={3}>Local: {isDistributor ? "distribuidor" : "constructor"} Dirección:{address}</Text>
+                <Text color={'white'} mt={3}>Local: {isDistributor ? "distribuidor" : "constructor"}
+                Dirección: {user?.address}
+                {/* Added this to try to make the address work also addingthe user usestate at the begining */}
+                </Text>
               </Flex>
             </View>
             <Entypo name="chevron-right" size={24} color="#4BD1A0" />

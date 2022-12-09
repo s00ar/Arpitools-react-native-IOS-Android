@@ -1,11 +1,10 @@
 {
   "expo": {
     "name": "Arpitools",
-    "slug": "arpi-tools",
-    "version": "1.1.1",
+    "slug": "arpitools",
+    "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/1024x1024.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -14,29 +13,22 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": false,
+      "supportsTablet": true,
       "bundleIdentifier": "com.Metamorfosis360.arpitools",
-      "buildNumber": "5"
+      "buildNumber": "1.1.0"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/1024x1024-fondo transp.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.Metamorfosis360.arpitools",
-      "versionCode": 3
+      "versionCode": 1
     },
     "web": {
-      "favicon": "./assets/48x48.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "ebfc00cf-6286-4d50-9a02-2d30e7b9a4fe"
-      }
+      "favicon": "./assets/favicon.png"
     }
   }
 }

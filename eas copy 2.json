@@ -16,9 +16,7 @@
   "submit": {
     "production": {
       "ios":{
-        "appleId": "ferzurita27@hotmail.com",
-        "ascAppId": "1658688086",
-        "appleTeamId":"4T2UFDX8D4"
+        "appleId": "ferzurita27@hotmail.com"
       }
     }
   }
