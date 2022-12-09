@@ -21,6 +21,7 @@ import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { SUM_ALL } from "../Context/types";
 import config from "../config";
+import * as MediaLibrary from 'expo-media-library';
 
 const viewConfigRef = { viewAreaCoveragePercentThreshold: 95 };
 
@@ -41,13 +42,52 @@ const Item = () => {
     }
   });
 
-  const downloadFile = (remoteUrl) => {
-    const localPath = `${FileSystem.documentDirectory}/download.pdf`;
+  const downloadFile = async (fileUrl) => {
+    // const fileUrl = `${FileSystem.documentDirectory}/download.pdf`;
 
-    FileSystem.downloadAsync(remoteUrl, localPath)
-      .then(({uri}) => alert("Successfully downloaded"));
+    // FileSystem.downloadAsync(remoteUrl, localPath)
+    //   .then(({ uri }) => {
+    //     console.log(uri);
+    //   });
+    const fileSplit = fileUrl.split("/");
+    const file = fileSplit[fileSplit.length - 1];
+
+     FileSystem.downloadAsync(
+      fileUrl,
+      FileSystem.documentDirectory + file
+    )
+      .then(async ({ uri }) => {
+        console.log('Finished downloading to ', uri);
+        const permissions = MediaLibrary.getPermissionsAsync();
+        if(permissions?.granted){
+          saveFile(uri);
+        } else {
+          MediaLibrary.requestPermissionsAsync().then(response => {
+            console.log("Permission response", response);
+            if(response?.granted) {
+              saveFile(uri)
+            }
+          })
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
-  
+
+  const saveFile = (uri) => {
+    console.log("File", uri);
+    MediaLibrary.createAssetAsync(uri).then(asset => {
+      console.log('asset', asset);
+    MediaLibrary.createAlbumAsync('arpitools', asset)
+      .then(() => {
+        alert("Downloaded")
+      })
+      .catch(error => {
+        console.log("Error in downloading the file", error);
+      });
+    });
+  }
 
   const navigation = useNavigation();
 
@@ -96,8 +136,8 @@ const Item = () => {
                 selectedProduct.attributes.thumbnail.data.attributes.url,
             }} /* Use item to set the image source */
             // key={index}
-             /* Important to set a key for list items,
-                               but it's wrong to use indexes as keys, see below */
+            /* Important to set a key for list items,
+                              but it's wrong to use indexes as keys, see below */
             style={{
               width: SIZES.width - 20,
               height: 250,
@@ -125,15 +165,15 @@ const Item = () => {
 
         <View style={{ justifyContent: "flex-end", flex: 1 }}>
           {selectedProduct?.attributes.pictures.data[0].attributes?.url && (
-          <TouchableOpacity style={{ margin: 10 }} onPress={() => {
-            downloadFile(config.api.page_url +
-            selectedProduct.attributes.thumbnail.data.attributes.url)
-          }}>
-            <Text style={{ color: "#4BD1A0" }}>
-              Descargar ficha tecnica en PDF{" "}
-              <Feather name="download" size={24} color="#4BD1A0" />
-            </Text>
-          </TouchableOpacity>)}
+            <TouchableOpacity style={{ margin: 10 }} onPress={() => {
+              downloadFile(config.api.page_url +
+                selectedProduct.attributes.thumbnail.data.attributes.url)
+            }}>
+              <Text style={{ color: "#4BD1A0" }}>
+                Descargar ficha tecnica en PDF{" "}
+                <Feather name="download" size={24} color="#4BD1A0" />
+              </Text>
+            </TouchableOpacity>)}
           <Text style={[FONTS.body2, { color: "#cccccc", marginLeft: 10 }]}>
             $ {selectedProduct.attributes.price1}
           </Text>
