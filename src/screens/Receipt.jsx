@@ -165,6 +165,7 @@ const Receipt = ({ navigation }) => {
       body: JSON.stringify(postData)
     }).then((response) => {
       console.log("Order Server response", response);
+      setShow(true);
       return response.json();
     }).then((response) => {
       console.log("Order Second response", response);
