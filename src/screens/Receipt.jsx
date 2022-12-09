@@ -98,9 +98,23 @@ const Receipt = ({ navigation }) => {
 
     const fileData = new FormData();
     fileData.append("files", file);
-    const { data } = await api.post("upload", fileData);
 
-    console.log(data);
+    // const { data } = await api.post("upload", fileData, {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   }
+    // });
+
+    const data = await fetch('https://strapi.arpitools.com/api/upload', {
+      method: 'post',
+        headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: fileData
+    }).then((response) => {
+      console.log("Server response", response);
+      return response.json();
+    }).catch(err => console.log("Error in file upload", err));
 
     let receipt = "";
     if (data[0]) {
@@ -131,15 +145,31 @@ const Receipt = ({ navigation }) => {
     };
     console.log("Order Data");
     console.log(JSON.stringify(postData));
-    await api
-      .post("orders", postData)
-      .then((res) => {
-        setShow(true);
-      })
-      .catch((error) => {
-        Alert.alert("Error", error.message);
-        console.error(error);
-      });
+
+    // await api
+    //   .post("orders", postData)
+    //   .then((res) => {
+    //     setShow(true);
+    //   })
+    //   .catch((error) => {
+    //     Alert.alert("Error", error.message);
+    //     console.error(error);
+    //   });
+
+    await fetch('https://strapi.arpitools.com/api/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(postData)
+    }).then((response) => {
+      console.log("Order Server response", response);
+      return response.json();
+    }).then((response) => {
+      console.log("Order Second response", response);
+    }).catch(err => console.log("Error in Order upload", err));
+
   };
 
   return (
