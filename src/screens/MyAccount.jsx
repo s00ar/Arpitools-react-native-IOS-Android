@@ -13,6 +13,7 @@ const MyAccount = ({ navigation }) => {
       await AsyncStorage.getItem("@STORAGE_USER").then((value) => {
         if (value != null) {
           setUser(JSON.parse(value));
+          console.log("User info", value);
         }
       });
     } catch (error) {
@@ -23,6 +24,36 @@ const MyAccount = ({ navigation }) => {
   useEffect(() => {
     getDataUser();
   }, []);
+
+  const delAccount = async () => {
+    await fetch(`https://strapi.arpitools.com/api/users/${user?.UserId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${user?.Token}`
+      },
+      body: JSON.stringify({ blocked: true })
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((response) => {
+        alert("Account deleted successfully!")
+        logoutArpitools();
+      })
+      .catch((err) => {
+        alert("Error in deleting account: " + err);
+        console.log("error in deleting account", err);
+      })
+  };
+
+  const logoutArpitools = () => {
+    AsyncStorage.removeItem('@STORAGE_USER');
+    AsyncStorage.removeItem('@USER_EMAIL');
+    AsyncStorage.clear();
+    setSession()
+    navigation.navigate("LoginEmail");
+  }
 
   return (
     <>
@@ -72,7 +103,7 @@ const MyAccount = ({ navigation }) => {
               Telefono de contacto: {user?.phone}
             </Text>
           </View>
-{/* 
+          {/* 
           <Button
             backgroundColor="#4BD1A0"
             size="lg"
@@ -97,7 +128,7 @@ const MyAccount = ({ navigation }) => {
             w="60%"
             p={1}
             alignSelf={"center"}
-            onPress={() => {}}
+            onPress={delAccount}
             _text={{
               color: "#000000",
               fontSize: 20,
