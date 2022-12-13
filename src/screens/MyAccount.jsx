@@ -4,6 +4,7 @@ import { Button } from "native-base";
 import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { FONTS } from "../Constants";
+import { setSession } from "../Services/Api";
 
 const MyAccount = ({ navigation }) => {
   const [user, setUser] = useState({});
