@@ -138,7 +138,9 @@ const getDataUser = async () => {
                 </Text>
               </Flex>
               <Flex>
-                <Text color={'white'} mt={3}>Local: {isDistributor ? "distribuidor" : "constructor"}
+                <Text color={'white'} mt={3}>{isDistributor ? "distribuidor" : "constructor"}
+                </Text>
+                <Text color={'white'} mt={3}>
                 Dirección: {user?.address}
                 {/* Added this to try to make the address work also addingthe user usestate at the begining */}
                 </Text>

@@ -65,7 +65,7 @@ const PaymentMethod = ({ navigation }) => {
             CI./RUC 1792888069001
           </Text>
           <Text style={[FONTS.body3, { color: "#cccccc", marginBottom: 30 }]}>
-            Correo electrónico: soporte@arpitools.com
+            Correo electrónico: ventas@arteypisos.com
           </Text>
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
             Luego de enviar el comprobante de transferencia te sera enviado un

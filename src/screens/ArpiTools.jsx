@@ -42,7 +42,8 @@ const ArpiTools = ({ navigation }) => {
         <View style={{ justifyContent: "space-between", height: "40%" }}>
           <View style={{ justifyContent:'center', alignItems:'center', marginVertical: 15 }}>
             <Text style={[FONTS.body2, { color: "#cccccc", textAlign:'center' }]}>
-              Whymper e8-66 entre 6 de Diciembre y Almagro, Quito
+            De Los Quindes E6-275 y De Los Loros, Pichincha - Quito
+
             </Text>
           </View>
 

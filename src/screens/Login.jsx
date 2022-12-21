@@ -37,8 +37,7 @@ const Login = (props) => {
           <View>
             <Text>Bienvenido</Text>
             <Text>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-              omnis illo eaque vitae doloribus distinctio .
+              Arpitools
             </Text>
           </View>
 
