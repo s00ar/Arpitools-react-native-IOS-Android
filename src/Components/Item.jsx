@@ -169,9 +169,9 @@ const Item = () => {
               downloadFile(config.api.page_url +
                 selectedProduct.attributes.thumbnail.data.attributes.url)
             }}>
-              <Text style={{ color: "#4BD1A0" }}>
+              <Text style={{ color: "#ef4a36" }}>
                 Descargar ficha tecnica en PDF{" "}
-                <Feather name="download" size={24} color="#4BD1A0" />
+                <Feather name="download" size={24} color="#ef4a36" />
               </Text>
             </TouchableOpacity>)}
           <Text style={[FONTS.body2, { color: "#cccccc", marginLeft: 10 }]}>
@@ -230,7 +230,7 @@ const Item = () => {
             </View>
             <View
               style={{
-                borderColor: "#4BD1A0",
+                borderColor: "#ef4a36",
                 borderWidth: 2,
                 borderRadius: 5,
                 padding: 10,
@@ -248,7 +248,7 @@ const Item = () => {
             mt="2"
             mx="2"
             mb="2"
-            backgroundColor="#4BD1A0"
+            backgroundColor="#ef4a36"
             size="35"
             borderRadius={5}
             w="60%"

@@ -78,7 +78,7 @@ const Items = (props) => {
           bg={"#000000"}
           h={SIZES.height - 78}
         >
-          <Spinner color="#4BD1A0" size="lg" />
+          <Spinner color="#ef4a36" size="lg" />
         </Flex>
       )}
     </Box>
@@ -114,7 +114,7 @@ const Items = (props) => {
   //       })
   //     ) : (
   //       <Flex align={'center'} justify={'center'} bg={'#000000'} h={SIZES.height - 78}>
-  //         <Spinner color="#4BD1A0" size="lg" />
+  //         <Spinner color="#ef4a36" size="lg" />
   //       </Flex>
   //     )}
   //   </Box>
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({});
 //           bg={"#000000"}
 //           h={SIZES.height - 78}
 //         >
-//           <Spinner color="#4BD1A0" size="lg" />
+//           <Spinner color="#ef4a36" size="lg" />
 //         </Flex>
 //       )}
 //     </Box>

@@ -73,7 +73,7 @@ const ItemsCart = () => {
                   </View>
                   <View
                     style={{
-                      borderColor: "#4bd1a0",
+                      borderColor: "#ef4a36",
                       borderWidth: 2,
                       borderRadius: 5,
                       paddingLeft: 10,

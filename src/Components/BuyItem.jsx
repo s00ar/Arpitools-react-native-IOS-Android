@@ -8,7 +8,7 @@ const BuyItem = () => {
     <View>
       <View
         style={{
-          borderColor: "#4bd1a0",
+          borderColor: "#ef4a36",
           borderWidth: 2,
           borderRadius: 20,
           alignSelf: "center",
@@ -20,7 +20,7 @@ const BuyItem = () => {
       >
         <View
           style={{
-            borderColor: "#4bd1a0",
+            borderColor: "#ef4a36",
             borderBottomWidth: 2,
             flexDirection: "row",
             justifyContent: "space-between",
@@ -40,7 +40,7 @@ const BuyItem = () => {
             style={{ width: 130, height: 130, backgroundColor: "#ccc" }}
           ></View>
           <View style={{flexDirection: 'column', padding: 10}}>
-            <Text style={[FONTS.body3, { color: "#4bd1a0" }]}>Entregado</Text>
+            <Text style={[FONTS.body3, { color: "#ef4a36" }]}>Entregado</Text>
             <Text style={[FONTS.body3, { color: "#cccccc" }]}>
               Se entrego el día de mes
             </Text>

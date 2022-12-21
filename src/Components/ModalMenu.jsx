@@ -130,7 +130,7 @@ const getDataUser = async () => {
                 <FontAwesome
                   name="user-circle"
                   size={36}
-                  color="#4BD1A0"
+                  color="#ef4a36"
                   style={{ margin: 5 }}
                 />
                 <Text style={[FONTS.h4, { color: 'white' }]}>
@@ -146,16 +146,16 @@ const getDataUser = async () => {
                 </Text>
               </Flex>
             </View>
-            <Entypo name="chevron-right" size={24} color="#4BD1A0" />
+            <Entypo name="chevron-right" size={24} color="#ef4a36" />
           </Pressable>
 
-          {/* <ButtonMenu icon={<Feather name="shopping-bag" size={24} color="#4BD1A0" />} text='Mis compras' onPress={() => {props.onClose() ,navigation.navigate('Buys')}} /> */}
-          {/* <ButtonMenu icon={<MaterialIcons name="favorite-border" size={24} color="#4BD1A0" />} text='Mis favoritos' onPress={() => {props.onClose() ,navigation.navigate('Favorites')}} /> */}
-          <ButtonMenu icon={<FontAwesome5 name="house-user" size={24} color="#4BD1A0" />} text='Inicio' onPress={() => {props.onClose() ,navigation.navigate('Main')}} />
-          <ButtonMenu icon={<Octicons name="person" size={24} color="#4BD1A0" />} text='Mi cuenta' onPress={() => {props.onClose() ,navigation.navigate('MyAccount')}} />
-          <ButtonMenu icon={<FontAwesome name="credit-card" size={24} color="#4BD1A0" />} text='Metodo de pago' onPress={() => {props.onClose() ,navigation.navigate('PaymentMethod')}} />
-          <ButtonMenu icon={<Ionicons name="md-megaphone-outline" size={24} color="#4BD1A0" />} text='Ayuda' onPress={() => {props.onClose() ,navigation.navigate('Help')}} />
-          <ButtonMenu icon={<Feather name="info" size={24} color="#4BD1A0" />} text='Acerca de ArpiTools' onPress={() => {props.onClose() ,navigation.navigate('ArpiTools')}} />
+          {/* <ButtonMenu icon={<Feather name="shopping-bag" size={24} color="#ef4a36" />} text='Mis compras' onPress={() => {props.onClose() ,navigation.navigate('Buys')}} /> */}
+          {/* <ButtonMenu icon={<MaterialIcons name="favorite-border" size={24} color="#ef4a36" />} text='Mis favoritos' onPress={() => {props.onClose() ,navigation.navigate('Favorites')}} /> */}
+          <ButtonMenu icon={<FontAwesome5 name="house-user" size={24} color="#ef4a36" />} text='Inicio' onPress={() => {props.onClose() ,navigation.navigate('Main')}} />
+          <ButtonMenu icon={<Octicons name="person" size={24} color="#ef4a36" />} text='Mi cuenta' onPress={() => {props.onClose() ,navigation.navigate('MyAccount')}} />
+          <ButtonMenu icon={<FontAwesome name="credit-card" size={24} color="#ef4a36" />} text='Metodo de pago' onPress={() => {props.onClose() ,navigation.navigate('PaymentMethod')}} />
+          <ButtonMenu icon={<Ionicons name="md-megaphone-outline" size={24} color="#ef4a36" />} text='Ayuda' onPress={() => {props.onClose() ,navigation.navigate('Help')}} />
+          <ButtonMenu icon={<Feather name="info" size={24} color="#ef4a36" />} text='Acerca de ArpiTools' onPress={() => {props.onClose() ,navigation.navigate('ArpiTools')}} />
           <ButtonMenu icon={<AntDesign name="logout" size={24} color="red" />} text='Salir' onPress={() => {
             cerrarSesionAlert();
           }} />

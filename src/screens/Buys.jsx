@@ -41,7 +41,7 @@ const Buys = (props) => {
           onPress={() => props.navigation.navigate('Main')}
           style={{
             width: "100%",
-            backgroundColor: "#4bd1a0",
+            backgroundColor: "#ef4a36",
             flexDirection: "row",
             position: "relative",
             justifyContent: "center",

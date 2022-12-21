@@ -14,7 +14,7 @@ const ArpiTools = ({ navigation }) => {
           onPress={() => navigation.navigate("Main")}
           style={{
             width: "100%",
-            backgroundColor: "#4bd1a0",
+            backgroundColor: "#ef4a36",
             flexDirection: "row",
             position: "relative",
             justifyContent: "center",
@@ -46,9 +46,12 @@ const ArpiTools = ({ navigation }) => {
 
             </Text>
           </View>
-
+          <Text style={[FONTS.body3, { color: "#cccccc", textAlign: 'center', marginBottom: 30 }]}>
+            Correo electrónico: ventas@arteypisos.com
+          </Text>
+{/* 
           <Button
-            backgroundColor="#4BD1A0"
+            backgroundColor="#ef4a36"
             size="lg"
             borderRadius={5}
             w="60%"
@@ -62,7 +65,7 @@ const ArpiTools = ({ navigation }) => {
             }}
           >
             Calificar
-          </Button>
+          </Button> */}
           <View style={{justifyContent:'center', alignItems:'center'}}>
             <Text style={[FONTS.body2, { color: "#cccccc", marginBottom: 16 }]}>
               Copyright 2022 Metamorfosis360

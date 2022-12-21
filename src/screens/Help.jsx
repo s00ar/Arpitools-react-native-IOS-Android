@@ -13,7 +13,7 @@ const Help = (props) => {
           onPress={() => props.navigation.navigate("Main")}
           style={{
             width: "100%",
-            backgroundColor: "#4bd1a0",
+            backgroundColor: "#ef4a36",
             flexDirection: "row",
             position: "relative",
             justifyContent: "center",
@@ -34,7 +34,7 @@ const Help = (props) => {
 
         <TouchableOpacity
           style={{
-            borderColor: "#4bd1a0",
+            borderColor: "#ef4a36",
             borderWidth: 2,
             borderRadius: 10,
             flexDirection: "row",
@@ -54,13 +54,13 @@ const Help = (props) => {
           <MaterialIcons
             name="phone-enabled"
             size={24}
-            color="#4bd1a0"
+            color="#ef4a36"
             style={{ marginRight: 20 }}
           />
         </TouchableOpacity>
         {/* <TouchableOpacity
           style={{
-            borderColor: "#4bd1a0",
+            borderColor: "#ef4a36",
             borderWidth: 2,
             borderRadius: 10,
             flexDirection: "row",
@@ -77,7 +77,7 @@ const Help = (props) => {
           <FontAwesome
             name="angle-down"
             size={24}
-            color="#4bd1a0"
+            color="#ef4a36"
             style={{ marginRight: 20, alignSelf: "center" }}
           />
         </TouchableOpacity> */}
@@ -90,14 +90,12 @@ const Help = (props) => {
             width: "90%",
           }}
         >
+          <Text style={[FONTS.body1, { color: "#cccccc", textAlign: 'center' }]}>
+          Bienvenido a la sección de ayuda de nuestra aplicación móvil.</Text>
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+Para comenzar a utilizar nuestra aplicación, simplemente descárgala desde el App Store o Google Play y sigue los pasos de registro. Una vez que hayas iniciado sesión, podrás acceder a todas las funcionalidades de la aplicación.
+Si tienes alguna duda o problema mientras utilizas nuestra aplicación, no dudes en ponerte en contacto con nosotros a través de nuestro sitio http://arpitools.com/.</Text>
+          <Text style={[FONTS.body2, { color: "#cccccc", textAlign: 'center' }]}> ¡Gracias por utilizar nuestra aplicación!
           </Text>
         </View>
       </View>

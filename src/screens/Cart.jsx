@@ -71,7 +71,7 @@ const Cart = (props) => {
           onPress={() => props.navigation.navigate("Main")}
           style={{
             width: "100%",
-            backgroundColor: "#4bd1a0",
+            backgroundColor: "#ef4a36",
             flexDirection: "row",
             position: "relative",
             justifyContent: "center",
@@ -145,7 +145,7 @@ const Cart = (props) => {
               </View>
               <View
                 style={{
-                  borderColor: "#4bd1a0",
+                  borderColor: "#ef4a36",
                   borderWidth: 2,
                   borderRadius: 5,
                   paddingHorizontal: 10,
@@ -161,7 +161,7 @@ const Cart = (props) => {
               mt="3"
               mx="2"
               mb="8"
-              backgroundColor="#4BD1A0"
+              backgroundColor="#ef4a36"
               size="35"
               borderRadius={5}
               w="60%"

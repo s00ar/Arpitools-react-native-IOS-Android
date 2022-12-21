@@ -237,7 +237,7 @@ const Signup = (props) => {
             </FormControl>
             <Button
               mt="2"
-              backgroundColor="#4BD1A0"
+              backgroundColor="#ef4a36"
               size="lg"
               borderRadius={10}
               onPress={onContinue}
@@ -251,7 +251,7 @@ const Signup = (props) => {
                   props.navigation.navigate("LoginEmail");
                 }}
               >
-                <Text style={{ color: "#4BD1A0" }}> Inicia Sesión</Text>
+                <Text style={{ color: "#ef4a36" }}> Inicia Sesión</Text>
               </Pressable>
             </HStack>
           </VStack>
@@ -270,13 +270,13 @@ const Signup = (props) => {
                 onPress={() => setType("ferreteria")}
                 style={[
                   type === "ferreteria"
-                    ? { backgroundColor: "#4BD1A0" }
+                    ? { backgroundColor: "#ef4a36" }
                     : { backgroundColor: "transparent" },
                   {
                     justifyContent: "center",
                     alignItems: "center",
                     borderWidth: 2,
-                    borderColor: "#4BD1A0",
+                    borderColor: "#ef4a36",
                     width: "50%",
                     padding: 10,
                     borderBottomLeftRadius: 5,
@@ -297,13 +297,13 @@ const Signup = (props) => {
                 onPress={() => setType("constructora")}
                 style={[
                   type === "constructora"
-                    ? { backgroundColor: "#4BD1A0" }
+                    ? { backgroundColor: "#ef4a36" }
                     : { backgroundColor: "transparent" },
                   {
                     justifyContent: "center",
                     alignItems: "center",
                     borderWidth: 2,
-                    borderColor: "#4BD1A0",
+                    borderColor: "#ef4a36",
                     width: "50%",
                     padding: 10,
                     borderBottomRightRadius: 5,
@@ -341,7 +341,7 @@ const Signup = (props) => {
 
               <Button
                 mt="2"
-                backgroundColor="#4BD1A0"
+                backgroundColor="#ef4a36"
                 size="lg"
                 borderRadius={10}
                 onPress={onContinue}
@@ -409,7 +409,7 @@ const Signup = (props) => {
 
             <Button
               mt="2"
-              backgroundColor="#4BD1A0"
+              backgroundColor="#ef4a36"
               size="lg"
               borderRadius={10}
               onPress={() => {
@@ -435,14 +435,14 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderRightWidth: 40,
     borderTopWidth: 40,
-    borderRightColor: "#4BD1A0",
+    borderRightColor: "#ef4a36",
     borderTopColor: "transparent",
   },
   rectangle: {
     width: 50 * 2,
     height: 40,
     backgroundColor: "transparent",
-    borderColor: "#4BD1A0",
+    borderColor: "#ef4a36",
     borderWidth: 2,
     borderRightWidth: 0,
     borderBottomLeftRadius: 5,

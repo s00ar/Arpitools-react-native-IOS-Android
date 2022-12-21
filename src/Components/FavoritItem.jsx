@@ -8,7 +8,7 @@ const FavoritItem = () => {
     <View>
       <View
         style={{
-          borderColor: "#4bd1a0",
+          borderColor: "#ef4a36",
           borderWidth: 2,
           borderRadius: 20,
           alignSelf: "center",
@@ -23,7 +23,7 @@ const FavoritItem = () => {
             style={{ width: 130, height: 130, backgroundColor: "#ccc" }}
           ></View>
           <View style={{ flexDirection: "column", paddingLeft: 10 }}>
-            <Text style={[FONTS.h3, { color: "#4bd1a0" }]}>
+            <Text style={[FONTS.h3, { color: "#ef4a36" }]}>
               Producto Disponible
             </Text>
             <Text style={[FONTS.h3, { color: "#cccccc" }]}>
@@ -39,7 +39,7 @@ const FavoritItem = () => {
             mt="1"
             size="lg"
             borderRadius={5}
-            borderColor='#4bd1a0'
+            borderColor='#ef4a36'
             variant='outline'
             flex={1}
             onPress={() => {}}

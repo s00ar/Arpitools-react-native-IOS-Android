@@ -25,11 +25,11 @@ const LogoPage = () => {
   return (
     <Flex justify="center" align="center" bg="#010101" w={"100%"} h={"100%"}>
       <View style={{ position: "relative" }}>
-        <Image
+        {/* <Image
             source={require("../../assets/LogoNombre.png")}
             alt=""
             style={{ alignSelf: "center", marginTop: 50 }}
-            />
+            /> */}
 
         {/* <Box style={styles.triangle}></Box>
         <Box style={styles.mid}></Box> */}

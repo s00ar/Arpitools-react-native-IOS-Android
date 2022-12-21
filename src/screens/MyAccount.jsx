@@ -65,7 +65,7 @@ const MyAccount = ({ navigation }) => {
           onPress={() => navigation.navigate("Main")}
           style={{
             width: "100%",
-            backgroundColor: "#4bd1a0",
+            backgroundColor: "#ef4a36",
             flexDirection: "row",
             position: "relative",
             justifyContent: "center",
@@ -106,7 +106,7 @@ const MyAccount = ({ navigation }) => {
           </View>
           {/* 
           <Button
-            backgroundColor="#4BD1A0"
+            backgroundColor="#ef4a36"
             size="lg"
             borderRadius={5}
             w="60%"

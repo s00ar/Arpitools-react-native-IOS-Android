@@ -188,7 +188,7 @@ const LoginEmail = (props) => {
             </FormControl>
             <Button
               mt="2"
-              backgroundColor="#4BD1A0"
+              backgroundColor="#ef4a36"
               size="lg"
               borderRadius={10}
               onPress={onContinue}
@@ -203,7 +203,7 @@ const LoginEmail = (props) => {
                   props.navigation.navigate("Signup");
                 }}
               >
-                <Text style={{ color: "#4BD1A0" }}> Registrate Aqui</Text>
+                <Text style={{ color: "#ef4a36" }}> Registrate Aqui</Text>
               </Pressable>
             </HStack>
           </VStack>
@@ -233,7 +233,7 @@ const LoginEmail = (props) => {
             </FormControl>
             <Button
               mt="2"
-              backgroundColor="#4BD1A0"
+              backgroundColor="#ef4a36"
               size="lg"
               borderRadius={10}
               onPress={onContinue}
@@ -247,7 +247,7 @@ const LoginEmail = (props) => {
                   props.navigation.navigate("Signup");
                 }}
               >
-                <Text style={{ color: "#4BD1A0" }}> Registrate Aqui</Text>
+                <Text style={{ color: "#ef4a36" }}> Registrate Aqui</Text>
               </Pressable>
             </HStack>
             <Pressable
@@ -255,7 +255,7 @@ const LoginEmail = (props) => {
                 setForgot(true);
               }}
             >
-              <Text style={{ color: "#4BD1A0", alignSelf: "center" }}>
+              <Text style={{ color: "#ef4a36", alignSelf: "center" }}>
                 {" "}
                 Olvidé mi Contraseña
               </Text>

@@ -59,13 +59,13 @@ const MainHeader = (props) => {
           />
           <TouchableOpacity onPress={() => navigation.navigate("Cart")} style={{position: 'relative'}}>
             {props.cart == true ? (
-              <Ionicons name="cart" size={24} color="#4BD1A0" />
+              <Ionicons name="cart" size={24} color="#ef4a36" />
             ) : (
-              <Ionicons name="cart-outline" size={24} color="#4BD1A0" />
+              <Ionicons name="cart-outline" size={24} color="#ef4a36" />
             )}
             {cartArray.length > 0 ? (
               <View style={{backgroundColor: 'transparent', borderRadius: 100, height: 'auto', width: 'auto', padding: 4, position: 'absolute', top: -14, right: -9}}>
-                <Text style={{color: '#4BD1A0', textAlign: 'center'}}>{cartArray.length}</Text>
+                <Text style={{color: '#ef4a36', textAlign: 'center'}}>{cartArray.length}</Text>
               </View>
             ): (
               <></>

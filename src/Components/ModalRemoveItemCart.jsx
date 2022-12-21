@@ -40,7 +40,7 @@ const ModalRemoveItemCart = (props) => {
           }}
           onPress={() => {}}
         >
-          <Text style={[FONTS.h2, { color: "#4BD1A0", textAlign: "center" }]}>
+          <Text style={[FONTS.h2, { color: "#ef4a36", textAlign: "center" }]}>
             Eliminar Producto
           </Text>
           <Text style={[FONTS.body2, { color: "#cccccc", textAlign: "center" }]}>
@@ -59,7 +59,7 @@ const ModalRemoveItemCart = (props) => {
           >
             <TouchableOpacity
               style={{
-                borderColor: "#4BD1A0",
+                borderColor: "#ef4a36",
                 borderWidth: 2,
                 borderRadius: 5,
                 paddingHorizontal: 10,
