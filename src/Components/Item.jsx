@@ -42,6 +42,8 @@ const Item = () => {
     }
   });
 
+  console.log("Selected Product", selectedProduct);
+
   const downloadFile = async (fileUrl) => {
     // const fileUrl = `${FileSystem.documentDirectory}/download.pdf`;
 
@@ -164,7 +166,7 @@ const Item = () => {
         </View>
 
         <View style={{ justifyContent: "flex-end", flex: 1 }}>
-          {selectedProduct?.attributes.pictures.data[0].attributes?.url && (
+          {selectedProduct?.attributes?.thumbnail?.data?.attributes?.url && (
             <TouchableOpacity style={{ margin: 10 }} onPress={() => {
               downloadFile(config.api.page_url +
                 selectedProduct.attributes.thumbnail.data.attributes.url)
