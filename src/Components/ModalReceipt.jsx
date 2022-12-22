@@ -28,6 +28,25 @@ const ModalReceipt = (props) => {
   const { totalCart } = useContext(ProductContext)
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [user, setUser] = useState({});
+  //recuperamos los datos almacenados del usuario logeado
+  const getDataUser = async () => {
+    try {
+      await AsyncStorage.getItem("@STORAGE_USER").then((value) => {
+        if (value != null) {
+          setUser(JSON.parse(value));
+          console.log("User info", value);
+        }
+      });
+    } catch (error) {
+      console.log("Error in getDataUser => " + error);
+    }
+  };
+  
+  useEffect(() => {
+    getDataUser();
+  }, []);
+  //end getDataUser - this was added by Santiago on 21-12-2022 - Please check if it's correct
 
   useEffect(() => {
     AsyncStorage.getItem("@USER_ADDRESS").then((item) => {
@@ -144,34 +163,50 @@ const ModalReceipt = (props) => {
             {/* Please add the id of the order for this purchase order */}
           </Text>
 
-          <Text style={[FONTS.body3, { color: "#cccccc", marginBottom: 20 }]}>
-            Una vez verificado su comprobante, se le enviara una factura via mail.
-          </Text>
-
-          <Text style={[FONTS.body3, { color: "#cccccc", marginBottom: 20 }]}>
-            Su pedido será enviado a la dirección : {address ?? ''}
-            {/* This should be the address forthe delivery and not the address of the customer*/}
-          </Text>
-        </View>
-
-        <View
-          style={{
+          <Text style={[FONTS.body3, { 
             borderColor: "#ef4a36",
-            borderWidth: 2,
-            borderRadius: 5,
+            borderWidth: 3,
+            borderRadius: 10,
             paddingHorizontal: 10,
             alignSelf: "center",
             width: "85%",
             flexDirection: "row",
             justifyContent: "space-between",
-            padding: 8,
-          }}
-        >
-          <Text style={[FONTS.body3, { color: "#cccccc", width: "70%" }]}>
-            Nos contactaremos a este número: {phone ?? ''}
+            color: "#cccccc", 
+            marginBottom: 20 }]}>
+            Una vez verificado su comprobante, se le enviara una factura via mail a {user?.UserEmail}
+          </Text>
+
+          <Text style={[FONTS.body3, { 
+            borderColor: "#ef4a36",
+            borderWidth: 3,
+            borderRadius: 10,
+            paddingHorizontal: 10,
+            alignSelf: "center",
+            width: "85%",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            color: "#cccccc", 
+            marginBottom: 20}]}>
+            Su pedido será enviado a la dirección : {user?.address}
+            {/* This should be the address forthe delivery and not the address of the customer*/}
+          </Text>
+
+          <Text style={[FONTS.body2, {
+            borderColor: "#ef4a36",
+            borderWidth: 3,
+            borderRadius: 10,
+            paddingHorizontal: 10,
+            alignSelf: "center",
+            width: "85%",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            color: "#cccccc", 
+            marginBottom: 20}]}>
+            Nos contactaremos a este número: {user?.phone}
             {/* Please check I've done this correctly */}
           </Text>
-          <Button
+          {/* <Button
             // mt="8"
             // mx="2"
             // mb="8"
@@ -187,7 +222,7 @@ const ModalReceipt = (props) => {
             }}
           >
             Modificar
-          </Button>
+          </Button> */}
         </View>
       </View>
     </Modal>
