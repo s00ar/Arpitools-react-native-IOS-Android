@@ -159,7 +159,7 @@ const ModalReceipt = (props) => {
           </Text>
 
           <Text style={[FONTS.body3, { color: "#cccccc", marginBottom: 40 }]}>
-            Orden de compra Número: #0000
+            {`Orden de compra Número: #${props?.order?.data?.id}`}
             {/* Please add the id of the order for this purchase order */}
           </Text>
 
@@ -188,7 +188,7 @@ const ModalReceipt = (props) => {
             justifyContent: "space-between",
             color: "#cccccc", 
             marginBottom: 20}]}>
-            Su pedido será enviado a la dirección : {user?.address}
+            Su pedido será enviado a la dirección : {props?.order?.data?.attributes?.deliveryto ?? user?.address}
             {/* This should be the address forthe delivery and not the address of the customer*/}
           </Text>
 

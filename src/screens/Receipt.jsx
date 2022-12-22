@@ -45,6 +45,8 @@ const Receipt = ({ navigation }) => {
   const [sellerid, setSellerid] = useState();
   const [sellername, setSellername] = useState();
   const [sellerphone, setSellerphone] = useState();
+  const [order, setOrder] = useState();
+
   //
 
   const [address, setAdress] = useState("");
@@ -169,6 +171,9 @@ const Receipt = ({ navigation }) => {
       return response.json();
     }).then((response) => {
       console.log("Order Second response", response);
+      if(response?.data){
+        setOrder(response);
+      }
     }).catch(err => console.log("Error in Order upload", err));
 
   };
@@ -294,6 +299,7 @@ const Receipt = ({ navigation }) => {
         </Button>
       </ScrollView>
       <ModalReceipt
+        order={order}
         visible={show}
         onClose={() => {
           setShow(false), navigation.navigate("Main"), removeAllCart();
