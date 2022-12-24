@@ -45,7 +45,7 @@ const Help = (props) => {
             marginTop: 30,
           }}
           onPress={() => { 
-            Linking.openURL('mailto:support@arpitools.com')
+            Linking.openURL('mailto:ventas@arteypisos.com')
           }}
         >
           <Text style={[FONTS.body2, { color: "#cccccc", marginLeft: 20 }]}>
@@ -95,6 +95,20 @@ const Help = (props) => {
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
 Para comenzar a utilizar nuestra aplicación, simplemente descárgala desde el App Store o Google Play y sigue los pasos de registro. Una vez que hayas iniciado sesión, podrás acceder a todas las funcionalidades de la aplicación.
 Si tienes alguna duda o problema mientras utilizas nuestra aplicación, no dudes en ponerte en contacto con nosotros a través de nuestro sitio http://arpitools.com/.</Text>
+
+<Text style={[FONTS.body6, {
+            borderColor: "#ef4a36",
+            borderWidth: 1,
+            borderRadius: 10,
+            paddingHorizontal: 10,
+            width: "85%",
+            flexDirection: "row",
+            alignSelf: "center",
+            textAlign: "center",
+            flexDirection: "row",
+            backgroundColor: "#ef4a36",
+            justifyContent: "space-between",
+            color:"#cccccc"}]}>Todas las compras realizadas hasta las 17hs serán entregadas al siguiente día laboral. </Text>
           <Text style={[FONTS.body2, { color: "#cccccc", textAlign: 'center' }]}> ¡Gracias por utilizar nuestra aplicación!
           </Text>
         </View>

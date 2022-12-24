@@ -68,7 +68,7 @@ const ArpiTools = ({ navigation }) => {
           </Button> */}
           <View style={{justifyContent:'center', alignItems:'center'}}>
             <Text style={[FONTS.body2, { color: "#cccccc", marginBottom: 16 }]}>
-              Copyright 2022 Metamorfosis360
+              Copyright 2022 Arpitools
             </Text>
           </View>
         </View>

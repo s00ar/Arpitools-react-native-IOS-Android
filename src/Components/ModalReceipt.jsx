@@ -35,7 +35,6 @@ const ModalReceipt = (props) => {
       await AsyncStorage.getItem("@STORAGE_USER").then((value) => {
         if (value != null) {
           setUser(JSON.parse(value));
-          console.log("User info", value);
         }
       });
     } catch (error) {
@@ -152,60 +151,51 @@ const ModalReceipt = (props) => {
           <Text
             style={[
               FONTS.h2,
-              { color: "#cccccc", textAlign: "center", marginBottom: 20 },
+              { color: "#cccccc", marginBottom: 20 },
             ]}
           >
             Archivo Enviado Con Exito
           </Text>
 
           <Text style={[FONTS.body3, { color: "#cccccc", marginBottom: 40 }]}>
-            {`Orden de compra Número: #${props?.order?.data?.id}`}
+            {`💻 Orden de compra Número: #${props?.order?.data?.id}`}
             {/* Please add the id of the order for this purchase order */}
           </Text>
 
           <Text style={[FONTS.body3, { 
-            borderColor: "#ef4a36",
-            borderWidth: 3,
-            borderRadius: 10,
-            paddingHorizontal: 10,
-            alignSelf: "center",
-            width: "85%",
-            flexDirection: "row",
-            justifyContent: "space-between",
             color: "#cccccc", 
             marginBottom: 20 }]}>
-            Una vez verificado su comprobante, se le enviara una factura via mail a {user?.UserEmail}
+            📃 Una vez verificado su comprobante, se le enviara una factura via mail a {user?.UserEmail}
           </Text>
 
-          <Text style={[FONTS.body3, { 
-            borderColor: "#ef4a36",
-            borderWidth: 3,
-            borderRadius: 10,
-            paddingHorizontal: 10,
-            alignSelf: "center",
-            width: "85%",
-            flexDirection: "row",
-            justifyContent: "space-between",
+          <Text style={[FONTS.body3, {
             color: "#cccccc", 
             marginBottom: 20}]}>
-            Su pedido será enviado a la dirección : {props?.order?.data?.attributes?.deliveryto ?? user?.address}
+            🚚 Su pedido será enviado a la dirección : {!user?.Distribuitor ? (props?.order?.data?.attributes?.deliveryto) : user?.address}
             {/* This should be the address forthe delivery and not the address of the customer*/}
           </Text>
 
           <Text style={[FONTS.body2, {
             borderColor: "#ef4a36",
-            borderWidth: 3,
+            borderWidth: 1,
             borderRadius: 10,
             paddingHorizontal: 10,
-            alignSelf: "center",
             width: "85%",
             flexDirection: "row",
             justifyContent: "space-between",
             color: "#cccccc", 
-            marginBottom: 20}]}>
-            Nos contactaremos a este número: {user?.phone}
+            marginBottom: 20, 
+            marginTop: 20}]}>
+            Nos contactaremos a este número: +{user?.phone}
             {/* Please check I've done this correctly */}
           </Text>
+          <Text style={[FONTS.body6, {
+            alignSelf: "center",
+            textAlign: "center",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            color: "#cccccc", 
+            marginTop: 50}]}>Todas las compras realizadas hasta las 17hs serán entregadas al siguiente día laboral. </Text>
           {/* <Button
             // mt="8"
             // mx="2"

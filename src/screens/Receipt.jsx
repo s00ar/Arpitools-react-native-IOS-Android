@@ -46,14 +46,12 @@ const Receipt = ({ navigation }) => {
   const [sellername, setSellername] = useState();
   const [sellerphone, setSellerphone] = useState();
   const [order, setOrder] = useState();
-
-  //
-
-  const [address, setAdress] = useState("");
+  const [address, setAdress] = useState(user?.address);
   const [file, setFile] = useState();
   const [show, setShow] = useState(false);
   const [data, setData] = useState("fake data");
   const { totalCart, removeAllCart, cartArray } = useContext(ProductContext);
+  const [user, setUser] = useState({});
 
   //recuperamos los datos almacenados del usuario logeado
   const getDataUser = async () => {
@@ -68,6 +66,7 @@ const Receipt = ({ navigation }) => {
           setSellerid(user.SellerId);
           setSellername(user.SellerName);
           setSellerphone(user.SellerPhone);
+          setUser(JSON.parse(value));
         }
       });
     } catch (error) {
@@ -82,7 +81,7 @@ const Receipt = ({ navigation }) => {
   const onSend = async () => {
     const addressError = validateAddress(address);
 
-    if (!isEmpty(addressError)) {
+    if (!isEmpty(addressError) && user?.Distribuitor==false ) {
       Alert.alert("Error", addressError);
       return;
     }
@@ -177,7 +176,21 @@ const Receipt = ({ navigation }) => {
     }).catch(err => console.log("Error in Order upload", err));
 
   };
-
+  // const displayAddress= () => {
+  //   if (user?.Distribuitor) {
+  //     return           <Text>{user?.address}</Text>;
+  //   } else {
+  //     <>
+  //       <Input
+  //       placeholder="Ingrese su dirección de envio"
+  //       fontSize={20}
+  //       style={{color:'white'}}
+  //       onChangeText={setAdress}
+  //       value={address}
+  //       />
+  //     </>
+  //   }
+  //}
   return (
     <>
       <ScrollView style={{ backgroundColor: "#1a1b1a" }}>
@@ -246,17 +259,19 @@ const Receipt = ({ navigation }) => {
             </Text>
           </View>
         </View>
+        {/* TODO */}
         <FormControl px={10} mt={5}>
-          <FormControl.Label>Dirección</FormControl.Label>
-          <Input
+          <Text style={{color:'white'}}>Usted es un {user?.Distribuitor ? "distribuidor" : "constructor"}</Text>
+          <FormControl.Label>Dirección de entrega:</FormControl.Label>
+        {user?.Distribuitor ? (<Text style={[FONTS.body3, { color: "#cccccc" }]} > {user?.address}</Text>) : <Input
             placeholder="Ingrese su dirección de envio"
             fontSize={20}
             style={{color:'white'}}
             onChangeText={setAdress}
             value={address}
           />
+        }
         </FormControl>
-
         <View style={{ paddingLeft: 40, marginTop: 30, marginBottom: 10 }}>
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
             Realizar la transferencia al Banco Guayaquil

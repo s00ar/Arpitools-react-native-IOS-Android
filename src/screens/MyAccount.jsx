@@ -14,7 +14,7 @@ const MyAccount = ({ navigation }) => {
       await AsyncStorage.getItem("@STORAGE_USER").then((value) => {
         if (value != null) {
           setUser(JSON.parse(value));
-          console.log("User info", value);
+          // console.log("User info", value);
         }
       });
     } catch (error) {
