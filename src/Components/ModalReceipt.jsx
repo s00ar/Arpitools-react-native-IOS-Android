@@ -80,6 +80,7 @@ const ModalReceipt = (props) => {
           width: "100%",
           backgroundColor: "#1a1b1a",
           height: "100%",
+          paddingTop: 30,
         }}
       >
         <TouchableOpacity
@@ -195,7 +196,7 @@ const ModalReceipt = (props) => {
             flexDirection: "row",
             justifyContent: "space-between",
             color: "#cccccc", 
-            marginTop: 50}]}>Todas las compras realizadas hasta las 17hs serán entregadas al siguiente día laboral. </Text>
+            marginTop: 50}]}>Todas las compras realizadas hasta las 17hs serán entregadas al siguiente día laboral. </Text>    
           {/* <Button
             // mt="8"
             // mx="2"
@@ -214,7 +215,31 @@ const ModalReceipt = (props) => {
             Modificar
           </Button> */}
         </View>
+            <TouchableOpacity
+                onPress={() => props.onClose()}
+                style={{
+                  width: "100%",
+                  backgroundColor: "#ef4a36",
+                  flexDirection: "row",
+                  position: "relative",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: 5
+                }}
+              >
+                
+              <Entypo
+                name="chevron-thin-left"
+                size={24}
+                color="black"
+                style={{ position: "absolute", left: 2 }}
+              />
+                <Text style={[FONTS.h1, { color: "#000000", textAlign: "center" }]}>
+                  Regresar
+                </Text>
+              </TouchableOpacity>  
       </View>
+
     </Modal>
   );
 };

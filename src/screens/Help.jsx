@@ -51,8 +51,11 @@ const Help = (props) => {
           <Text style={[FONTS.body2, { color: "#cccccc", marginLeft: 20 }]}>
             Contactanos
           </Text>
+          {/* 
+          <Entypo name="email" size={24} color="black" />
+          */}
           <MaterialIcons
-            name="phone-enabled"
+            name="email"
             size={24}
             color="#ef4a36"
             style={{ marginRight: 20 }}

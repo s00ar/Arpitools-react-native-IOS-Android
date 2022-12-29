@@ -24,7 +24,7 @@ const Categoris = () => {
     }
 
   return (
-    <View>
+    <View>{/* 
       <ScrollView
         horizontal={true}
         style={{ backgroundColor: "#1a1b1a" }}
@@ -89,7 +89,7 @@ const Categoris = () => {
         >
           <Text style={[FONTS.body2, { color: "#cccccc" }]}>Logistica</Text>
         </TouchableOpacity>
-      </ScrollView>
+      </ScrollView> */}
     </View>
   );
 };
