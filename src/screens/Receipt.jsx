@@ -277,6 +277,9 @@ const Receipt = ({ navigation }) => {
             Realizar la transferencia al Banco Guayaquil
           </Text>
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
+            Razón social: Arte y Pisos Cia Ltda
+          </Text>
+          <Text style={[FONTS.body3, { color: "#cccccc" }]}>
             Número de cuenta 33613334
           </Text>
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
