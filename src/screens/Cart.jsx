@@ -153,7 +153,7 @@ const Cart = (props) => {
                 }}
               >
                 <Text style={[FONTS.h2, { color: "#cccccc" }]}>
-                  Total: ${total}
+                  Total: ${parseFloat(total).toFixed(2)}
                 </Text>
               </View>
             </View>
