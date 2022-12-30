@@ -8,6 +8,7 @@ import {
   FlatList,
   Pressable,
   Linking,
+  Platform,
 } from "react-native";
 import React, { useContext, useEffect } from "react";
 import { Box, Button } from "native-base";
@@ -22,6 +23,7 @@ import { useNavigation } from "@react-navigation/native";
 import { SUM_ALL } from "../Context/types";
 import config from "../config";
 import * as MediaLibrary from 'expo-media-library';
+import * as Sharing from 'expo-sharing';
 
 const viewConfigRef = { viewAreaCoveragePercentThreshold: 95 };
 
@@ -43,6 +45,7 @@ const Item = () => {
   });
 
   console.log("Selected Product", selectedProduct);
+  console.log("Specification", selectedProduct?.attributes?.specifications?.data);
 
   const downloadFile = async (fileUrl) => {
     // const fileUrl = `${FileSystem.documentDirectory}/download.pdf`;
@@ -54,19 +57,19 @@ const Item = () => {
     const fileSplit = fileUrl.split("/");
     const file = fileSplit[fileSplit.length - 1];
 
-     FileSystem.downloadAsync(
+    FileSystem.downloadAsync(
       fileUrl,
       FileSystem.documentDirectory + file
     )
       .then(async ({ uri }) => {
         console.log('Finished downloading to ', uri);
         const permissions = MediaLibrary.getPermissionsAsync();
-        if(permissions?.granted){
+        if (permissions?.granted) {
           saveFile(uri);
         } else {
           MediaLibrary.requestPermissionsAsync().then(response => {
             console.log("Permission response", response);
-            if(response?.granted) {
+            if (response?.granted) {
               saveFile(uri)
             }
           })
@@ -79,16 +82,23 @@ const Item = () => {
 
   const saveFile = (uri) => {
     console.log("File", uri);
-    MediaLibrary.createAssetAsync(uri).then(asset => {
-      console.log('asset', asset);
-    MediaLibrary.createAlbumAsync('arpitools', asset)
-      .then(() => {
-        alert("Downloaded")
-      })
-      .catch(error => {
-        console.log("Error in downloading the file", error);
+
+    if(Platform.OS == "ios"){
+      Sharing.shareAsync(uri).then((data) => {
+        alert("File downloaded successfully.");
       });
-    });
+    } else {
+      MediaLibrary.createAssetAsync(uri).then(asset => {
+        console.log('asset', asset);
+        MediaLibrary.createAlbumAsync('arpitools', asset)
+          .then(() => {
+            alert("Downloaded")
+          })
+          .catch(error => {
+            console.log("Error in downloading the file", error);
+          });
+      });
+    }
   }
 
   const navigation = useNavigation();
@@ -166,10 +176,10 @@ const Item = () => {
         </View>
 
         <View style={{ justifyContent: "flex-end", flex: 1 }}>
-          {selectedProduct?.attributes?.thumbnail?.data?.attributes?.url && (
+          {selectedProduct?.attributes?.specifications?.data && (
             <TouchableOpacity style={{ margin: 10 }} onPress={() => {
               downloadFile(config.api.page_url +
-                selectedProduct.attributes.thumbnail.data.attributes.url)
+                selectedProduct.attributes.specifications.data[0].attributes.url)
             }}>
               <Text style={{ color: "#ef4a36" }}>
                 Descargar ficha tecnica en PDF{" "}
