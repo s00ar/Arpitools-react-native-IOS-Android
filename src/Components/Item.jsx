@@ -67,12 +67,32 @@ const Item = () => {
         if (permissions?.granted) {
           saveFile(uri);
         } else {
-          MediaLibrary.requestPermissionsAsync().then(response => {
-            console.log("Permission response", response);
-            if (response?.granted) {
-              saveFile(uri)
+          // MediaLibrary.requestPermissionsAsync().then(response => {
+          //   console.log("Permission response", response);
+          //   if (response?.granted) {
+          //     saveFile(uri)
+          //   }
+          // })
+
+          if (Platform.OS == 'android') {
+            const downloadDir =
+              FileSystem.StorageAccessFramework.getUriForDirectoryInRoot(
+                'Download/Data'
+              );
+            const permission =
+              await FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync(
+                downloadDir
+              );
+
+            if (!permission.granted) {
+              return alert("Permissions denied for Download folder. File downloading failed");
             }
-          })
+
+            saveFile(uri, permission);
+          } else {
+            saveFile(uri);
+          }
+
         }
       })
       .catch(error => {
@@ -80,24 +100,43 @@ const Item = () => {
       });
   };
 
-  const saveFile = (uri) => {
+  const saveFile = async (uri, permission) => {
     console.log("File", uri);
 
-    if(Platform.OS == "ios"){
+    if (Platform.OS == "ios") {
       Sharing.shareAsync(uri).then((data) => {
         alert("File downloaded successfully.");
       });
     } else {
-      MediaLibrary.createAssetAsync(uri).then(asset => {
-        console.log('asset', asset);
-        MediaLibrary.createAlbumAsync('arpitools', asset)
-          .then(() => {
-            alert("Downloaded")
-          })
-          .catch(error => {
-            console.log("Error in downloading the file", error);
-          });
-      });
+      // MediaLibrary.createAssetAsync(uri).then(asset => {
+      //   console.log('asset', asset);
+      //   MediaLibrary.createAlbumAsync('arpitools', asset)
+      //     .then(() => {
+      //       alert("Downloaded")
+      //     })
+      //     .catch(error => {
+      //       console.log("Error in downloading the file", error);
+      //     });
+      // });
+
+      let fileSplit = String(uri).split('/');
+      let fileExtension = fileSplit[fileSplit.length - 1].split('.');
+      const extension = fileExtension[fileExtension - 1];
+
+      const mimeType =
+          extension == 'pdf' ? 'application/pdf' : `image/${extension}`;
+        const filename = fileSplit[fileSplit?.length - 1];
+
+      const contents = await FileSystem.readAsStringAsync(uri, { encoding: FileSystem.EncodingType.Base64 });
+      const destinationUri = await FileSystem.StorageAccessFramework.createFileAsync(permission.directoryUri, filename, mimeType);
+      FileSystem.writeAsStringAsync(destinationUri, contents, 
+        { encoding: FileSystem.EncodingType.Base64 })
+        .then(() => {
+          alert("File downloaded successfully.");
+        })
+        .catch((err) => {
+          alert("Oho! unable to download the file at the moment. Please try later.");
+        })
     }
   }
 
