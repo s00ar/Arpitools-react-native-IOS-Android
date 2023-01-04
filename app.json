@@ -21,7 +21,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.arpitools.arpitools",
-      "buildNumber": "8"
+      "buildNumber": "9"
     },
     "android": {
       "adaptiveIcon": {
@@ -29,7 +29,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.arpitools.arpitools",
-      "versionCode": 4
+      "versionCode": 5
     },
     "web": {
       "favicon": "./assets/48x48.png"

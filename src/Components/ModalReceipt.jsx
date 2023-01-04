@@ -80,7 +80,7 @@ const ModalReceipt = (props) => {
           width: "100%",
           backgroundColor: "#1a1b1a",
           height: "100%",
-          paddingTop: 30,
+          paddingTop: 70,
         }}
       >
         <TouchableOpacity
