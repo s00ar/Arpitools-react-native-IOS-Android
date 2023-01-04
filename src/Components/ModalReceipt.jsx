@@ -176,6 +176,13 @@ const ModalReceipt = (props) => {
             {/* This should be the address forthe delivery and not the address of the customer*/}
           </Text>
 
+          <Button mt="2" 
+            backgroundColor="#ef4a36"
+            size="lg"
+            borderRadius={5}
+            p="2"
+            alignSelf={"center"}
+            onPress={() => props.onClose()}> REGRESAR A INICIO</Button>
           <Text style={[FONTS.body2, {
             borderColor: "#ef4a36",
             borderWidth: 1,
@@ -190,7 +197,6 @@ const ModalReceipt = (props) => {
             Nos contactaremos a este número: +{user?.phone}
             {/* Please check I've done this correctly */}
           </Text>
-          <Button mt="2" backgroundColor={COLORS.primary} onPress={() => {props.navigation.navigate('Main')}}> REGRESAR A INICIO</Button>
           <Text style={[FONTS.body6, {
             alignSelf: "center",
             textAlign: "center",
