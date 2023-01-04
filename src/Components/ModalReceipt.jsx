@@ -190,6 +190,7 @@ const ModalReceipt = (props) => {
             Nos contactaremos a este número: +{user?.phone}
             {/* Please check I've done this correctly */}
           </Text>
+          <Button mt="2" backgroundColor={COLORS.primary} onPress={() => {props.navigation.navigate('Main')}}> REGRESAR A INICIO</Button>
           <Text style={[FONTS.body6, {
             alignSelf: "center",
             textAlign: "center",
@@ -215,7 +216,7 @@ const ModalReceipt = (props) => {
             Modificar
           </Button> */}
         </View>
-            <TouchableOpacity
+            {/* <TouchableOpacity
                 onPress={() => props.onClose()}
                 style={{
                   width: "100%",
@@ -237,7 +238,7 @@ const ModalReceipt = (props) => {
                 <Text style={[FONTS.h1, { color: "#000000", textAlign: "center" }]}>
                   Regresar
                 </Text>
-              </TouchableOpacity>  
+              </TouchableOpacity>   */}
       </View>
 
     </Modal>

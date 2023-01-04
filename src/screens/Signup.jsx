@@ -5,6 +5,7 @@ import {
   Pressable,
   TouchableOpacity,
   View,
+  BackHandler,
   Alert,
 } from "react-native";
 import React, { useState } from "react";
@@ -184,15 +185,20 @@ const Signup = (props) => {
         distribuitor: type == "ferreteria" ? true : false,
       })
       .then((res) => {
-        console.log("res", res);
+        // console.log("res", res);
 
         getAxiosUser(res?.data?.jwt);
         AsyncStorage.setItem("@USER_EMAIL", email);
         AsyncStorage.setItem("@USER_NAME", name);
         AsyncStorage.setItem("@USER_ADDRESS", address);
         AsyncStorage.setItem("@USER_ISDISTRIBUTOR", type == "ferreteria" ? true : false);
-
-        props.navigation.navigate("Main");
+        
+        //Added this alert to try to fix the issue of exit on iphone
+        Alert.alert("Cuenta creada", "Cuenta creada correctamente. Reinicie la aplicación e ingrese con sus datos", [
+          { text: "Salir", onPress: () => BackHandler.exitApp() },
+        ]);
+        // This was commented because it did work on android but on iphone the app got stuck
+        // props.navigation.navigate("Main");
       })
       .catch((error) => {
         Alert.alert("Error", error?.response?.data.error.message);
@@ -221,6 +227,11 @@ const Signup = (props) => {
         >
           Registro
         </Heading>
+        <Text style={[FONTS.body6, { color: "#fff",
+        alignSelf: "center"
+        }]}>
+          v1.1.4
+        </Text>
         {step == 1 ? (
           <VStack space={3} mt="5">
             <FormControl>
@@ -406,7 +417,6 @@ const Signup = (props) => {
                 secureTextEntry
               />
             </FormControl>
-
             <Button
               mt="2"
               backgroundColor="#ef4a36"
