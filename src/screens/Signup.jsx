@@ -192,13 +192,14 @@ const Signup = (props) => {
         AsyncStorage.setItem("@USER_NAME", name);
         AsyncStorage.setItem("@USER_ADDRESS", address);
         AsyncStorage.setItem("@USER_ISDISTRIBUTOR", type == "ferreteria" ? true : false);
-        
-        //Added this alert to try to fix the issue of exit on iphone
-        Alert.alert("Cuenta creada", "Cuenta creada correctamente. Reinicie la aplicación e ingrese con sus datos", [
-          { text: "Salir", onPress: () => BackHandler.exitApp() },
-        ]);
-        // This was commented because it did work on android but on iphone the app got stuck
-        // props.navigation.navigate("Main");
+      })
+      //added this then to try and fix the iphone bug
+      .then(() => {
+        //Added this alert to try to fix the issue of exit on iphone but didnt work
+        // Alert.alert("Cuenta creada", "Cuenta creada correctamente. Reinicie la aplicación e ingrese con sus datos", [
+        //   { text: "Salir", onPress: () => BackHandler.exitApp() },
+        // ]);
+        props.navigation.navigate("Main");
       })
       .catch((error) => {
         Alert.alert("Error", error?.response?.data.error.message);
@@ -230,7 +231,7 @@ const Signup = (props) => {
         <Text style={[FONTS.body6, { color: "#fff",
         alignSelf: "center"
         }]}>
-          v1.1.4
+          v1.1.5
         </Text>
         {step == 1 ? (
           <VStack space={3} mt="5">
