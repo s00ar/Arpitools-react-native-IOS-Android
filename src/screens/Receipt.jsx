@@ -255,7 +255,7 @@ const Receipt = ({ navigation }) => {
             }}
           >
             <Text style={[FONTS.h2, { color: "#cccccc" }]}>
-              Total: {totalCart.total}
+              Total: {totalCart.total.toFixed(2)}
             </Text>
           </View>
         </View>
