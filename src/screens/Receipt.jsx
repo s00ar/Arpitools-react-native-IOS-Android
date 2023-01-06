@@ -1,40 +1,21 @@
+import { Entypo } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { isEmpty } from "lodash";
+import { Button, FormControl, Input } from "native-base";
+import React, { useContext, useEffect, useState } from "react";
 import {
+  Alert,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
   TouchableOpacity,
-  Alert,
+  View,
 } from "react-native";
-import React, { useState, useContext, useEffect } from "react";
-import MainHeader from "../Components/MainHeader";
-import { FONTS } from "../Constants";
-import {
-  Box,
-  Heading,
-  VStack,
-  FormControl,
-  Input,
-  Button,
-  HStack,
-  Flex,
-} from "native-base";
-import {
-  FontAwesome,
-  Entypo,
-  Feather,
-  MaterialIcons,
-  Ionicons,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
 import DocPicker from "../Components/DocPicker";
 import ModalReceipt from "../Components/ModalReceipt";
+import { FONTS } from "../Constants";
 import ProductContext from "../Context/Products/ProductContext";
-import { isEmpty } from "lodash";
 import { validateAddress } from "../Utils/Validations";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
-import api from "../Services/Api";
 
 const Receipt = ({ navigation }) => {
   //para recuperar los datos almacenados del usuario actual
@@ -52,6 +33,7 @@ const Receipt = ({ navigation }) => {
   const [data, setData] = useState("fake data");
   const { totalCart, removeAllCart, cartArray } = useContext(ProductContext);
   const [user, setUser] = useState({});
+
 
   //recuperamos los datos almacenados del usuario logeado
   const getDataUser = async () => {
@@ -81,7 +63,7 @@ const Receipt = ({ navigation }) => {
   const onSend = async () => {
     const addressError = validateAddress(address);
 
-    if (!isEmpty(addressError) && user?.Distribuitor==false ) {
+    if (!isEmpty(addressError) && user?.Distribuitor == false) {
       Alert.alert("Error", addressError);
       return;
     }
@@ -106,16 +88,18 @@ const Receipt = ({ navigation }) => {
     //   }
     // });
 
-    const data = await fetch('https://strapi.arpitools.com/api/upload', {
-      method: 'post',
-        headers: {
+    const data = await fetch("https://strapi.arpitools.com/api/upload", {
+      method: "post",
+      headers: {
         Authorization: `Bearer ${token}`,
       },
-      body: fileData
-    }).then((response) => {
-      console.log("Server response", response);
-      return response.json();
-    }).catch(err => console.log("Error in file upload", err));
+      body: fileData,
+    })
+      .then((response) => {
+        console.log("Server response", response);
+        return response.json();
+      })
+      .catch((err) => console.log("Error in file upload", err));
 
     let receipt = "";
     if (data[0]) {
@@ -157,24 +141,26 @@ const Receipt = ({ navigation }) => {
     //     console.error(error);
     //   });
 
-    await fetch('https://strapi.arpitools.com/api/orders', {
-      method: 'POST',
+    await fetch("https://strapi.arpitools.com/api/orders", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(postData)
-    }).then((response) => {
-      console.log("Order Server response", response);
-      setShow(true);
-      return response.json();
-    }).then((response) => {
-      console.log("Order Second response", response);
-      if(response?.data){
-        setOrder(response);
-      }
-    }).catch(err => console.log("Error in Order upload", err));
-
+      body: JSON.stringify(postData),
+    })
+      .then((response) => {
+        console.log("Order Server response", response);
+        return response.json();
+      })
+      .then((response) => {
+        console.log("Order Second response", response);
+        if (response?.data) {
+          setOrder(response);
+          navigation.navigate("ModalReceipt", { order: response });
+        }
+      })
+      .catch((err) => console.log("Error in Order upload", err));
   };
   // const displayAddress= () => {
   //   if (user?.Distribuitor) {
@@ -261,16 +247,23 @@ const Receipt = ({ navigation }) => {
         </View>
         {/* TODO */}
         <FormControl px={10} mt={5}>
-          <Text style={{color:'white'}}>Usted es un {user?.Distribuitor ? "distribuidor" : "constructor"}</Text>
+          <Text style={{ color: "white" }}>
+            Usted es un {user?.Distribuitor ? "distribuidor" : "constructor"}
+          </Text>
           <FormControl.Label>Dirección de entrega:</FormControl.Label>
-        {user?.Distribuitor ? (<Text style={[FONTS.body3, { color: "#cccccc" }]} > {user?.address}</Text>) : <Input
-            placeholder="Ingrese su dirección de envio"
-            fontSize={20}
-            style={{color:'white'}}
-            onChangeText={setAdress}
-            value={address}
-          />
-        }
+          {user?.Distribuitor ? (
+            <Text style={[FONTS.body3, { color: "#cccccc" }]}>
+              {user?.address}
+            </Text>
+          ) : (
+            <Input
+              placeholder="Ingrese su dirección de envio"
+              fontSize={20}
+              style={{ color: "white" }}
+              onChangeText={setAdress}
+              value={address}
+            />
+          )}
         </FormControl>
         <View style={{ paddingLeft: 40, marginTop: 30, marginBottom: 10 }}>
           <Text style={[FONTS.body3, { color: "#cccccc" }]}>
@@ -316,13 +309,7 @@ const Receipt = ({ navigation }) => {
           Enviar
         </Button>
       </ScrollView>
-      <ModalReceipt
-        order={order}
-        visible={show}
-        onClose={() => {
-          setShow(false), navigation.navigate("Main"), removeAllCart();
-        }}
-      />
+      {/* {show && <ModalReceipt order={order} visible={show} setShow={setShow} />} */}
     </>
   );
 };

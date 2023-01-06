@@ -32,7 +32,7 @@ import {
   validateRuc,
   validateType,
 } from "../Utils/Validations";
-import api from "../Services/Api";
+import api, { setSession } from "../Services/Api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // const TriangleCorner = (props) => {
@@ -108,7 +108,7 @@ const Signup = (props) => {
       for (const sellers of data.data) {
         if (sellers.attributes.arpicode === code) {
           isCorrectCode = true;
-          setSeller(sellers?.id)
+          setSeller(sellers?.id);
           break;
         }
       }
@@ -175,7 +175,7 @@ const Signup = (props) => {
       .post("auth/local/register", {
         username: name + ruc,
         fullname: name,
-        phone:phone,
+        phone: phone,
         email: email,
         password: password,
         RUC: ruc,
@@ -185,13 +185,16 @@ const Signup = (props) => {
         distribuitor: type == "ferreteria" ? true : false,
       })
       .then((res) => {
-        // console.log("res", res);
+        setSession(res.data.jwt);
 
         getAxiosUser(res?.data?.jwt);
         AsyncStorage.setItem("@USER_EMAIL", email);
         AsyncStorage.setItem("@USER_NAME", name);
         AsyncStorage.setItem("@USER_ADDRESS", address);
-        AsyncStorage.setItem("@USER_ISDISTRIBUTOR", type == "ferreteria" ? true : false);
+        AsyncStorage.setItem(
+          "@USER_ISDISTRIBUTOR",
+          type == "ferreteria" ? "true" : "false"
+        );
       })
       //added this then to try and fix the iphone bug
       .then(() => {
@@ -228,9 +231,7 @@ const Signup = (props) => {
         >
           Registro
         </Heading>
-        <Text style={[FONTS.body6, { color: "#fff",
-        alignSelf: "center"
-        }]}>
+        <Text style={[FONTS.body6, { color: "#fff", alignSelf: "center" }]}>
           v1.1.5
         </Text>
         {step == 1 ? (
@@ -301,7 +302,12 @@ const Signup = (props) => {
                     <TriangleCorner />
                   </View> */}
 
-                <Text style={[FONTS.body3, { color: type === "ferreteria" ? "black" : "#cccccc" }]}>
+                <Text
+                  style={[
+                    FONTS.body3,
+                    { color: type === "ferreteria" ? "black" : "#cccccc" },
+                  ]}
+                >
                   Ferreteria
                 </Text>
               </TouchableOpacity>
@@ -323,7 +329,12 @@ const Signup = (props) => {
                   },
                 ]}
               >
-                <Text style={[FONTS.body3, { color: type === "constructora" ? "black" : "#cccccc" }]}>
+                <Text
+                  style={[
+                    FONTS.body3,
+                    { color: type === "constructora" ? "black" : "#cccccc" },
+                  ]}
+                >
                   Constructora
                 </Text>
               </TouchableOpacity>

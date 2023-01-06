@@ -15,6 +15,7 @@ import DataProviders from "./src/Components/DataProviders";
 import ProductState from "./src/Context/Products/ProductState";
 import ItemScreen from "./src/screens/ItemScreen";
 import Receipt from "./src/screens/Receipt";
+import ModalReceiptScreen from "./src/screens/ModalReceiptScreen";
 import Buys from "./src/screens/Buys";
 
 import { LogBox } from "react-native";
@@ -26,21 +27,16 @@ import ArpiTools from "./src/screens/ArpiTools";
 import MainHeader from "./src/Components/MainHeader";
 import Serches from "./src/screens/Serches";
 
-
-
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-
-  LogBox.ignoreAllLogs()
-
+  LogBox.ignoreAllLogs();
 
   return (
     <NativeBaseProvider>
       <NavigationContainer>
         <ProductState>
-          <Stack.Navigator>
+          <Stack.Navigator initialRouteName="">
             <Stack.Screen
               name="LogoPage"
               component={LogoPage}
@@ -67,7 +63,7 @@ export default function App() {
               component={Main}
               options={{
                 header: MainHeader,
-								headerTransparent: false,
+                headerTransparent: false,
               }}
             />
             <Stack.Screen
@@ -92,6 +88,13 @@ export default function App() {
               options={{
                 header: MainHeader,
                 headerTransparent: false,
+              }}
+            />
+            <Stack.Screen
+              name="ModalReceipt"
+              component={ModalReceiptScreen}
+              options={{
+                headerShown: false,
               }}
             />
             <Stack.Screen
