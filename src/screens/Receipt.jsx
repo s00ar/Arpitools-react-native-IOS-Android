@@ -113,7 +113,7 @@ const Receipt = ({ navigation }) => {
         seller: sellerid,
         receipt: receipt,
         deliveryto: `${address}`,
-        amount: `${totalCart.total}`,
+        amount: `${totalCart.total.toFixed(2)}`,
         productlist: JSON.stringify(cartArray, [
           "product",
           "id",

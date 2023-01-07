@@ -144,7 +144,7 @@ const ModalReceipt = (props) => {
               width: "45%",
             }}
           >
-            <Text style={[FONTS.h2, { color: "#cccccc" }]}>Total: ${totalCart.total}</Text>
+            <Text style={[FONTS.h2, { color: "#cccccc" }]}>Total: ${totalCart.total.toFixed(2)}</Text>
           </View>
         </View>
 
