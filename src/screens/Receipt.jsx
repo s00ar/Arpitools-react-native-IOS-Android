@@ -153,15 +153,51 @@ const Receipt = ({ navigation }) => {
         console.log("Order Server response", response);
         return response.json();
       })
-      .then((response) => {
-        console.log("Order Second response", response);
+      .then(async (response) => {
+        console.log("Order Second response", response?.data?.attributes);
         if (response?.data) {
           setOrder(response);
+          await removeItemQuantiyFromStock(cartArray);
           navigation.navigate("ModalReceipt", { order: response });
         }
       })
       .catch((err) => console.log("Error in Order upload", err));
   };
+
+  const removeItemQuantiyFromStock = async (productoArray) => {
+    await AsyncStorage.getItem("@STORAGE_USER").then((value) => {
+      console.log("Stored user", value);
+      if (value != null) {
+        let user = JSON.parse(value);
+        productoArray?.map(async (item) => {
+          console.log("Item", item)
+          let stock = item?.product?.attributes?.stock - item?.quantity;
+          console.log("New Stock value", stock);
+
+          var payload = {
+            data: {stock: stock}
+          }
+
+          await fetch(`https://strapi.arpitools.com/api/products/${item?.product?.id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.Token}`,
+            },
+            body: JSON.stringify(payload),
+          })
+            .then((response) => {
+              console.log("Product Server response", response);
+              return response?.json();
+            })
+            .then((response) => {
+              console.log("Product Second response", response);
+            })
+            .catch((err) => console.log("Error in Product Stock update", err));
+        })
+      }
+    });
+  }
   // const displayAddress= () => {
   //   if (user?.Distribuitor) {
   //     return           <Text>{user?.address}</Text>;
