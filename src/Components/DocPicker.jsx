@@ -6,31 +6,29 @@ import { Feather, Entypo } from "@expo/vector-icons";
 import api from "../Services/Api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import imagePicker from "../Utils/imagePicker";
+import { ImageBackground } from "react-native";
 
 const DocPicker = ({ setFile }) => {
   const [doc, setDoc] = useState();
   const pickDocument = async () => {
-    let result = await DocumentPicker.getDocumentAsync({
-      type: "*/*",
-      copyToCacheDirectory: true,
-    }).then(async (response) => {
-      if (response.type == "success") {
-        let { name, size, uri } = response;
-        let nameParts = name.split(".");
-        let fileType = nameParts[nameParts.length - 1];
-        var fileToUpload = {
-          name: name,
-          size: size,
-          uri: uri,
-          type: "application/" + fileType,
-        };
-        console.log(fileToUpload, "...............file");
-        setDoc(fileToUpload);
-        setFile(fileToUpload);
-      }
-    });
-    // console.log(result);
-    // console.log("Doc: " + doc.uri);
+    try {
+      const response = await imagePicker();
+      let { fileName: name, fileSize: size, uri } = response;
+      let nameParts = name.split(".");
+      let fileType = nameParts[nameParts.length - 1];
+      var fileToUpload = {
+        name: name,
+        size: size,
+        uri: uri,
+        type: "image/" + fileType,
+      };
+      console.log(fileToUpload, "...............file");
+      setDoc(fileToUpload);
+      setFile(fileToUpload);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const postDocument = () => {
@@ -54,28 +52,45 @@ const DocPicker = ({ setFile }) => {
   return (
     <View style={{ alignItems: "center" }}>
       {doc ? (
-        <View>
-          <TouchableOpacity
-            onPress={() => {
-              setDoc(null);
-              setFile(null);
+        <View
+          style={{
+            width: "80%",
+            height: 120,
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ImageBackground
+            style={{
+              width: "100%",
+              height: "100%",
             }}
+            source={{ uri: doc?.uri }}
           >
-            <Entypo
-              name="cross"
-              size={24}
-              color="white"
+            <TouchableOpacity
               style={{ position: "absolute", top: 0, right: 0 }}
-            />
-          </TouchableOpacity>
-          <Text
-            style={[
-              FONTS.h2,
-              { color: "#cccccc", marginTop: 30, marginBottom: 20 },
-            ]}
-          >
-            {doc.name}
-          </Text>
+              onPress={() => {
+                setDoc(null);
+                setFile(null);
+              }}
+            >
+              <Entypo name="cross" size={24} color="white" />
+            </TouchableOpacity>
+            <Text
+              style={[
+                FONTS.h3,
+                {
+                  color: "#cccccc",
+                  position: "absolute",
+                  bottom: 10,
+                  left: 10,
+                },
+              ]}
+            >
+              {doc.name}
+            </Text>
+          </ImageBackground>
         </View>
       ) : (
         <TouchableOpacity

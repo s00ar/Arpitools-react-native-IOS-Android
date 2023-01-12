@@ -1,6 +1,6 @@
 import { Entypo, FontAwesome } from "@expo/vector-icons";
 import { Button } from "native-base";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -11,13 +11,45 @@ import {
 import ItemsCart from "../Components/ItemsCart";
 import { FONTS, SIZES } from "../Constants";
 import ProductContex from "../Context/Products/ProductContext";
+import api from "../Services/Api";
 
 const Cart = (props) => {
   const scrollView = useRef();
 
+  const [emptyProducts, setEmptyProducts] = useState([]);
   const [scrollEnd, setScrollEnd] = useState(false);
 
   const { cartArray, dataRecipe } = useContext(ProductContex);
+
+
+    useEffect(() => {
+      (async () => {
+        try {
+          if (cartArray.length < 1) return;
+          const res = await api.get("/products?populate=*", {});
+          const data = res.data.data;
+          console.log("cartArray");
+          console.log(cartArray);
+          console.log("data");
+          console.log(data);
+          const emptyItems = [];
+          for (const cartItem of cartArray) {
+            const findItem = data.find(
+              (product) => product.id === cartItem.product.id
+            );
+            if (findItem && findItem?.attributes?.stock < 1) {
+              emptyItems.push(findItem);
+            }
+          }
+          setEmptyProducts(emptyItems);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }, []);
+
+    console.log("empty");
+    console.log(emptyProducts);
 
   const isCloseToBottom = ({
     layoutMeasurement,
@@ -161,7 +193,7 @@ const Cart = (props) => {
               mt="3"
               mx="2"
               mb="8"
-              backgroundColor="#ef4a36"
+              backgroundColor={emptyProducts?.length > 0 ? "grey" : "#ef4a36"}
               size="35"
               borderRadius={5}
               w="60%"
@@ -175,8 +207,9 @@ const Cart = (props) => {
                 fontSize: 20,
                 fontWeight: "bold",
               }}
+              disabled={emptyProducts?.length > 0}
             >
-              Comprar
+              {emptyProducts?.length > 0 ? "Sin stock disponible" : "Comprar"}
             </Button>
           </View>
         ) : (

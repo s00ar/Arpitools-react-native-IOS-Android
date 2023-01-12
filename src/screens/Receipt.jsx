@@ -34,7 +34,6 @@ const Receipt = ({ navigation }) => {
   const { totalCart, removeAllCart, cartArray } = useContext(ProductContext);
   const [user, setUser] = useState({});
 
-
   //recuperamos los datos almacenados del usuario logeado
   const getDataUser = async () => {
     try {
@@ -170,22 +169,25 @@ const Receipt = ({ navigation }) => {
       if (value != null) {
         let user = JSON.parse(value);
         productoArray?.map(async (item) => {
-          console.log("Item", item)
+          console.log("Item", item);
           let stock = item?.product?.attributes?.stock - item?.quantity;
           console.log("New Stock value", stock);
 
           var payload = {
-            data: {stock: stock}
-          }
+            data: { stock: stock },
+          };
 
-          await fetch(`https://strapi.arpitools.com/api/products/${item?.product?.id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${user.Token}`,
-            },
-            body: JSON.stringify(payload),
-          })
+          await fetch(
+            `https://strapi.arpitools.com/api/products/${item?.product?.id}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${user.Token}`,
+              },
+              body: JSON.stringify(payload),
+            }
+          )
             .then((response) => {
               console.log("Product Server response", response);
               return response?.json();
@@ -194,10 +196,11 @@ const Receipt = ({ navigation }) => {
               console.log("Product Second response", response);
             })
             .catch((err) => console.log("Error in Product Stock update", err));
-        })
+        });
       }
     });
-  }
+  };
+
   // const displayAddress= () => {
   //   if (user?.Distribuitor) {
   //     return           <Text>{user?.address}</Text>;

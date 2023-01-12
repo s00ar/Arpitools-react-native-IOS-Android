@@ -22,12 +22,12 @@ import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { SUM_ALL } from "../Context/types";
 import config from "../config";
-import * as MediaLibrary from 'expo-media-library';
-import * as Sharing from 'expo-sharing';
+import * as MediaLibrary from "expo-media-library";
+import * as Sharing from "expo-sharing";
 
 const viewConfigRef = { viewAreaCoveragePercentThreshold: 95 };
 
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from "expo-file-system";
 
 const Item = () => {
   const { selectedProduct, addToCart, cartArray, sumAll } =
@@ -45,7 +45,10 @@ const Item = () => {
   });
 
   console.log("Selected Product", selectedProduct);
-  console.log("Specification", selectedProduct?.attributes?.specifications?.data);
+  console.log(
+    "Specification",
+    selectedProduct?.attributes?.specifications?.data
+  );
 
   const downloadFile = async (fileUrl) => {
     // const fileUrl = `${FileSystem.documentDirectory}/download.pdf`;
@@ -57,12 +60,9 @@ const Item = () => {
     const fileSplit = fileUrl.split("/");
     const file = fileSplit[fileSplit.length - 1];
 
-    FileSystem.downloadAsync(
-      fileUrl,
-      FileSystem.documentDirectory + file
-    )
+    FileSystem.downloadAsync(fileUrl, FileSystem.documentDirectory + file)
       .then(async ({ uri }) => {
-        console.log('Finished downloading to ', uri);
+        console.log("Finished downloading to ", uri);
         const permissions = MediaLibrary.getPermissionsAsync();
         if (permissions?.granted) {
           saveFile(uri);
@@ -74,10 +74,10 @@ const Item = () => {
           //   }
           // })
 
-          if (Platform.OS == 'android') {
+          if (Platform.OS == "android") {
             const downloadDir =
               FileSystem.StorageAccessFramework.getUriForDirectoryInRoot(
-                'Download/Data'
+                "Download/Data"
               );
             const permission =
               await FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync(
@@ -85,17 +85,18 @@ const Item = () => {
               );
 
             if (!permission.granted) {
-              return alert("Permissions denied for Download folder. File downloading failed");
+              return alert(
+                "Permissions denied for Download folder. File downloading failed"
+              );
             }
 
             saveFile(uri, permission);
           } else {
             saveFile(uri);
           }
-
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   };
@@ -119,26 +120,36 @@ const Item = () => {
       //     });
       // });
 
-      let fileSplit = String(uri).split('/');
-      let fileExtension = fileSplit[fileSplit.length - 1].split('.');
+      let fileSplit = String(uri).split("/");
+      let fileExtension = fileSplit[fileSplit.length - 1].split(".");
       const extension = fileExtension[fileExtension - 1];
 
       const mimeType =
-          extension == 'pdf' ? 'application/pdf' : `image/${extension}`;
-        const filename = fileSplit[fileSplit?.length - 1];
+        extension == "pdf" ? "application/pdf" : `image/${extension}`;
+      const filename = fileSplit[fileSplit?.length - 1];
 
-      const contents = await FileSystem.readAsStringAsync(uri, { encoding: FileSystem.EncodingType.Base64 });
-      const destinationUri = await FileSystem.StorageAccessFramework.createFileAsync(permission.directoryUri, filename, mimeType);
-      FileSystem.writeAsStringAsync(destinationUri, contents, 
-        { encoding: FileSystem.EncodingType.Base64 })
+      const contents = await FileSystem.readAsStringAsync(uri, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+      const destinationUri =
+        await FileSystem.StorageAccessFramework.createFileAsync(
+          permission.directoryUri,
+          filename,
+          mimeType
+        );
+      FileSystem.writeAsStringAsync(destinationUri, contents, {
+        encoding: FileSystem.EncodingType.Base64,
+      })
         .then(() => {
           alert("File downloaded successfully.");
         })
         .catch((err) => {
-          alert("Oho! unable to download the file at the moment. Please try later.");
-        })
+          alert(
+            "Oho! unable to download the file at the moment. Please try later."
+          );
+        });
     }
-  }
+  };
 
   const navigation = useNavigation();
 
@@ -216,15 +227,22 @@ const Item = () => {
 
         <View style={{ justifyContent: "flex-end", flex: 1 }}>
           {selectedProduct?.attributes?.specifications?.data && (
-            <TouchableOpacity style={{ margin: 10 }} onPress={() => {
-              downloadFile(config.api.page_url +
-                selectedProduct.attributes.specifications.data[0].attributes.url)
-            }}>
+            <TouchableOpacity
+              style={{ margin: 10 }}
+              onPress={() => {
+                downloadFile(
+                  config.api.page_url +
+                    selectedProduct.attributes.specifications.data[0].attributes
+                      .url
+                );
+              }}
+            >
               <Text style={{ color: "#ef4a36" }}>
                 Descargar ficha tecnica en PDF{" "}
                 <Feather name="download" size={24} color="#ef4a36" />
               </Text>
-            </TouchableOpacity>)}
+            </TouchableOpacity>
+          )}
           <Text style={[FONTS.body2, { color: "#cccccc", marginLeft: 10 }]}>
             $ {selectedProduct.attributes.price1}
           </Text>
@@ -272,7 +290,9 @@ const Item = () => {
                   style={{
                     fontSize: 30,
                     color:
-                      price === selectedProduct.attributes.stock ? "#aaaaaa" : "#000000",
+                      price === selectedProduct.attributes.stock
+                        ? "#aaaaaa"
+                        : "#000000",
                   }}
                 >
                   +
@@ -291,7 +311,10 @@ const Item = () => {
               <Text
                 style={[FONTS.h2, { color: "#cccccc", textAlign: "center" }]}
               >
-                ${parseFloat(selectedProduct.attributes.price1 * price).toFixed(2)}
+                $
+                {parseFloat(selectedProduct.attributes.price1 * price).toFixed(
+                  2
+                )}
               </Text>
             </View>
           </View>
@@ -299,7 +322,7 @@ const Item = () => {
             mt="2"
             mx="2"
             mb="2"
-            backgroundColor="#ef4a36"
+            backgroundColor={selectedProduct?.stock < 1 ? "grey" : "#ef4a36"}
             size="35"
             borderRadius={5}
             w="60%"
@@ -310,6 +333,7 @@ const Item = () => {
                 // await sumAll(price, selectedProduct.price + price),
                 navigation.navigate("Main");
             }}
+            disabled={selectedProduct?.stock < 1}
           >
             Agregar al Carrito
           </Button>
