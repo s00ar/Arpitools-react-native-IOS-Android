@@ -92,7 +92,17 @@ const Signup = (props) => {
         console.error("Error getAxiosUser => " + err.message);
       });
   }; // end getAxiosUser
-
+  const regresar = () => {
+    if (step === 2) {
+      setStep(1);
+      return;
+    } else {
+      if (step === 3) {
+        setStep(2);
+        return;
+      }
+    }
+  }
   const onContinue = async () => {
     const codeError = validateCodeArpi(code);
     if (!isEmpty(codeError)) {
@@ -371,6 +381,16 @@ const Signup = (props) => {
               >
                 Continuar
               </Button>
+              
+              <Button
+                mt="2"
+                backgroundColor="#ef4a36"
+                size="lg"
+                borderRadius={10}
+                onPress={regresar}
+              >
+                Regresar
+              </Button>
             </VStack>
           </>
         ) : (
@@ -429,6 +449,7 @@ const Signup = (props) => {
                 secureTextEntry
               />
             </FormControl>
+            {/* TODO */}
             <Button
               mt="2"
               backgroundColor="#ef4a36"
@@ -440,6 +461,16 @@ const Signup = (props) => {
             >
               Continuar
             </Button>
+            
+            <Button
+                mt="2"
+                backgroundColor="#ef4a36"
+                size="lg"
+                borderRadius={10}
+                onPress={regresar}
+              >
+                Regresar
+              </Button>
           </VStack>
         )}
       </Box>

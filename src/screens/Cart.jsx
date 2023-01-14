@@ -28,10 +28,10 @@ const Cart = (props) => {
           if (cartArray.length < 1) return;
           const res = await api.get("/products?populate=*", {});
           const data = res.data.data;
-          console.log("cartArray");
-          console.log(cartArray);
-          console.log("data");
-          console.log(data);
+          // console.log("cartArray");
+          // console.log(cartArray);
+          // console.log("data");
+          // console.log(data);
           const emptyItems = [];
           for (const cartItem of cartArray) {
             const findItem = data.find(
@@ -48,8 +48,8 @@ const Cart = (props) => {
       })();
     }, []);
 
-    console.log("empty");
-    console.log(emptyProducts);
+    // console.log("empty");
+    // console.log(emptyProducts);
 
   const isCloseToBottom = ({
     layoutMeasurement,
@@ -76,11 +76,11 @@ const Cart = (props) => {
   // totalArr.push( ...totalArr, multi)
 
   // console.log( 'TOTALARR _____________' ,totalArr);
-
+//todo
   for (i = 0; i < cartArray.length; i++) {
     totalArr.push(
       cartArray[i].product.attributes.price1 * cartArray[i].quantity
-    );
+    ).toFixed(2);
   }
 
   let total = totalArr.reduce((a, b) => a + b, 0);

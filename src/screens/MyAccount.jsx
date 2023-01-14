@@ -86,7 +86,7 @@ const MyAccount = ({ navigation }) => {
         <View style={{ justifyContent: "space-between", height: "65%" }}>
           <View style={{ paddingLeft: 40, marginTop: 30, marginBottom: 10 }}>
             <Text style={[FONTS.body2, { color: "#cccccc", marginBottom: 8 }]}>
-              Tipo de local: {user?.Distribuitor ? "distribuidor" : "constructor"}
+              Tipo de local: {user?.Distribuitor ? "Ferreteria" : "Constructor"}
             </Text>
             <Text style={[FONTS.body2, { color: "#cccccc", marginBottom: 8 }]}>
               Dirección: {user?.address}

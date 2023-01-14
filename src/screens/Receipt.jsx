@@ -286,9 +286,9 @@ const Receipt = ({ navigation }) => {
         </View>
         {/* TODO */}
         <FormControl px={10} mt={5}>
-          <Text style={{ color: "white" }}>
+          {/* <Text style={{ color: "white" }}>
             Usted es un {user?.Distribuitor ? "distribuidor" : "constructor"}
-          </Text>
+          </Text> */}
           <FormControl.Label>Dirección de entrega:</FormControl.Label>
           {user?.Distribuitor ? (
             <Text style={[FONTS.body3, { color: "#cccccc" }]}>

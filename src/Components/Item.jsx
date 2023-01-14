@@ -141,11 +141,11 @@ const Item = () => {
         encoding: FileSystem.EncodingType.Base64,
       })
         .then(() => {
-          alert("File downloaded successfully.");
+          alert("Archivo descargado exitosamente.");
         })
         .catch((err) => {
           alert(
-            "Oho! unable to download the file at the moment. Please try later."
+            "No se pudo descargar el archivo. Intente nuevamente en unos momentos."
           );
         });
     }
@@ -157,7 +157,7 @@ const Item = () => {
 
   return (
     <ScrollView>
-      <View style={{ height: SIZES.height, backgroundColor: "#1a1b1a" }}>
+      <View style={{ height: SIZES.height-76, backgroundColor: "#1a1b1a" }}>
         <View style={{ paddingHorizontal: 10 }}>
           <View
             style={{
@@ -167,7 +167,7 @@ const Item = () => {
               right: 15,
               top: 10,
               width: 40,
-              height: 20,
+              // height: 20,
               borderRadius: 10,
               alignItems: "center",
               justifyContent: "center",
