@@ -101,8 +101,8 @@ const LoginEmail = (props) => {
           setLoading(false);
           console.log("res", res);
           Alert.alert(
-            "Success",
-            "Check your email for a link to reset your password. If it doesn’t appear within a few minutes, check your spam folder."
+            "Éxito",
+            "Revise su casilla de mail para el link de reseteo de contraseña. Si no aparece en unos instantes por favor revise su carpeta de spam."
           );
         })
         .catch((err) => {
@@ -194,13 +194,13 @@ const LoginEmail = (props) => {
               onPress={onContinue}
               disabled={loading}
             >
-              {loading ? "Please wait..." : "Continuar"}
+              {loading ? "Espere un instante..." : "Continuar"}
             </Button>
             <HStack mt="6" justifyContent="center">
               <Text style={{ color: "white" }}>No tienes una cuenta?</Text>
               <Pressable
                 onPress={() => {
-                  props.navigation.navigate("Signup");
+                  props.navigation.navigate("Registrarse");
                 }}
               >
                 <Text style={{ color: "#ef4a36" }}> Registrate Aqui</Text>
