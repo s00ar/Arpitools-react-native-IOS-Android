@@ -1,22 +1,17 @@
+import { Entypo, Feather } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { TouchableOpacity, View, Text } from "react-native";
-import * as DocumentPicker from "expo-document-picker";
+import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
 import { FONTS } from "../Constants";
-import { Feather, Entypo } from "@expo/vector-icons";
-import api from "../Services/Api";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
 import imagePicker from "../Utils/imagePicker";
-import { ImageBackground } from "react-native";
 
 const DocPicker = ({ setFile }) => {
   const [doc, setDoc] = useState();
   const pickDocument = async () => {
     try {
       const response = await imagePicker();
-      let { fileName: name, fileSize: size, uri } = response;
-      let nameParts = name.split(".");
-      let fileType = nameParts[nameParts.length - 1];
+      let { fileSize: size, uri } = response;
+      const name = `${uri}`.split("/").pop();
+      let fileType = `${name}`.split(".").pop();
       var fileToUpload = {
         name: name,
         size: size,
@@ -77,19 +72,6 @@ const DocPicker = ({ setFile }) => {
             >
               <Entypo name="cross" size={24} color="white" />
             </TouchableOpacity>
-            <Text
-              style={[
-                FONTS.h3,
-                {
-                  color: "#cccccc",
-                  position: "absolute",
-                  bottom: 10,
-                  left: 10,
-                },
-              ]}
-            >
-              {doc.name}
-            </Text>
           </ImageBackground>
         </View>
       ) : (
