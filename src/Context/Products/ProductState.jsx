@@ -46,7 +46,7 @@ const ProductState = (props) => {
 
     try {
       dispatch({ type: LOADING, payload: true });
-      const res = await api.get("/products?populate=*", {});
+      const res = await api.get("/products?populate=*&pagination[start]=0&pagination[limit]=200", {});
       const data = res.data.data;
       dispatch({ type: GET_PRODUCTS, payload: data });
     } catch (error) {
