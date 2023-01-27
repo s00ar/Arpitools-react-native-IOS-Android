@@ -12,7 +12,7 @@ const Categoris = () => {
   
     const filterSearch = (text) => {
       const newData = constProductArray.filter((item) => {
-        console.log("Item", item);
+        // console.log("Item", item);
         if(item?.category){
           const itemData = item?.category?.toUpperCase()
           const textData = text.toUpperCase()

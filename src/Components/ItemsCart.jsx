@@ -20,7 +20,7 @@ const ItemsCart = () => {
   const removeItem = useContext(RemoveCartContext);
   const navigation = useNavigation();
 
-  console.log(cartArray);
+  // console.log(cartArray);
   return (
     <View>
       {cartArray.length ? (

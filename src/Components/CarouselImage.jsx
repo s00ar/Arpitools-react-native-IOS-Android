@@ -11,7 +11,7 @@ const CarouselImage = (images, width, height) => {
   }
 
   const renderItem = (item, index) => {
-    console.log(item[index]);
+    // console.log(item[index]);
     return <Image style={{ width: SIZES.width , height: 250, resizeMode: 'cover', marginVertical: 20 }} source={{ uri: item.uri }} />;
   };
 

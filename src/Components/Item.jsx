@@ -36,6 +36,8 @@ const Item = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [show, setShow] = useState(false);
   const [price, setPrice] = useState(1);
+  // added this to check for distribuitor and to only show items to the user that it should be shown.
+    const [isDistributor, setIsDistributor] = useState(false);
 
   let flatListRef = useRef();
   const onViewRef = useRef(({ changed }) => {
@@ -44,11 +46,11 @@ const Item = () => {
     }
   });
 
-  console.log("Selected Product", selectedProduct);
-  console.log(
-    "Specification",
-    selectedProduct?.attributes?.specifications?.data
-  );
+  // console.log("Selected Product", selectedProduct);
+  // console.log(
+  //   "Specification",
+  //   selectedProduct?.attributes?.specifications?.data
+  // );
 
   const downloadFile = async (fileUrl) => {
     // const fileUrl = `${FileSystem.documentDirectory}/download.pdf`;
@@ -62,7 +64,7 @@ const Item = () => {
 
     FileSystem.downloadAsync(fileUrl, FileSystem.documentDirectory + file)
       .then(async ({ uri }) => {
-        console.log("Finished downloading to ", uri);
+        // console.log("Finished downloading to ", uri);
         const permissions = MediaLibrary.getPermissionsAsync();
         if (permissions?.granted) {
           saveFile(uri);
@@ -102,7 +104,7 @@ const Item = () => {
   };
 
   const saveFile = async (uri, permission) => {
-    console.log("File", uri);
+    // console.log("File", uri);
 
     if (Platform.OS == "ios") {
       Sharing.shareAsync(uri).then((data) => {
@@ -244,7 +246,14 @@ const Item = () => {
             </TouchableOpacity>
           )}
           <Text style={[FONTS.body2, { color: "#cccccc", marginLeft: 10 }]}>
-            $ {selectedProduct.attributes.price1}
+            $ {
+            (isDistributor == true && selectedProduct.attributes.price1)
+            }
+            {
+            (isDistributor == false && selectedProduct.attributes.price2)
+
+            // selectedProduct.attributes.price1>0 ? selectedProduct.attributes.price1 : selectedProduct.attributes.price2
+            }
           </Text>
           <View
             style={{ flexDirection: "row", padding: 10, alignItems: "center" }}
@@ -311,10 +320,8 @@ const Item = () => {
               <Text
                 style={[FONTS.h2, { color: "#cccccc", textAlign: "center" }]}
               >
-                $
-                {parseFloat(selectedProduct.attributes.price1 * price).toFixed(
-                  2
-                )}
+                ${(selectedProduct.attributes.price1>0 ? (parseFloat(selectedProduct.attributes.price1 * price).toFixed(2)) : parseFloat(selectedProduct.attributes.price2 * price).toFixed(2))
+                }
               </Text>
             </View>
           </View>

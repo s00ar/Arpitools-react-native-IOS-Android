@@ -18,7 +18,7 @@ const DocPicker = ({ setFile }) => {
         uri: uri,
         type: "image/" + fileType,
       };
-      console.log(fileToUpload, "...............file");
+      // console.log(fileToUpload, "...............file");
       setDoc(fileToUpload);
       setFile(fileToUpload);
     } catch (error) {
@@ -39,7 +39,7 @@ const DocPicker = ({ setFile }) => {
         "Content-Type": "multipart/form-data",
       },
     };
-    console.log(formData);
+    // console.log(formData);
 
     fetch(url, options).catch((error) => console.log(error));
   };

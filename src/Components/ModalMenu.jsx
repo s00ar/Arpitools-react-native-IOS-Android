@@ -147,7 +147,7 @@ const getDataUser = async () => {
                 </Text>
               </Flex>
             </View>
-            <Entypo name="chevron-right" size={24} color="#ef4a36" />
+            {/* <Entypo name="chevron-right" size={24} color="#ef4a36" /> */}
           </Pressable>
 
           {/* <ButtonMenu icon={<Feather name="shopping-bag" size={24} color="#ef4a36" />} text='Mis compras' onPress={() => {props.onClose() ,navigation.navigate('Buys')}} /> */}

@@ -40,9 +40,9 @@ const ProductState = (props) => {
   itemRef.current = state.cartArray;
 
   const getProducts = async () => {
-    console.log("user");
-    console.log(api.defaults.headers.common.Authorization);
-    console.log(`${config.api.endpoint}` + "/products?populate=*");
+    // console.log("user");
+    // console.log(api.defaults.headers.common.Authorization);
+    // console.log(`${config.api.endpoint}` + "/products?populate=*");
 
     try {
       dispatch({ type: LOADING, payload: true });
@@ -51,7 +51,7 @@ const ProductState = (props) => {
       dispatch({ type: GET_PRODUCTS, payload: data });
     } catch (error) {
       dispatch({ type: LOADING, payload: false });
-      console.log("get products error");
+      // console.log("get products error");
       console.log(error);
     }
   };
