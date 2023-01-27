@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { isEmpty } from "lodash";
 import {
   Box,
-  Button,
+  // Button,
   Flex,
   FormControl,
   Heading,
@@ -20,6 +20,7 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
+import Button from "../Components/Button";
 import api, { setSession, unAuthApi } from "../Services/Api";
 import { validateEmail, validatePassword } from "../Utils/Validations";
 
@@ -113,6 +114,10 @@ const LoginEmail = (props) => {
 
       // props.navigation.navigate("Main");
     } else {
+
+      /**
+       * LOGIN 
+       */
       const emailError = validateEmail(email);
       if (!isEmpty(emailError)) {
         Alert.alert("Error", emailError);
@@ -123,6 +128,7 @@ const LoginEmail = (props) => {
         Alert.alert("Error", passwordError);
         return;
       }
+      setLoading(true);
       unAuthApi
         .post("auth/local", {
           identifier: email,
@@ -130,11 +136,13 @@ const LoginEmail = (props) => {
         })
         .then((res) => {
           console.log(res);
+          setLoading(false);
           AsyncStorage.setItem("@USER_EMAIL", email); // Store the Email for future use.
           props.navigation.navigate("Main");
         })
         .catch((err) => {
-          Alert.alert("Error", err.response.data.error.message);
+          setLoading(false);
+          Alert.alert("Error", err?.response?.data?.error?.message ?? 'Invalid credentials');
           console.error(err.response.data);
         });
 
@@ -186,7 +194,7 @@ const LoginEmail = (props) => {
                 keyboardType="email-address"
               />
             </FormControl>
-            <Button
+            {/* <Button
               mt="2"
               backgroundColor="#ef4a36"
               size="lg"
@@ -195,12 +203,17 @@ const LoginEmail = (props) => {
               disabled={loading}
             >
               {loading ? "Espere un instante..." : "Continuar"}
-            </Button>
+            </Button> */}
+            <Button
+              text={"Continuar"}
+              loading={loading}
+              onPress={onContinue}
+            />
             <HStack mt="6" justifyContent="center">
               <Text style={{ color: "white" }}>No tienes una cuenta?</Text>
               <Pressable
                 onPress={() => {
-                  props.navigation.navigate("Registrarse");
+                  props.navigation.navigate("Signup");
                 }}
               >
                 <Text style={{ color: "#ef4a36" }}> Registrate Aqui</Text>
@@ -231,7 +244,7 @@ const LoginEmail = (props) => {
                 secureTextEntry
               />
             </FormControl>
-            <Button
+            {/* <Button
               mt="2"
               backgroundColor="#ef4a36"
               size="lg"
@@ -239,7 +252,12 @@ const LoginEmail = (props) => {
               onPress={onContinue}
             >
               Continuar
-            </Button>
+            </Button> */}
+            <Button
+              text={"Continuar"}
+              loading={loading}
+              onPress={onContinue}
+            />
             <HStack mt="6" justifyContent="center">
               <Text style={{ color: "white" }}>Soy un nuevo usuario.</Text>
               <Pressable
