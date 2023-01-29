@@ -4,7 +4,7 @@ import { Divider, Flex, Text } from "native-base";
 import { Feather } from "@expo/vector-icons";
 
 
-const Button = ({ loading, text, icon, onPress }) => {
+const Button = ({ disabled = false, loading, text, icon, onPress }) => {
   return (
     <View>
       {loading ? <View
@@ -13,6 +13,7 @@ const Button = ({ loading, text, icon, onPress }) => {
         <ActivityIndicator color={"white"} size="small" style={{marginVertical: 0.5}} />
       </View> :
         <TouchableOpacity
+          disabled={disabled}
           style={styles.container}
           // onPress={onPress}
           onPressIn={onPress}

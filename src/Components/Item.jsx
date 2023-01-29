@@ -11,7 +11,7 @@ import {
   Platform,
 } from "react-native";
 import React, { useContext, useEffect } from "react";
-import { Box, Button } from "native-base";
+// import { Box, Button } from "native-base";
 import { COLORS, FONTS, SIZES } from "../Constants";
 import ProductContex from "../Context/Products/ProductContext";
 import { useRef } from "react";
@@ -28,6 +28,7 @@ import * as Sharing from "expo-sharing";
 const viewConfigRef = { viewAreaCoveragePercentThreshold: 95 };
 
 import * as FileSystem from "expo-file-system";
+import Button from "./Button";
 
 const Item = () => {
   const { selectedProduct, addToCart, cartArray, sumAll } =
@@ -39,6 +40,8 @@ const Item = () => {
   // added this to check for distribuitor and to only show items to the user that it should be shown.
     const [isDistributor, setIsDistributor] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   let flatListRef = useRef();
   const onViewRef = useRef(({ changed }) => {
     if (changed[0].isViewable) {
@@ -46,11 +49,9 @@ const Item = () => {
     }
   });
 
-  // console.log("Selected Product", selectedProduct);
-  // console.log(
-  //   "Specification",
-  //   selectedProduct?.attributes?.specifications?.data
-  // );
+  console.log("Selected Product", selectedProduct);
+  console.log("Thumbnail", config.api.page_url +
+    selectedProduct.attributes.thumbnail.data.attributes.url);;
 
   const downloadFile = async (fileUrl) => {
     // const fileUrl = `${FileSystem.documentDirectory}/download.pdf`;
@@ -159,8 +160,8 @@ const Item = () => {
 
   return (
     <ScrollView>
-      <View style={{ height: SIZES.height-76, backgroundColor: "#1a1b1a" }}>
-        <View style={{ paddingHorizontal: 10 }}>
+      <View style={{ height: SIZES.height - 76, padding: 10, backgroundColor: "#1a1b1a" }}>
+        <View style={{}}>
           <View
             style={{
               backgroundColor: "#ffffff66",
@@ -203,7 +204,7 @@ const Item = () => {
             /* Important to set a key for list items,
                               but it's wrong to use indexes as keys, see below */
             style={{
-              width: SIZES.width - 20,
+              width: '100%',
               height: 250,
               resizeMode: "cover",
             }}
@@ -234,8 +235,8 @@ const Item = () => {
               onPress={() => {
                 downloadFile(
                   config.api.page_url +
-                    selectedProduct.attributes.specifications.data[0].attributes
-                      .url
+                  selectedProduct.attributes.specifications.data[0].attributes
+                    .url
                 );
               }}
             >
@@ -261,7 +262,7 @@ const Item = () => {
             <Text
               style={[
                 FONTS.body2,
-                { color: "#cccccc", marginRight: 10, marginLeft: 20 },
+                { color: "#cccccc", marginRight: 10, },
               ]}
             >
               Cantidad
@@ -270,7 +271,7 @@ const Item = () => {
               style={{
                 backgroundColor: "#cccccc",
                 flexDirection: "row",
-                width: 60,
+                width: 100,
                 alignItems: "center",
                 justifyContent: "space-around",
                 marginRight: "auto",
@@ -290,7 +291,7 @@ const Item = () => {
                   -
                 </Text>
               </TouchableOpacity>
-              <Text>{price}</Text>
+              <Text style={{ fontSize: 16 }}>{price}</Text>
               <TouchableOpacity
                 onPress={() => setPrice(price + 1)}
                 disabled={price === selectedProduct.attributes.stock}
@@ -313,8 +314,8 @@ const Item = () => {
                 borderColor: "#ef4a36",
                 borderWidth: 2,
                 borderRadius: 5,
-                padding: 10,
-                marginRight: 20,
+                paddingHorizontal: 10,
+                paddingVertical: 5,
               }}
             >
               <Text
@@ -325,7 +326,7 @@ const Item = () => {
               </Text>
             </View>
           </View>
-          <Button
+          {/* <Button
             mt="2"
             mx="2"
             mb="2"
@@ -343,7 +344,21 @@ const Item = () => {
             disabled={selectedProduct?.stock < 1}
           >
             Agregar al Carrito
-          </Button>
+          </Button> */}
+          <Button
+            disabled={selectedProduct?.stock < 1}
+            loading={loading}
+            onPress={async () => {
+              setLoading(true);
+              await addToCart(price),
+                // await sumAll(price, selectedProduct.price + price),
+                setTimeout(() => {
+                  setLoading(false);
+                  navigation.navigate("Main");
+                }, 1000);
+            }}
+            text="Agregar al Carrito"
+          />
         </View>
 
         <ModalFlatImages

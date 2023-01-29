@@ -1,7 +1,10 @@
 import { Entypo } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { isEmpty } from "lodash";
-import { Button, FormControl, Input } from "native-base";
+import {
+  // Button, 
+  FormControl, Input
+} from "native-base";
 import React, { useContext, useEffect, useState } from "react";
 import {
   Alert,
@@ -11,6 +14,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Button from "../Components/Button";
 import DocPicker from "../Components/DocPicker";
 import ModalReceipt from "../Components/ModalReceipt";
 import { FONTS } from "../Constants";
@@ -33,6 +37,8 @@ const Receipt = ({ navigation }) => {
   const [data, setData] = useState("fake data");
   const { totalCart, removeAllCart, cartArray } = useContext(ProductContext);
   const [user, setUser] = useState({});
+
+  const [loading, setLoading] = useState(false);
 
   //recuperamos los datos almacenados del usuario logeado
   const getDataUser = async () => {
@@ -72,6 +78,9 @@ const Receipt = ({ navigation }) => {
       return;
     }
 
+    // show loading
+    setLoading(true);
+
     var productoArray = cartArray.map(function (obj) {
       var rObj = {};
       rObj["id"] = obj.product.id;
@@ -87,6 +96,7 @@ const Receipt = ({ navigation }) => {
     //   }
     // });
 
+    // FILE UPLOADING
     const data = await fetch("https://strapi.arpitools.com/api/upload", {
       method: "post",
       headers: {
@@ -95,16 +105,21 @@ const Receipt = ({ navigation }) => {
       body: fileData,
     })
       .then((response) => {
+        setLoading(false);
         console.log("Server response", response);
         return response.json();
       })
-      .catch((err) => console.log("Error in file upload", err));
+      .catch((err) => {
+        console.log("Error in file upload", err)
+        setLoading(false);
+      });
 
     let receipt = "";
     if (data[0]) {
       receipt = data[0]?.url;
     }
 
+    setLoading(true);
     const postData = {
       data: {
         users_permissions_user: userid,
@@ -150,9 +165,11 @@ const Receipt = ({ navigation }) => {
     })
       .then((response) => {
         console.log("Order Server response", response);
+        setLoading(false);
         return response.json();
       })
       .then(async (response) => {
+        setLoading(false);
         console.log("Order Second response", response?.data?.attributes);
         if (response?.data) {
           setOrder(response);
@@ -160,7 +177,10 @@ const Receipt = ({ navigation }) => {
           navigation.navigate("ModalReceipt", { order: response });
         }
       })
-      .catch((err) => console.log("Error in Order upload", err));
+      .catch((err) => {
+        console.log("Error in Order upload", err)
+        setLoading(false);
+      });
   };
 
   const removeItemQuantiyFromStock = async (productoArray) => {
@@ -328,7 +348,7 @@ const Receipt = ({ navigation }) => {
 
         <DocPicker setFile={setFile} />
 
-        <Button
+        {/* <Button
           mt="8"
           mx="2"
           mb="8"
@@ -346,7 +366,19 @@ const Receipt = ({ navigation }) => {
           }}
         >
           Enviar
-        </Button>
+        </Button> */}
+        <View style={{width: '80%', alignSelf: 'center', marginVertical: 5}}>
+          <Button
+            onPress={onSend}
+            _text={{
+              color: "#000000",
+              fontSize: 20,
+              fontWeight: "bold",
+            }}
+            text={"Enviar"}
+            loading={loading}
+          />
+        </View>
       </ScrollView>
       {/* {show && <ModalReceipt order={order} visible={show} setShow={setShow} />} */}
     </>

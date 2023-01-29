@@ -1,5 +1,5 @@
 import { Entypo, FontAwesome } from "@expo/vector-icons";
-import { Button } from "native-base";
+// import { Button } from "native-base";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   ScrollView,
@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Button from "../Components/Button";
 import ItemsCart from "../Components/ItemsCart";
 import { FONTS, SIZES } from "../Constants";
 import ProductContex from "../Context/Products/ProductContext";
@@ -20,36 +21,36 @@ const Cart = (props) => {
   const [scrollEnd, setScrollEnd] = useState(false);
 
   const { cartArray, dataRecipe } = useContext(ProductContex);
+  const [loading, setLoading] = useState(false);
 
-
-    useEffect(() => {
-      (async () => {
-        try {
-          if (cartArray.length < 1) return;
-          const res = await api.get("/products?populate=*", {});
-          const data = res.data.data;
-          // console.log("cartArray");
-          // console.log(cartArray);
-          // console.log("data");
-          // console.log(data);
-          const emptyItems = [];
-          for (const cartItem of cartArray) {
-            const findItem = data.find(
-              (product) => product.id === cartItem.product.id
-            );
-            if (findItem && findItem?.attributes?.stock < 1) {
-              emptyItems.push(findItem);
-            }
+  useEffect(() => {
+    (async () => {
+      try {
+        if (cartArray.length < 1) return;
+        const res = await api.get("/products?populate=*", {});
+        const data = res.data.data;
+        // console.log("cartArray");
+        // console.log(cartArray);
+        // console.log("data");
+        // console.log(data);
+        const emptyItems = [];
+        for (const cartItem of cartArray) {
+          const findItem = data.find(
+            (product) => product.id === cartItem.product.id
+          );
+          if (findItem && findItem?.attributes?.stock < 1) {
+            emptyItems.push(findItem);
           }
-          setEmptyProducts(emptyItems);
-        } catch (error) {
-          console.log(error);
         }
-      })();
-    }, []);
+        setEmptyProducts(emptyItems);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
-    // console.log("empty");
-    // console.log(emptyProducts);
+  // console.log("empty");
+  // console.log(emptyProducts);
 
   const isCloseToBottom = ({
     layoutMeasurement,
@@ -76,7 +77,7 @@ const Cart = (props) => {
   // totalArr.push( ...totalArr, multi)
 
   // console.log( 'TOTALARR _____________' ,totalArr);
-//todo
+  //todo
   for (i = 0; i < cartArray.length; i++) {
     totalArr.push(
       // {(selectedProduct.attributes.price1 ? (parseFloat(selectedProduct.attributes.price1 * price).toFixed(2)) : parseFloat(selectedProduct.attributes.price2 * price).toFixed(2))
@@ -194,7 +195,7 @@ const Cart = (props) => {
                 </Text>
               </View>
             </View>
-            <Button
+            {/* <Button
               mt="3"
               mx="2"
               mb="8"
@@ -215,7 +216,21 @@ const Cart = (props) => {
               disabled={emptyProducts?.length > 0}
             >
               {emptyProducts?.length > 0 ? "Sin stock disponible" : "Comprar"}
-            </Button>
+            </Button> */}
+            <View style={{ paddingHorizontal: 10 }}>
+              <Button
+                onPress={() => {
+                  setLoading(true);
+                  dataRecipe(sumall, total), setTimeout(() => {
+                    setLoading(false);
+                    props.navigation.navigate("Receipt");
+                  }, 1000);
+                }}
+                loading={loading}
+                disabled={emptyProducts?.length > 0}
+                text={emptyProducts?.length > 0 ? "Sin stock disponible" : "Comprar"}
+              />
+            </View>
           </View>
         ) : (
           <></>

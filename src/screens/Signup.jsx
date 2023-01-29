@@ -7,6 +7,7 @@ import {
   View,
   BackHandler,
   Alert,
+  ScrollView,
 } from "react-native";
 import React, { useState } from "react";
 import {
@@ -15,7 +16,7 @@ import {
   VStack,
   FormControl,
   Input,
-  Button,
+  // Button,
   HStack,
   Flex,
 } from "native-base";
@@ -34,6 +35,7 @@ import {
 } from "../Utils/Validations";
 import api, { setSession } from "../Services/Api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Button from "../Components/Button";
 
 // const TriangleCorner = (props) => {
 //   return (
@@ -59,6 +61,8 @@ const Signup = (props) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [address, setAdress] = useState("");
   const [seller, setSeller] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   //obtenemos los datos del usuario actual
   const getAxiosUser = async (value) => {
@@ -110,6 +114,7 @@ const Signup = (props) => {
       return;
     } else {
       let isCorrectCode = false;
+      setLoading(true);
       const { data } = await api.get("sellers?fields[0]=arpicode", {
         headers: {
           Authorization: `Bearer 5cfcbd8d63112fc1ac5909e9340c39d47fd9595759d5a3f3787b4898cb44c7dddfbd0dbf2a280fa2fe731ac3ae767428bafb4da0c7d1f66a54cd4f5d675cee4ae2a3eb08b52efb54ae786665e3473b5b27588c328c077f9f00943d7c3ad41b16d2f78bf3ebaf63b127937ae4dce50bc9982f5310781e0914024569e00c5dd073`,
@@ -118,17 +123,20 @@ const Signup = (props) => {
       for (const sellers of data.data) {
         if (sellers.attributes.arpicode === code) {
           isCorrectCode = true;
+          setLoading(false);
           setSeller(sellers?.id);
           break;
         }
       }
       if (isCorrectCode) {
         if (step === 1) {
+          setLoading(false);
           setStep(2);
           return;
         }
       } else {
-        Alert.alert("Error", "Código incorrecto");
+        setLoading(false);
+        Alert.alert("Error", "in correct code ");
         return;
       }
     }
@@ -181,6 +189,8 @@ const Signup = (props) => {
       return;
     }
 
+    setLoading(true);
+
     api
       .post("auth/local/register", {
         username: name + ruc,
@@ -205,6 +215,7 @@ const Signup = (props) => {
           "@USER_ISDISTRIBUTOR",
           type == "ferreteria" ? "true" : "false"
         );
+        setLoading(false);
       })
       //added this then to try and fix the iphone bug
       .then(() => {
@@ -212,53 +223,58 @@ const Signup = (props) => {
         // Alert.alert("Cuenta creada", "Cuenta creada correctamente. Reinicie la aplicación e ingrese con sus datos", [
         //   { text: "Salir", onPress: () => BackHandler.exitApp() },
         // ]);
+        setLoading(false); // Added to be on safe-side else its not needed here.
+
+        // Navigate to main/home view
         props.navigation.navigate("Main");
       })
       .catch((error) => {
-        Alert.alert("Error", error?.response?.data.error.message);
+        setLoading(false);
+        Alert.alert("Error", error?.response?.data?.error?.message ?? 'Unable to proceed. Please try again.');
         console.error(error);
       });
   };
 
   return (
-    <Flex bg="#ffffff" h={"100%"} w={"100%"} justify="center" align="center">
+    <Flex bg="#ffffff" w={"100%"} justify="center" align="center">
       <Box
         bg="#000000"
         h={"200%"}
         w={"170%"}
         style={{ transform: [{ rotate: "-45deg" }], position: "absolute" }}
       ></Box>
-      <Box>
-        <Image source={require("../../assets/LogoNombre.png")} alt="" />
-        <Heading
-          size="xl"
-          fontWeight="800"
-          color="#cccccc"
-          _dark={{
-            color: "warmGray.50",
-          }}
-          alignSelf="center"
-        >
-          Registro
-        </Heading>
-        <Text style={[FONTS.body6, { color: "#fff", alignSelf: "center" }]}>
-          v1.1.12
-        </Text>
-        {step == 1 ? (
-          <VStack space={3} mt="5">
-            <FormControl>
-              <FormControl.Label>Codigo de vendedor</FormControl.Label>
-              <Input
-                style={{ color: "white" }}
-                placeholder="Código Arpi"
-                fontSize={20}
-                keyboardType={"numeric"}
-                maxLength={8}
-                onChangeText={setCode}
-                value={code}
-              />
-            </FormControl>
-            <Button
+      <ScrollView style={{paddingTop: 30}}>
+        <Box>
+          <Image source={require("../../assets/LogoNombre.png")} alt="" />
+          <Heading
+            size="xl"
+            fontWeight="800"
+            color="#cccccc"
+            _dark={{
+              color: "warmGray.50",
+            }}
+            alignSelf="center"
+          >
+            Registro
+          </Heading>
+          <Text style={[FONTS.body6, { color: "#fff", alignSelf: "center" }]}>
+            v1.1.5
+          </Text>
+          {step == 1 ? (
+            <VStack space={3} mt="5">
+              <FormControl>
+                <FormControl.Label>Codigo de vendedor</FormControl.Label>
+                <Input
+                  style={{ color: "white" }}
+                  placeholder="Código Arpi"
+                  fontSize={20}
+                  keyboardType={"numeric"}
+                  maxLength={8}
+                  onChangeText={setCode}
+                  value={code}
+                />
+              </FormControl>
+              {/* <Button
               mt="2"
               backgroundColor="#ef4a36"
               size="lg"
@@ -266,123 +282,211 @@ const Signup = (props) => {
               onPress={onContinue}
             >
               Continuar
-            </Button>
-            <HStack mt="6" justifyContent="center">
-              <Text style={{ color: "white" }}>Tenes cuenta?</Text>
-              <Pressable
-                onPress={() => {
-                  props.navigation.navigate("LoginEmail");
+            </Button> */}
+              <Button
+                text={"Continuar"}
+                loading={loading}
+                onPress={onContinue}
+              />
+              <HStack mt="6" justifyContent="center">
+                <Text style={{ color: "white" }}>Tenes cuenta?</Text>
+                <Pressable
+                  onPress={() => {
+                    props.navigation.navigate("LoginEmail");
+                  }}
+                >
+                  <Text style={{ color: "#ef4a36" }}> Inicia Sesión</Text>
+                </Pressable>
+              </HStack>
+            </VStack>
+          ) : step == 2 ? (
+            <>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "80%",
+                  marginTop: 25,
                 }}
               >
-                <Text style={{ color: "#ef4a36" }}> Inicia Sesión</Text>
-              </Pressable>
-            </HStack>
-          </VStack>
-        ) : step == 2 ? (
-          <>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "80%",
-                marginTop: 25,
-              }}
-            >
-              <TouchableOpacity
-                onPress={() => setType("ferreteria")}
-                style={[
-                  type === "ferreteria"
-                    ? { backgroundColor: "#ef4a36" }
-                    : { backgroundColor: "transparent" },
-                  {
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderWidth: 2,
-                    borderColor: "#ef4a36",
-                    width: "50%",
-                    padding: 10,
-                    borderBottomLeftRadius: 5,
-                    borderTopLeftRadius: 5,
-                  },
-                ]}
-              >
-                {/* <View style={{ flexDirection: "row", alignSelf: "center" }}>
+                <TouchableOpacity
+                  onPress={() => setType("ferreteria")}
+                  style={[
+                    type === "ferreteria"
+                      ? { backgroundColor: "#ef4a36" }
+                      : { backgroundColor: "transparent" },
+                    {
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderWidth: 2,
+                      borderColor: "#ef4a36",
+                      width: "50%",
+                      padding: 10,
+                      borderBottomLeftRadius: 5,
+                      borderTopLeftRadius: 5,
+                    },
+                  ]}
+                >
+                  {/* <View style={{ flexDirection: "row", alignSelf: "center" }}>
                     <Rectangle />
                     <TriangleCorner />
                   </View> */}
 
-                <Text
+                  <Text
+                    style={[
+                      FONTS.body3,
+                      { color: type === "ferreteria" ? "black" : "#cccccc" },
+                    ]}
+                  >
+                    Ferreteria
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => setType("constructora")}
                   style={[
-                    FONTS.body3,
-                    { color: type === "ferreteria" ? "black" : "#cccccc" },
+                    type === "constructora"
+                      ? { backgroundColor: "#ef4a36" }
+                      : { backgroundColor: "transparent" },
+                    {
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderWidth: 2,
+                      borderColor: "#ef4a36",
+                      width: "50%",
+                      padding: 10,
+                      borderBottomRightRadius: 5,
+                      borderTopRightRadius: 5,
+                    },
                   ]}
                 >
-                  Ferreteria
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => setType("constructora")}
-                style={[
-                  type === "constructora"
-                    ? { backgroundColor: "#ef4a36" }
-                    : { backgroundColor: "transparent" },
-                  {
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderWidth: 2,
-                    borderColor: "#ef4a36",
-                    width: "50%",
-                    padding: 10,
-                    borderBottomRightRadius: 5,
-                    borderTopRightRadius: 5,
-                  },
-                ]}
-              >
-                <Text
-                  style={[
-                    FONTS.body3,
-                    { color: type === "constructora" ? "black" : "#cccccc" },
-                  ]}
-                >
-                  Constructora
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <VStack space={3} mt="2">
-              <FormControl>
-                <FormControl.Label>Nombre y Apellido</FormControl.Label>
-                <Input
-                  style={{ color: "white" }}
-                  placeholder="Nombre y Apellido"
-                  fontSize={20}
-                  onChangeText={setName}
-                  value={name}
-                />
-              </FormControl>
-              <FormControl>
-                <FormControl.Label>Telefono</FormControl.Label>
-                <Input
-                  style={{ color: "white" }}
-                  placeholder="+59355555555"
-                  fontSize={20}
-                  onChangeText={setPhone}
-                  value={phone}
-                  maxLength={13}
-                />
-              </FormControl>
+                  <Text
+                    style={[
+                      FONTS.body3,
+                      { color: type === "constructora" ? "black" : "#cccccc" },
+                    ]}
+                  >
+                    Constructora
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <VStack space={3} mt="2">
+                <FormControl>
+                  <FormControl.Label>Nombre y Apellido</FormControl.Label>
+                  <Input
+                    style={{ color: "white" }}
+                    placeholder="Nombre y Apellido"
+                    fontSize={20}
+                    onChangeText={setName}
+                    value={name}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormControl.Label>Telefono</FormControl.Label>
+                  <Input
+                    style={{ color: "white" }}
+                    placeholder="+59355555555"
+                    fontSize={20}
+                    onChangeText={setPhone}
+                    value={phone}
+                    maxLength={13}
+                  />
+                </FormControl>
 
-              <Button
+                {/* <Button
                 mt="2"
                 backgroundColor="#ef4a36"
                 size="lg"
                 borderRadius={10}
                 onPress={onContinue}
               >
+                Ferreteria
+              </Button> */}
+                <Button onPress={onContinue} text="Ferreteria" />
+                <Button onPress={regresar} text={"Regresar"} />
+
+                {/* <Button
+                mt="2"
+                backgroundColor="#ef4a36"
+                size="lg"
+                borderRadius={10}
+                onPress={regresar}
+              >
+                Regresar
+              </Button> */}
+              </VStack>
+            </>
+          ) : (
+            <VStack space={3} mt="5" mb={"7"}>
+              <FormControl>
+                <FormControl.Label>Email</FormControl.Label>
+                <Input
+                  style={{ color: "white" }}
+                  placeholder="Ingresa email"
+                  fontSize={20}
+                  onChangeText={setEmail}
+                  value={email}
+                />
+              </FormControl>
+              <FormControl>
+                <FormControl.Label>RUC</FormControl.Label>
+                <Input
+                  style={{ color: "white" }}
+                  placeholder="Ingresar RUC"
+                  fontSize={20}
+                  onChangeText={setRuc}
+                  value={ruc}
+                  maxLength={13}
+                  keyboardType={"numeric"}
+                />
+              </FormControl>
+              <FormControl>
+                <FormControl.Label>Dirección</FormControl.Label>
+                <Input
+                  style={{ color: "white" }}
+                  placeholder="Ingrese su domicilio"
+                  fontSize={20}
+                  onChangeText={setAdress}
+                  value={address}
+                />
+              </FormControl>
+              <FormControl>
+                <FormControl.Label>Contraseña</FormControl.Label>
+                <Input
+                  style={{ color: "white" }}
+                  placeholder="Ingresar contraseña"
+                  fontSize={20}
+                  onChangeText={setPassword}
+                  value={password}
+                  secureTextEntry
+                />
+              </FormControl>
+              <FormControl>
+                <FormControl.Label>Confirmación contraseña</FormControl.Label>
+                <Input
+                  style={{ color: "white" }}
+                  placeholder="Reingresar contraseña"
+                  fontSize={20}
+                  onChangeText={setConfirmPassword}
+                  value={confirmPassword}
+                  secureTextEntry
+                />
+              </FormControl>
+              {/* TODO */}
+              {/* <Button
+                mt="2"
+                backgroundColor="#ef4a36"
+                size="lg"
+                borderRadius={10}
+                onPress={() => {
+                  onContinue();
+                }}
+              >
                 Continuar
-              </Button>
-              
-              <Button
+              </Button> */}
+              <Button onPress={onContinue} loading={loading} text={"Continuar"} />
+
+              {/* <Button
                 mt="2"
                 backgroundColor="#ef4a36"
                 size="lg"
@@ -390,90 +494,12 @@ const Signup = (props) => {
                 onPress={regresar}
               >
                 Regresar
-              </Button>
+              </Button> */}
+              <Button onPress={regresar} text={"Regresar"} />
             </VStack>
-          </>
-        ) : (
-          <VStack space={3} mt="5">
-            <FormControl>
-              <FormControl.Label>Email</FormControl.Label>
-              <Input
-                style={{ color: "white" }}
-                placeholder="Ingresa email"
-                fontSize={20}
-                onChangeText={setEmail}
-                value={email}
-              />
-            </FormControl>
-            <FormControl>
-              <FormControl.Label>RUC</FormControl.Label>
-              <Input
-                style={{ color: "white" }}
-                placeholder="Ingresar RUC"
-                fontSize={20}
-                onChangeText={setRuc}
-                value={ruc}
-                maxLength={13}
-                keyboardType={"numeric"}
-              />
-            </FormControl>
-            <FormControl>
-              <FormControl.Label>Dirección</FormControl.Label>
-              <Input
-                style={{ color: "white" }}
-                placeholder="Ingrese su domicilio"
-                fontSize={20}
-                onChangeText={setAdress}
-                value={address}
-              />
-            </FormControl>
-            <FormControl>
-              <FormControl.Label>Contraseña</FormControl.Label>
-              <Input
-                style={{ color: "white" }}
-                placeholder="Ingresar contraseña"
-                fontSize={20}
-                onChangeText={setPassword}
-                value={password}
-                secureTextEntry
-              />
-            </FormControl>
-            <FormControl>
-              <FormControl.Label>Confirmación contraseña</FormControl.Label>
-              <Input
-                style={{ color: "white" }}
-                placeholder="Reingresar contraseña"
-                fontSize={20}
-                onChangeText={setConfirmPassword}
-                value={confirmPassword}
-                secureTextEntry
-              />
-            </FormControl>
-            {/* TODO */}
-            <Button
-              mt="2"
-              backgroundColor="#ef4a36"
-              size="lg"
-              borderRadius={10}
-              onPress={() => {
-                onContinue();
-              }}
-            >
-              Continuar
-            </Button>
-            
-            <Button
-                mt="2"
-                backgroundColor="#ef4a36"
-                size="lg"
-                borderRadius={10}
-                onPress={regresar}
-              >
-                Regresar
-              </Button>
-          </VStack>
-        )}
-      </Box>
+          )}
+        </Box>
+      </ScrollView>
     </Flex>
   );
 };
