@@ -58,13 +58,15 @@ const ProductState = (props) => {
 
   const getProduct = async (id) => {
     try {
+      dispatch({ type: LOADING, payload: true });
       const res = await api.get("/products/" + id + "?populate=*");
       const { data } = res.data;
       // console.log("Single product info", data?.attributes.pictures.data[0].attributes?.url);
       dispatch({ type: GET_PRODUCT, payload: data });
+      dispatch({ type: LOADING, payload: false });
     } catch (error) {
+      dispatch({ type: LOADING, payload: false });
       console.log("get product error");
-
       console.log(error);
     }
   };
@@ -183,6 +185,7 @@ const ProductState = (props) => {
           selectedProduct: state.selectedProduct,
           cartArray: state.cartArray,
           totalCart: state.totalCart,
+          loading: state.loading,
           getProducts,
           getProduct,
           addToCart,
