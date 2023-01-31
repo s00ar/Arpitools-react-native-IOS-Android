@@ -236,13 +236,8 @@ const Signup = (props) => {
   };
 
   return (
-    <Flex bg="#ffffff" w={"100%"} justify="center" align="center">
-      <Box
-        bg="#000000"
-        h={"200%"}
-        w={"170%"}
-        style={{ transform: [{ rotate: "-45deg" }], position: "absolute" }}
-      ></Box>
+    <Flex bg="#000000" h={"100%"} w={"100%"} justify="center" align="center">
+
       <ScrollView style={{paddingTop: 30}}>
         <Box>
           <Image source={require("../../assets/LogoNombre.png")} alt="" />
@@ -258,12 +253,12 @@ const Signup = (props) => {
             Registro
           </Heading>
           <Text style={[FONTS.body6, { color: "#fff", alignSelf: "center" }]}>
-            v1.1.5
+            v1.1.12
           </Text>
           {step == 1 ? (
             <VStack space={3} mt="5">
               <FormControl>
-                <FormControl.Label>Codigo de vendedor</FormControl.Label>
+                <FormControl.Label>Código de vendedor</FormControl.Label>
                 <Input
                   style={{ color: "white" }}
                   placeholder="Código Arpi"
@@ -402,7 +397,7 @@ const Signup = (props) => {
               >
                 Ferreteria
               </Button> */}
-                <Button onPress={onContinue} text="Ferreteria" />
+                <Button onPress={onContinue} text="Continuar" />
                 <Button onPress={regresar} text={"Regresar"} />
 
                 {/* <Button
