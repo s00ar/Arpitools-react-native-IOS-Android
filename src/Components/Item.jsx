@@ -24,6 +24,7 @@ import { SUM_ALL } from "../Context/types";
 import config from "../config";
 import * as MediaLibrary from "expo-media-library";
 import * as Sharing from "expo-sharing";
+import { Input } from "native-base";
 
 const viewConfigRef = { viewAreaCoveragePercentThreshold: 95 };
 
@@ -158,6 +159,8 @@ const Item = () => {
 
   // console.log(selectedProduct.data.attributes.thumbnail.data.attributes.url);
 
+  const numericRegex = /^[0-9]*$/
+
   return (
     <ScrollView>
       <View style={{ height: SIZES.height - 76, padding: 10, backgroundColor: "#1a1b1a" }}>
@@ -280,7 +283,8 @@ const Item = () => {
             >
               <TouchableOpacity
                 disabled={price === 1}
-                onPress={() => setPrice(price - 1)}
+                onPress={() => setPrice(parseInt(price, 10) - 1)}
+                style={{ paddingLeft: 6 }}
               >
                 <Text
                   style={{
@@ -291,10 +295,25 @@ const Item = () => {
                   -
                 </Text>
               </TouchableOpacity>
-              <Text style={{ fontSize: 16 }}>{price}</Text>
+              {/* <Text style={{ fontSize: 16 }}>{price}</Text> */}
+              
+              <Input
+                width="50%"
+                style={{ marginLeft: 6}}
+                onChangeText={(e) => {
+                  if (numericRegex.test(e)&&e>0) {
+                    setPrice(e)
+                  }else{
+                    alert("Valor ingresado invalido. Por favor ingrese solo valores numéricos mayores a 0.")
+                  }
+                }}>
+                {price}
+                </Input>
+
               <TouchableOpacity
-                onPress={() => setPrice(price + 1)}
+                onPress={() => setPrice(parseInt(price, 10) + 1)}
                 disabled={price === selectedProduct.attributes.stock}
+                style={{ paddingRight: 6 }}
               >
                 <Text
                   style={{
