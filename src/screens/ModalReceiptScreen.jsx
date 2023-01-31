@@ -89,9 +89,9 @@ const ModalReceiptScreen = (props) => {
             name="chevron-thin-left"
             size={24}
             color="black"
-            style={{ position: "absolute", left: 2 }}
+            style={{  paddingTop: 40, position: "absolute", left: 2 }}
           />
-          <Text style={[FONTS.h1, { color: "#000000", textAlign: "center" }]}>
+          <Text style={[FONTS.h1, {  paddingTop: 40, color: "#000000", textAlign: "center" }]}>
             Compra realizada
           </Text>
         </TouchableOpacity>

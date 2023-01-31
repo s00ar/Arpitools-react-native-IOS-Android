@@ -101,7 +101,7 @@ const ModalReceipt = (props) => {
             color="black"
             style={{ position: "absolute", left: 2 }}
           />
-          <Text style={[FONTS.h1, { color: "#000000", textAlign: "center" }]}>
+          <Text style={[FONTS.h1, { paddingTop: 150, color: "#000000", textAlign: "center" }]}>
             Compra realizada
           </Text>
         </TouchableOpacity>
@@ -117,7 +117,7 @@ const ModalReceipt = (props) => {
         >
           <View style={{ flexDirection: "row" }}>
             <View style={{ flexDirection: "column" }}>
-              <Text style={[FONTS.h3, { color: "#cccccc" }]}>Cantidad De</Text>
+              <Text style={[FONTS.h3, { color: "#cccccc" }]}>Cantidad de</Text>
               <Text style={[FONTS.h3, { color: "#cccccc" }]}>Productos</Text>
             </View>
             <View
