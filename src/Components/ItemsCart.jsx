@@ -32,7 +32,7 @@ const ItemsCart = () => {
             <Image
               source={{
                 uri:
-                 config.api.page_url +
+                  config.api.page_url +
                   product.product.attributes.thumbnail.data.attributes.url,
               }}
               alt="Imagen en carrito"

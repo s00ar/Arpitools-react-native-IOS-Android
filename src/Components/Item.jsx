@@ -50,9 +50,9 @@ const Item = () => {
     }
   });
 
-  console.log("Selected Product", selectedProduct);
-  console.log("Thumbnail", config.api.page_url +
-    selectedProduct.attributes.thumbnail.data.attributes.url);;
+  // console.log("Selected Product", selectedProduct);
+  // console.log("Thumbnail", config.api.page_url +
+  //   selectedProduct.attributes.thumbnail.data.attributes.url);;
 
   const downloadFile = async (fileUrl) => {
     // const fileUrl = `${FileSystem.documentDirectory}/download.pdf`;
@@ -197,6 +197,7 @@ const Item = () => {
             onViewableItemsChanged={onViewRef.current}
             renderItem={({ item, index }) => (
               <TouchableOpacity onPress={() => setShow(true)}> */}
+              
           <Image
             source={{
               uri:
@@ -283,7 +284,9 @@ const Item = () => {
             >
               <TouchableOpacity
                 disabled={price === 1}
-                onPress={() => setPrice(parseInt(price, 10) - 1)}
+                onPress={() => {
+                  setPrice(parseInt(price, 10) - 1)
+                }}
                 style={{ paddingLeft: 6 }}
               >
                 <Text
@@ -367,16 +370,16 @@ const Item = () => {
           <Button
             disabled={selectedProduct?.stock < 1}
             loading={loading}
+            text={selectedProduct?.stock < 1 ? "Sin stock disponible" : "Agregar al Carrito"}
             onPress={async () => {
               setLoading(true);
               await addToCart(price),
-                // await sumAll(price, selectedProduct.price + price),
+                // await sumAll(price, selectedProduct.price + price), 
                 setTimeout(() => {
                   setLoading(false);
                   navigation.navigate("Main");
                 }, 1000);
             }}
-            text="Agregar al Carrito"
           />
         </View>
 
