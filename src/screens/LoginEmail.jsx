@@ -81,6 +81,7 @@ const LoginEmail = (props) => {
         props.navigation.navigate("Main");
       })
       .catch((err) => {
+        setLoading(false);
         Alert.alert("Error", err.response.data.error.message);
         console.error("Error authUser => " + err.message);
       });

@@ -133,6 +133,7 @@ const Receipt = ({ navigation }) => {
           "id",
           "attributes",
           "name",
+          "quantity"
         ]),
         buyer: `${userfullname}`,
         buyeremail: `${useremail}`,

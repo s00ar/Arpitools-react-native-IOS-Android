@@ -39,7 +39,7 @@ const Item = () => {
   const [show, setShow] = useState(false);
   const [price, setPrice] = useState(1);
   // added this to check for distribuitor and to only show items to the user that it should be shown.
-    const [isDistributor, setIsDistributor] = useState(false);
+  const [isDistributor, setIsDistributor] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
@@ -49,6 +49,21 @@ const Item = () => {
       setCurrentIndex(changed[0].index);
     }
   });
+
+  const [storedQuantity, setStoredQuantity] = useState(0);
+
+  useEffect(() => {
+    if(cartArray?.length > 0){
+      const products = cartArray.filter((item) => item.product.id == selectedProduct.id)
+      let count = 0;
+      products.map((item) => {
+        count += parseInt(item?.quantity) ?? 0;
+      })
+      setStoredQuantity(count);
+    } else {
+      setStoredQuantity(0);
+    }
+  }, [cartArray]);
 
   // console.log("Selected Product", selectedProduct);
   // console.log("Thumbnail", config.api.page_url +
@@ -197,22 +212,24 @@ const Item = () => {
             onViewableItemsChanged={onViewRef.current}
             renderItem={({ item, index }) => (
               <TouchableOpacity onPress={() => setShow(true)}> */}
-              
-          <Image
-            source={{
-              uri:
-                config.api.page_url +
-                selectedProduct.attributes.thumbnail.data.attributes.url,
-            }} /* Use item to set the image source */
-            // key={index}
-            /* Important to set a key for list items,
-                              but it's wrong to use indexes as keys, see below */
-            style={{
-              width: '100%',
-              height: 250,
-              resizeMode: "cover",
-            }}
-          />
+
+          {selectedProduct.attributes.thumbnail.data.attributes.url && (
+            <Image
+              source={{
+                uri:
+                  config.api.page_url +
+                  selectedProduct.attributes.thumbnail.data.attributes.url,
+              }} /* Use item to set the image source */
+              // key={index}
+              /* Important to set a key for list items,
+                                but it's wrong to use indexes as keys, see below */
+              style={{
+                width: '100%',
+                height: 250,
+                resizeMode: "cover",
+              }}
+            />
+          )}
           {/* </TouchableOpacity>
             )}
           /> */}
@@ -252,12 +269,12 @@ const Item = () => {
           )}
           <Text style={[FONTS.body2, { color: "#cccccc", marginLeft: 10 }]}>
             $ {
-            (isDistributor == true && selectedProduct.attributes.price1)
+              (isDistributor == true && selectedProduct.attributes.price1)
             }
             {
-            (isDistributor == false && selectedProduct.attributes.price2)
+              (isDistributor == false && selectedProduct.attributes.price2)
 
-            // selectedProduct.attributes.price1>0 ? selectedProduct.attributes.price1 : selectedProduct.attributes.price2
+              // selectedProduct.attributes.price1>0 ? selectedProduct.attributes.price1 : selectedProduct.attributes.price2
             }
           </Text>
           <View
@@ -299,30 +316,30 @@ const Item = () => {
                 </Text>
               </TouchableOpacity>
               {/* <Text style={{ fontSize: 16 }}>{price}</Text> */}
-              
+
               <Input
                 width="50%"
-                style={{ marginLeft: 6}}
+                style={{ marginLeft: 6 }}
                 onChangeText={(e) => {
-                  if (numericRegex.test(e)&&e>0) {
+                  if (numericRegex.test(e) && e > 0) {
                     setPrice(e)
-                  }else{
+                  } else {
                     alert("Valor ingresado invalido. Por favor ingrese solo valores numéricos mayores a 0.")
                   }
                 }}>
                 {price}
-                </Input>
+              </Input>
 
               <TouchableOpacity
                 onPress={() => setPrice(parseInt(price, 10) + 1)}
-                disabled={price === selectedProduct.attributes.stock}
+                disabled={price === (selectedProduct.attributes.stock - storedQuantity)}
                 style={{ paddingRight: 6 }}
               >
                 <Text
                   style={{
                     fontSize: 30,
                     color:
-                      price === selectedProduct.attributes.stock
+                      price === (selectedProduct.attributes.stock - storedQuantity)
                         ? "#aaaaaa"
                         : "#000000",
                   }}
@@ -343,7 +360,7 @@ const Item = () => {
               <Text
                 style={[FONTS.h2, { color: "#cccccc", textAlign: "center" }]}
               >
-                ${(selectedProduct.attributes.price1>0 ? (parseFloat(selectedProduct.attributes.price1 * price).toFixed(2)) : parseFloat(selectedProduct.attributes.price2 * price).toFixed(2))
+                ${(selectedProduct.attributes.price1 > 0 ? (parseFloat(selectedProduct.attributes.price1 * price).toFixed(2)) : parseFloat(selectedProduct.attributes.price2 * price).toFixed(2))
                 }
               </Text>
             </View>
