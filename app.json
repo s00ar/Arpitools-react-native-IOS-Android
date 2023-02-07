@@ -29,7 +29,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.arpitools.arpitools",
-      "versionCode": 13
+      "versionCode": 14
     },
     "web": {
       "favicon": "./assets/48x48.png"

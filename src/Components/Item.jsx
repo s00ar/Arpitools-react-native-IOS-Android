@@ -268,15 +268,18 @@ const Item = () => {
             </TouchableOpacity>
           )}
           <Text style={[FONTS.body2, { color: "#cccccc", marginLeft: 10 }]}>
-            $ {
+          ${(selectedProduct.attributes.price1 > 0 ? (parseFloat(selectedProduct.attributes.price1).toFixed(2)) : parseFloat(selectedProduct.attributes.price2).toFixed(2))
+                }
+            {/* $ {
               (isDistributor == true && selectedProduct.attributes.price1)
             }
             {
               (isDistributor == false && selectedProduct.attributes.price2)
 
               // selectedProduct.attributes.price1>0 ? selectedProduct.attributes.price1 : selectedProduct.attributes.price2
-            }
+            } */}
           </Text>
+          
           <View
             style={{ flexDirection: "row", padding: 10, alignItems: "center" }}
           >
@@ -360,8 +363,15 @@ const Item = () => {
               <Text
                 style={[FONTS.h2, { color: "#cccccc", textAlign: "center" }]}
               >
+                {/* ${(selectedProduct.attributes.price1 > 0 ? (parseFloat(selectedProduct.attributes.price1 * price).toFixed(2)) : parseFloat(selectedProduct.attributes.price2 * price).toFixed(2))
+                }
+                
+                {(isDistributor && (parseFloat(selectedProduct.attributes.price1 * price).toFixed(2)) : (parseFloat(selectedProduct.attributes.price2* price).toFixed(2)))}
+
+                */}
                 ${(selectedProduct.attributes.price1 > 0 ? (parseFloat(selectedProduct.attributes.price1 * price).toFixed(2)) : parseFloat(selectedProduct.attributes.price2 * price).toFixed(2))
                 }
+                {/* $ {(isDistributor ? (parseFloat(selectedProduct.attributes.price1 * price).toFixed(2)) : (parseFloat(selectedProduct.attributes.price2* price).toFixed(2)))} */}
               </Text>
             </View>
           </View>
@@ -387,7 +397,7 @@ const Item = () => {
           <Button
             disabled={selectedProduct?.stock < 1}
             loading={loading}
-            text={selectedProduct?.stock < 1 ? "Sin stock disponible" : "Agregar al Carrito"}
+            text={selectedProduct?.stock < 2 ? "Sin stock disponible" : "Agregar al Carrito"}
             onPress={async () => {
               setLoading(true);
               await addToCart(price),
