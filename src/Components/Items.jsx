@@ -35,11 +35,14 @@ const Items = (props) => {
   }; //end getDataUser
 
   useEffect(() => {
-    getDataUser();
-  }, []);
+    if(productContext?.loading){
+      getDataUser();
+    }
+  }, [productContext?.loading]);
+
   return (
     <Box h={"100%"}>
-      {productContext?.productsArray?.length && (
+      {productContext?.productsArray?.length > 0 && (
         productContext?.productsArray
         .filter(product => {
           if (user?.Distribuitor && (product?.attributes?.price1 === 0 || product?.attributes?.price1 === null)) {
@@ -49,9 +52,9 @@ const Items = (props) => {
           }
           return true;
         })
-        .map((product) => {
+        .map((product, index) => {
           return (
-            <View>
+            <View key={index}>
             {(
               (user?.Distribuitor === true && product?.attributes?.stock > 0 && (product?.attributes?.price1 != 0  || product?.attributes?.price1 != undefined))
               ||
