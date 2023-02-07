@@ -162,6 +162,7 @@ const getDataUser = async () => {
           }} />
         </Pressable>
       </Pressable>
+      <Text>v1.1.14</Text>
     </Modal>
   );
 };

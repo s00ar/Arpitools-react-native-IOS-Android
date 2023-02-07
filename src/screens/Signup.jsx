@@ -253,7 +253,7 @@ const Signup = (props) => {
             Registro
           </Heading>
           <Text style={[FONTS.body6, { color: "#fff", alignSelf: "center" }]}>
-            v1.1.12
+            v1.1.14
           </Text>
           {step == 1 ? (
             <VStack space={3} mt="5">
