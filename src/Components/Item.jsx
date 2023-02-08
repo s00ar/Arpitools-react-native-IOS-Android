@@ -394,20 +394,23 @@ const Item = () => {
           >
             Agregar al Carrito
           </Button> */}
-          <Button
-            disabled={selectedProduct?.stock < 1}
-            loading={loading}
-            text={selectedProduct?.stock < 2 ? "Sin stock disponible" : "Agregar al Carrito"}
-            onPress={async () => {
-              setLoading(true);
-              await addToCart(price),
-                // await sumAll(price, selectedProduct.price + price), 
-                setTimeout(() => {
-                  setLoading(false);
-                  navigation.navigate("Main");
-                }, 1000);
-            }}
-          />
+          {(selectedProduct?.stock < 1) ? "Producto sin stock" : 
+          (
+            <Button
+              disabled={selectedProduct?.stock < 1}
+              loading={loading}
+              text={selectedProduct?.stock < 1 ? "Sin stock disponible" : "Agregar al Carrito"}
+              onPress={async () => {
+                setLoading(true);
+                await addToCart(price),
+                  // await sumAll(price, selectedProduct.price + price), 
+                  setTimeout(() => {
+                    setLoading(false);
+                    navigation.navigate("Main");
+                  }, 1000);
+              }}
+            />
+          )}
         </View>
 
         <ModalFlatImages

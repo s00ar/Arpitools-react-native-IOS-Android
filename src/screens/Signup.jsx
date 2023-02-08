@@ -59,7 +59,7 @@ const Signup = (props) => {
   const [ruc, setRuc] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [address, setAdress] = useState("");
+  const [address, setAddress] = useState("");
   const [seller, setSeller] = useState("");
 
   const [loading, setLoading] = useState(false);
@@ -441,7 +441,7 @@ const Signup = (props) => {
                   style={{ color: "white" }}
                   placeholder="Ingrese su domicilio"
                   fontSize={20}
-                  onChangeText={setAdress}
+                  onChangeText={setAddress}
                   value={address}
                 />
               </FormControl>

@@ -31,13 +31,12 @@ const Receipt = ({ navigation }) => {
   const [sellername, setSellername] = useState();
   const [sellerphone, setSellerphone] = useState();
   const [order, setOrder] = useState();
-  const [address, setAdress] = useState(user?.address);
+  const [address, setAddress] = useState(user?.address);
   const [file, setFile] = useState();
   const [show, setShow] = useState(false);
   const [data, setData] = useState("fake data");
   const { totalCart, removeAllCart, cartArray } = useContext(ProductContext);
   const [user, setUser] = useState({});
-
   const [loading, setLoading] = useState(false);
 
   //recuperamos los datos almacenados del usuario logeado
@@ -62,13 +61,16 @@ const Receipt = ({ navigation }) => {
   }; //end getDataUser
 
   useEffect(() => {
-    getDataUser();
+    getDataUser(); 
+    if(user?.Distribuitor){
+      setAddress(user?.address)
+    }
   }, []);
 
   const onSend = async () => {
     const addressError = validateAddress(address);
 
-    if (!isEmpty(addressError) && user?.Distribuitor == false) {
+    if (!isEmpty(addressError) && !user?.Distribuitor) {
       Alert.alert("Error", addressError);
       return;
     }
@@ -221,7 +223,7 @@ const Receipt = ({ navigation }) => {
       }
     });
   };
-
+  
   // const displayAddress= () => {
   //   if (user?.Distribuitor) {
   //     return           <Text>{user?.address}</Text>;
@@ -231,7 +233,7 @@ const Receipt = ({ navigation }) => {
   //       placeholder="Ingrese su dirección de envio"
   //       fontSize={20}
   //       style={{color:'white'}}
-  //       onChangeText={setAdress}
+  //       onChangeText={setAddress}
   //       value={address}
   //       />
   //     </>
@@ -320,7 +322,7 @@ const Receipt = ({ navigation }) => {
               placeholder="Ingrese su dirección de envio"
               fontSize={20}
               style={{ color: "white" }}
-              onChangeText={setAdress}
+              onChangeText={setAddress}
               value={address}
             />
           )}
