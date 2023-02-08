@@ -186,7 +186,7 @@ const Item = () => {
     if(products.length > 0){
       Alert.alert(
         "",
-        "This product is already added to the cart. Please select another product.",
+        "Este producto ya fué añadido a su carrito. Por favor seleccione otro producto o borre el mismo y vuelva a añadirlo con mayor cantidad.",
         [
           { text: "OK", onPress: () => console.log("Dismissing the alert.") }
         ]

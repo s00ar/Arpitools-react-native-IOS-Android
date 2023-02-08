@@ -6,19 +6,29 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m1-medium"
+      }
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m1-medium"
+      }
     },
-    "production": {}
+    "production": {
+      "ios": {
+        "resourceClass": "m1-medium"
+      }
+    }
   },
   "submit": {
     "production": {
-      "ios":{
+      "ios": {
         "appleId": "ferzurita27@hotmail.com",
         "ascAppId": "1661710715",
-        "appleTeamId":"4T2UFDX8D4"
+        "appleTeamId": "4T2UFDX8D4"
       }
     }
   }
