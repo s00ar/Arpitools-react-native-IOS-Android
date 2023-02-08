@@ -31,7 +31,7 @@ const Receipt = ({ navigation }) => {
   const [sellername, setSellername] = useState();
   const [sellerphone, setSellerphone] = useState();
   const [order, setOrder] = useState();
-  const [address, setAddress] = useState(user?.address);
+  const [address, setAddress] = useState();
   const [file, setFile] = useState();
   const [show, setShow] = useState(false);
   const [data, setData] = useState("fake data");
@@ -52,6 +52,7 @@ const Receipt = ({ navigation }) => {
           setSellerid(user.SellerId);
           setSellername(user.SellerName);
           setSellerphone(user.SellerPhone);
+          setAddress(user.address)
           setUser(JSON.parse(value));
         }
       });
@@ -61,10 +62,7 @@ const Receipt = ({ navigation }) => {
   }; //end getDataUser
 
   useEffect(() => {
-    getDataUser(); 
-    if(user?.Distribuitor){
-      setAddress(user?.address)
-    }
+    getDataUser();
   }, []);
 
   const onSend = async () => {
