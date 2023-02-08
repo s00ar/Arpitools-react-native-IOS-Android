@@ -9,6 +9,7 @@ import {
   Pressable,
   Linking,
   Platform,
+  Alert
 } from "react-native";
 import React, { useContext, useEffect } from "react";
 // import { Box, Button } from "native-base";
@@ -44,6 +45,12 @@ const Item = () => {
   const [loading, setLoading] = useState(false);
 
   let flatListRef = useRef();
+  const navigation = useNavigation();
+
+  // console.log(selectedProduct.data.attributes.thumbnail.data.attributes.url);
+
+  const numericRegex = /^[0-9]*$/
+
   const onViewRef = useRef(({ changed }) => {
     if (changed[0].isViewable) {
       setCurrentIndex(changed[0].index);
@@ -53,7 +60,7 @@ const Item = () => {
   const [storedQuantity, setStoredQuantity] = useState(0);
 
   useEffect(() => {
-    if(cartArray?.length > 0){
+    if (cartArray?.length > 0) {
       const products = cartArray.filter((item) => item.product.id == selectedProduct.id)
       let count = 0;
       products.map((item) => {
@@ -170,11 +177,34 @@ const Item = () => {
     }
   };
 
-  const navigation = useNavigation();
+  const AddToCart = async () => {
 
-  // console.log(selectedProduct.data.attributes.thumbnail.data.attributes.url);
+    // Fetch the records for the selectedProduct.
+    const products = cartArray.filter((item) => item.product.id == selectedProduct.id)
 
-  const numericRegex = /^[0-9]*$/
+    // Check if the product is already added to the cart
+    if(products.length > 0){
+      Alert.alert(
+        "",
+        "This product is already added to the cart. Please select another product.",
+        [
+          { text: "OK", onPress: () => console.log("Dismissing the alert.") }
+        ]
+      );
+      return;
+    }
+
+    // Proceed to addToCart mechanism.
+    setLoading(true);
+    await addToCart(price),
+
+    // add a slight delay to handle the loader and navigation.
+    setTimeout(() => {
+      setLoading(false);
+      navigation.navigate("Main");
+    }, 1000);
+  }
+
 
   return (
     <ScrollView>
@@ -268,8 +298,8 @@ const Item = () => {
             </TouchableOpacity>
           )}
           <Text style={[FONTS.body2, { color: "#cccccc", marginLeft: 10 }]}>
-          ${(selectedProduct.attributes.price1 > 0 ? (parseFloat(selectedProduct.attributes.price1).toFixed(2)) : parseFloat(selectedProduct.attributes.price2).toFixed(2))
-                }
+            ${(selectedProduct.attributes.price1 > 0 ? (parseFloat(selectedProduct.attributes.price1).toFixed(2)) : parseFloat(selectedProduct.attributes.price2).toFixed(2))
+            }
             {/* $ {
               (isDistributor == true && selectedProduct.attributes.price1)
             }
@@ -279,7 +309,7 @@ const Item = () => {
               // selectedProduct.attributes.price1>0 ? selectedProduct.attributes.price1 : selectedProduct.attributes.price2
             } */}
           </Text>
-          
+
           <View
             style={{ flexDirection: "row", padding: 10, alignItems: "center" }}
           >
@@ -394,23 +424,15 @@ const Item = () => {
           >
             Agregar al Carrito
           </Button> */}
-          {(selectedProduct?.stock < 1) ? "Producto sin stock" : 
-          (
-            <Button
-              disabled={selectedProduct?.stock < 1}
-              loading={loading}
-              text={selectedProduct?.stock < 1 ? "Sin stock disponible" : "Agregar al Carrito"}
-              onPress={async () => {
-                setLoading(true);
-                await addToCart(price),
-                  // await sumAll(price, selectedProduct.price + price), 
-                  setTimeout(() => {
-                    setLoading(false);
-                    navigation.navigate("Main");
-                  }, 1000);
-              }}
-            />
-          )}
+          {(selectedProduct?.stock < 1) ? "Producto sin stock" :
+            (
+              <Button
+                disabled={selectedProduct?.stock < 1}
+                loading={loading}
+                text={selectedProduct?.stock < 1 ? "Sin stock disponible" : "Agregar al Carrito"}
+                onPress={AddToCart}
+              />
+            )}
         </View>
 
         <ModalFlatImages
