@@ -78,13 +78,15 @@ const Cart = (props) => {
 
   // console.log( 'TOTALARR _____________' ,totalArr);
   //todo
-  for (i = 0; i < cartArray.length; i++) {
+  for (let i = 0; i < cartArray.length; i++) {
+    console.log('cartArray[i].quantity',cartArray[i].quantity)
+    console.log('type', typeof cartArray[i].quantity)
     totalArr.push(
       // {(selectedProduct.attributes.price1 ? (parseFloat(selectedProduct.attributes.price1 * price).toFixed(2)) : parseFloat(selectedProduct.attributes.price2 * price).toFixed(2))
       // }
       (cartArray[i].product.attributes.price1>0 ?
-        (cartArray[i].product.attributes.price1 * (cartArray[i].quantity).toFixed(2)) : 
-        (cartArray[i].product.attributes.price2 * (cartArray[i].quantity).toFixed(2))
+        (cartArray[i].product.attributes.price1 * (parseInt(cartArray[i].quantity)).toFixed(2)) : 
+        (cartArray[i].product.attributes.price2 * (parseInt(cartArray[i].quantity)).toFixed(2))
         )
     )
   }

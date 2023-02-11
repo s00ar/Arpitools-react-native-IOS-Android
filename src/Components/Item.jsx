@@ -9,7 +9,7 @@ import {
   Pressable,
   Linking,
   Platform,
-  Alert
+  Alert,
 } from "react-native";
 import React, { useContext, useEffect } from "react";
 // import { Box, Button } from "native-base";
@@ -38,7 +38,7 @@ const Item = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [show, setShow] = useState(false);
-  const [price, setPrice] = useState(1);
+  const [price, setPrice] = useState("1");
   // added this to check for distribuitor and to only show items to the user that it should be shown.
   const [isDistributor, setIsDistributor] = useState(false);
 
@@ -49,7 +49,7 @@ const Item = () => {
 
   // console.log(selectedProduct.data.attributes.thumbnail.data.attributes.url);
 
-  const numericRegex = /^[0-9]*$/
+  const numericRegex = /^[0-9]*$/;
 
   const onViewRef = useRef(({ changed }) => {
     if (changed[0].isViewable) {
@@ -61,11 +61,13 @@ const Item = () => {
 
   useEffect(() => {
     if (cartArray?.length > 0) {
-      const products = cartArray.filter((item) => item.product.id == selectedProduct.id)
+      const products = cartArray.filter(
+        (item) => item.product.id == selectedProduct.id
+      );
       let count = 0;
       products.map((item) => {
         count += parseInt(item?.quantity) ?? 0;
-      })
+      });
       setStoredQuantity(count);
     } else {
       setStoredQuantity(0);
@@ -178,18 +180,17 @@ const Item = () => {
   };
 
   const AddToCart = async () => {
-
     // Fetch the records for the selectedProduct.
-    const products = cartArray.filter((item) => item.product.id == selectedProduct.id)
+    const products = cartArray.filter(
+      (item) => item.product.id == selectedProduct.id
+    );
 
     // Check if the product is already added to the cart
-    if(products.length > 0){
+    if (products.length > 0) {
       Alert.alert(
         "",
         "Este producto ya fué añadido a su carrito. Por favor seleccione otro producto o borre el mismo y vuelva a añadirlo con mayor cantidad.",
-        [
-          { text: "OK", onPress: () => console.log("Dismissing the alert.") }
-        ]
+        [{ text: "OK", onPress: () => console.log("Dismissing the alert.") }]
       );
       return;
     }
@@ -197,18 +198,22 @@ const Item = () => {
     // Proceed to addToCart mechanism.
     setLoading(true);
     await addToCart(price),
-
-    // add a slight delay to handle the loader and navigation.
-    setTimeout(() => {
-      setLoading(false);
-      navigation.navigate("Main");
-    }, 1000);
-  }
-
+      // add a slight delay to handle the loader and navigation.
+      setTimeout(() => {
+        setLoading(false);
+        navigation.navigate("Main");
+      }, 1000);
+  };
 
   return (
     <ScrollView>
-      <View style={{ height: SIZES.height - 76, padding: 10, backgroundColor: "#1a1b1a" }}>
+      <View
+        style={{
+          height: SIZES.height - 76,
+          padding: 10,
+          backgroundColor: "#1a1b1a",
+        }}
+      >
         <View style={{}}>
           <View
             style={{
@@ -254,7 +259,7 @@ const Item = () => {
               /* Important to set a key for list items,
                                 but it's wrong to use indexes as keys, see below */
               style={{
-                width: '100%',
+                width: "100%",
                 height: 250,
                 resizeMode: "cover",
               }}
@@ -286,8 +291,8 @@ const Item = () => {
               onPress={() => {
                 downloadFile(
                   config.api.page_url +
-                  selectedProduct.attributes.specifications.data[0].attributes
-                    .url
+                    selectedProduct.attributes.specifications.data[0].attributes
+                      .url
                 );
               }}
             >
@@ -298,8 +303,10 @@ const Item = () => {
             </TouchableOpacity>
           )}
           <Text style={[FONTS.body2, { color: "#cccccc", marginLeft: 10 }]}>
-            ${(selectedProduct.attributes.price1 > 0 ? (parseFloat(selectedProduct.attributes.price1).toFixed(2)) : parseFloat(selectedProduct.attributes.price2).toFixed(2))
-            }
+            $
+            {selectedProduct.attributes.price1 > 0
+              ? parseFloat(selectedProduct.attributes.price1).toFixed(2)
+              : parseFloat(selectedProduct.attributes.price2).toFixed(2)}
             {/* $ {
               (isDistributor == true && selectedProduct.attributes.price1)
             }
@@ -313,12 +320,7 @@ const Item = () => {
           <View
             style={{ flexDirection: "row", padding: 10, alignItems: "center" }}
           >
-            <Text
-              style={[
-                FONTS.body2,
-                { color: "#cccccc", marginRight: 10, },
-              ]}
-            >
+            <Text style={[FONTS.body2, { color: "#cccccc", marginRight: 10 }]}>
               Cantidad
             </Text>
             <View
@@ -333,16 +335,16 @@ const Item = () => {
               }}
             >
               <TouchableOpacity
-                disabled={price === 1}
+                disabled={price == 1}
                 onPress={() => {
-                  setPrice(parseInt(price, 10) - 1)
+                  setPrice(`${parseInt(price, 10) - 1}`);
                 }}
                 style={{ paddingLeft: 6 }}
               >
                 <Text
                   style={{
                     fontSize: 30,
-                    color: price === 1 ? "#aaaaaa" : "#000000",
+                    color: price == 1 ? "#aaaaaa" : "#000000",
                   }}
                 >
                   -
@@ -353,26 +355,56 @@ const Item = () => {
               <Input
                 width="50%"
                 style={{ marginLeft: 6 }}
+                keyboardType={'numeric'}
+                value={price}
                 onChangeText={(e) => {
                   if (numericRegex.test(e) && e > 0) {
-                    setPrice(e)
+                    if (
+                      parseInt(e) <=
+                      selectedProduct.attributes.stock - storedQuantity
+                    ) {
+                      setPrice(e);
+                    } else {
+                      Alert.alert(
+                        "Valor ingresado supera el stock disponible.",
+                        `Stock disponible del producto seleccionado: ${
+                          selectedProduct.attributes.stock - storedQuantity
+                        }`,
+                        [
+                          // The "Yes" button
+                          {
+                            text: "OK",
+                            onPress: () => {
+                              setPrice(
+                                `${selectedProduct.attributes.stock - storedQuantity}`
+                              );
+                            },
+                          },
+                        ]
+                      );
+                      // alert(`Valor ingresado supera el stock disponible. Stock disponible del producto seleccionado: ${selectedProduct.attributes.stock - storedQuantity}`)
+                    }
                   } else {
-                    alert("Valor ingresado invalido. Por favor ingrese solo valores numéricos mayores a 0.")
+                    alert(
+                      "Valor ingresado invalido. Por favor ingrese solo valores numéricos mayores a 0."
+                    );
                   }
-                }}>
-                {price}
-              </Input>
+                }}
+              />
 
               <TouchableOpacity
-                onPress={() => setPrice(parseInt(price, 10) + 1)}
-                disabled={price === (selectedProduct.attributes.stock - storedQuantity)}
+                onPress={() => setPrice(`${parseInt(price, 10) + 1}`)}
+                disabled={
+                  price == (selectedProduct.attributes.stock - storedQuantity)
+                }
                 style={{ paddingRight: 6 }}
               >
                 <Text
                   style={{
                     fontSize: 30,
                     color:
-                      price === (selectedProduct.attributes.stock - storedQuantity)
+                      price ==
+                      selectedProduct.attributes.stock - storedQuantity
                         ? "#aaaaaa"
                         : "#000000",
                   }}
@@ -399,8 +431,14 @@ const Item = () => {
                 {(isDistributor && (parseFloat(selectedProduct.attributes.price1 * price).toFixed(2)) : (parseFloat(selectedProduct.attributes.price2* price).toFixed(2)))}
 
                 */}
-                ${(selectedProduct.attributes.price1 > 0 ? (parseFloat(selectedProduct.attributes.price1 * price).toFixed(2)) : parseFloat(selectedProduct.attributes.price2 * price).toFixed(2))
-                }
+                $
+                {selectedProduct.attributes.price1 > 0
+                  ? parseFloat(
+                      selectedProduct.attributes.price1 * price
+                    ).toFixed(2)
+                  : parseFloat(
+                      selectedProduct.attributes.price2 * price
+                    ).toFixed(2)}
                 {/* $ {(isDistributor ? (parseFloat(selectedProduct.attributes.price1 * price).toFixed(2)) : (parseFloat(selectedProduct.attributes.price2* price).toFixed(2)))} */}
               </Text>
             </View>
@@ -424,15 +462,20 @@ const Item = () => {
           >
             Agregar al Carrito
           </Button> */}
-          {(selectedProduct?.stock < 1) ? "Producto sin stock" :
-            (
-              <Button
-                disabled={selectedProduct?.stock < 1}
-                loading={loading}
-                text={selectedProduct?.stock < 1 ? "Sin stock disponible" : "Agregar al Carrito"}
-                onPress={AddToCart}
-              />
-            )}
+          {selectedProduct?.stock < 1 ? (
+            "Producto sin stock"
+          ) : (
+            <Button
+              disabled={selectedProduct?.stock < 1}
+              loading={loading}
+              text={
+                selectedProduct?.stock < 1
+                  ? "Sin stock disponible"
+                  : "Agregar al Carrito"
+              }
+              onPress={AddToCart}
+            />
+          )}
         </View>
 
         <ModalFlatImages
