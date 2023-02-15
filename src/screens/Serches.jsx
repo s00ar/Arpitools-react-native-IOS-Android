@@ -11,8 +11,6 @@ import { BackHandler } from 'react-native'
 const Serches = (props) => {
 
 
- 
-
   return (
     <>
       <Categoris/>
